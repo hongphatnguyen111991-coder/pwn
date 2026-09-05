@@ -13,3 +13,6 @@ Chương trình trên có thể cung cấp cho ta quyền điều khiển shell 
 
 Sau khi nhập 40 kí tự A thì dữ liệu đã được ghi đè vào các ô bên dưới buffer (v5 v6 v7) và thỏa điều kiện.
 Nhờ đó ta có quyền truy cập shell.
+
+## Pwntool (bof2)
+
