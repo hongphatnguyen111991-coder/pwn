@@ -21,5 +21,7 @@ Tương tự ở bof1, ta phải ghi đè giá trị vào các biến v5 v6 v7 �
 
 ![Alt text](image/buffer-overflow3.png)
 
-pwntool có thể giúp nhập trực tiếp byte thô vào chương trình để đảm bảo dữ liệu được nhập đúng định dạng và kích thước BYTE phù hợp giả dụ khi nhập payload += p64(0x13371337) thì dữ liệu sẽ hiển thị 0x0000000013371337.
+pwntool có thể giúp nhập trực tiếp byte thô vào chương trình để đảm bảo dữ liệu được nhập đúng định dạng và kích thước BYTE phù hợp. Giả dụ khi nhập payload += p64(0x13371337) thì dữ liệu sẽ hiển thị 0x0000000013371337.
+
+![Alt text](image/buffer-overflow4.png)
 
