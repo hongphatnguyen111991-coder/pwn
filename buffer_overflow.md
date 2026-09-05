@@ -5,5 +5,6 @@ Buffer Overflow là kĩ thuật làm tràn bộ nhớ bằng cách nhập số b
 ![Alt text](image/buffer-overflow.png)
 
 ## Ví dụ
-![Alt text](image/buffer-overflow1.png)
+![Alt text](image/buffer-overflow2.png)
+
 CHương trình trên có thể cung cấp cho ta quyền điều khiển shell 
