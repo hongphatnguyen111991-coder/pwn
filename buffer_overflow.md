@@ -15,4 +15,9 @@ Sau khi nhập 40 kí tự A thì dữ liệu đã được ghi đè vào các �
 Nhờ đó ta có quyền truy cập shell.
 
 ## Pwntool (bof2)
+![Alt text](image/buffer-overflow2.png)
+
+Tương tự ở bof1, ta phải ghi đè giá trị vào các biến v5 v6 v7 để lấy quyền điều khiển shell. Nhưng ở chương trình này giá trị phải khớp với điều kiện trong if. Tuy nhiên, asm dữ liệu nhập từ bàn phím sẽ bị chuyển thành mã ascii làm lưu trữ sai dữ liệu. 
+
+![Alt text](
 
