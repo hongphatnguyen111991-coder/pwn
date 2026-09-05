@@ -4,7 +4,7 @@ Buffer Overflow là kĩ thuật làm tràn bộ nhớ bằng cách nhập số b
 
 ![Alt text](image/buffer-overflow.png)
 
-## Ví dụ (bof1)
+# Ví dụ (bof1)
 ![Alt text](image/buffer-overflow0.png)
 
 Chương trình trên có thể cung cấp cho ta quyền điều khiển shell nếu các biến v5 v6 v7 khác 0. Tuy nhiên chương trình chỉ có thể nhập dữ liệu vào buffer nên ta không thể truy cập v5 v6 v7 theo cách thông thường. Nhưng chương trình này có một lỗ hổng có thể khai thác đó là buffer chỉ có thể chứa 16 BYTE. Trong khi đó lệnh read lại đọc tối đa đến 48 BYTE. Nếu nhập quá dữ liệu của buffer thì từ đó ta có thể ghi đè dữ liệu vào v5 v6 v7 bên dưới.
@@ -14,7 +14,7 @@ Chương trình trên có thể cung cấp cho ta quyền điều khiển shell 
 Sau khi nhập 40 kí tự A thì dữ liệu đã được ghi đè vào các ô bên dưới buffer (v5 v6 v7) và thỏa điều kiện.
 Nhờ đó ta có quyền truy cập shell.
 
-## Pwntool (bof2)
+# Pwntool (bof2)
 ![Alt text](image/buffer-overflow2.png)
 
 Tương tự ở bof1, ta phải ghi đè giá trị vào các biến v5 v6 v7 để lấy quyền điều khiển shell. Nhưng ở chương trình này giá trị phải khớp với điều kiện trong if. Tuy nhiên, asm dữ liệu nhập từ bàn phím sẽ bị chuyển thành mã ascii làm lưu trữ sai dữ liệu. 
