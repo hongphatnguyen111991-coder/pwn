@@ -5,7 +5,7 @@
 
 <img width="421" height="187" alt="image" src="https://github.com/user-attachments/assets/4a40a548-a0ea-4a24-b63c-868633563682" />
 
--bảo mật NX đang bật, không thể thực thi ở vùng nhớ stack
+-bảo mật NX đang bật, không thể thực thi ở vùng nhớ stack '\n'
 -phải thông qua lệnh ở vùng .text  
 =>ROPchain
 
