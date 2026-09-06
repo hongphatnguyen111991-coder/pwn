@@ -32,4 +32,4 @@ pwntool có thể giúp nhập trực tiếp BYTE thô vào chương trình đ�
 Lệnh tạo shell lần này được để đặt ở hàm win. Vì hàm main không có lệnh nào gọi hàm win nên ta phải truy cập bằng cách khác.
 Ta có thể tận dụng hàm read để ghi đè địa chỉ của hàm win vào stack nơi chứa địa chỉ return (RIP). Từ đó truy cập được hàm win dể tạo shell.
 
-
+![Alt text](image/buffer-overflow7.png)
