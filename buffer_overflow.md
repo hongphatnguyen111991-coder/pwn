@@ -39,7 +39,7 @@ Trong pwntool, ta có thể dùng lệnh exe=ELF('./bof3') để phân tích c�
 
 ![Alt text](image/buffer-overflow8.png)
 
-Tuy nhiên có một vấn đề nhỏ. Thông thường khi ta dùng call win thì địa chỉ trả về lệnh tiếp theo (RIP) sẽ được đẩy vào stack (8 BYTE). Và khi vào hàm sẽ push thêm RBP của hàm cha vào stack (8 BYTE). Tổng là 16 BYTE. Và thanhh ghi xmm0 yêu cầu stack chia hết cho 16.
+Tuy nhiên có một vấn đề nhỏ. Thông thường khi ta dùng call win thì địa chỉ trả về lệnh tiếp theo (RIP) sẽ được đẩy vào stack (8 BYTE). Sau đó, khi vào hàm win sẽ push thêm RBP của hàm cha vào stack (8 BYTE). Tổng là 16 BYTE. Và thanhh ghi xmm0 yêu cầu stack chia hết cho 16.
 Mà khi sử dụng ret2win để truy cập hàm win thì địa chỉ trả về (RIP) chưa vào giờ được push vào stack. Điều này dẫn tới việc push RBP vào hàm sẽ làm stack chỉ tăng lên tổng là 8 BYTE. Khi địa chỉ stack không chia hết cho 16 thì lệnh movaps xmmword ptr [rsp + 0x50], xmm0 lập tức làm chương trình bị crash (SIGSEGV).
 
 ![Alt text](image/buffer-overflow9.png)
