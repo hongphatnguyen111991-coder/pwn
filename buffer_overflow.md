@@ -47,3 +47,10 @@ Mà khi sử dụng ret2win để truy cập hàm win thì địa chỉ trả v�
 Một cách đơn giản để khắc phục điều này là ret2win vào địa chỉ bỏ qua lệnh push RBP. Từ đó có thể tạo shell mà không bị lỗi.
 
 ![Alt text](image/buffer-overflow10.png)
+
+# ROPchain (bof4)
+![Alt text](image/buffer-overflow11.png)
+
+File bof4 lần này có bật NX, về cơ bản thì chặn việc thực thi trên địa chỉ stack. Vậy nên việc ghi đè BYTE thô để execve bin/sh là không khả thi.
+Đồng thời cũng không có hàm win chứa lệnh gọi shell nên cũng không thể dùng ret2win.
+
