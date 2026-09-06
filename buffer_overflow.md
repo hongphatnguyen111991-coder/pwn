@@ -44,6 +44,6 @@ Mà khi sử dụng ret2win để truy cập hàm win thì địa chỉ trả v�
 
 ![Alt text](image/buffer-overflow9.png)
 
-Một cách đơn giản để khắc phục điều này là ret2win vào địa chỉ bỏ qua lệnh push RBP.
+Một cách đơn giản để khắc phục điều này là ret2win vào địa chỉ bỏ qua lệnh push RBP. Từ đó có thể tạo shell mà không bị lỗi.
 
 ![Alt text](image/buffer-overflow10.png)
