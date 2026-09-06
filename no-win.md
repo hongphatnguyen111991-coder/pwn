@@ -15,4 +15,8 @@ vì `pop rdi/rsi ; pop rbp ; ret` bị dư rbp ở đằng sau, ta sẽ cần ch
 
 <img width="270" height="137" alt="Screenshot 2026-09-06 225924(1)" src="https://github.com/user-attachments/assets/7673492d-ceb7-4624-abce-5a449752118e" />
 
+Sẽ cần nhập vào địa chỉ ô nhớ tĩnh vào rsi để làm buf chứa "/bin/sh" phục vụ việc nhập lại vào rdi sau đó
+Vì trong cơ chế bảo mật ghi no-pie nên chúng ta có thể vào gdb lấy địa chỉ của lệnh call read chính xác
+
+# FIX
 
