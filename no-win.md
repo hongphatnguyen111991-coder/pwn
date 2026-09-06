@@ -13,5 +13,6 @@ Bảo mật NX đang bật, không thể thực thi ở vùng nhớ stack. Phả
 
 vì `pop rdi/rsi ; pop rbp ; ret` bị dư rbp ở đằng sau, ta sẽ cần chèn thêm 8 byte rác để pop rbp không ảnh hưởng đến việc nhập dữ liệu vào các thanh ghi khác
 
-<img width="270" height="137" alt="image" src="https://github.com/user-attachments/assets/7e7f7b42-2c72-4636-be79-68e949863e3a" />
+<img width="270" height="137" alt="Screenshot 2026-09-06 225924(1)" src="https://github.com/user-attachments/assets/7673492d-ceb7-4624-abce-5a449752118e" />
+
 
