@@ -30,6 +30,11 @@ pwntool có thể giúp nhập trực tiếp BYTE thô vào chương trình đ�
 ![Alt text](image/buffer-overflow6.png)
 
 Lệnh tạo shell lần này được để đặt ở hàm win. Vì hàm main không có lệnh nào gọi hàm win nên ta phải truy cập bằng cách khác.
-Ta có thể tận dụng hàm read để ghi đè địa chỉ của hàm win vào stack nơi chứa địa chỉ return (RIP). Từ đó truy cập được hàm win dể tạo shell.
+Ta có thể tận dụng lệnh read để ghi đè địa chỉ của hàm win vào stack nơi chứa địa chỉ return (RIP). Từ đó truy cập được hàm win dể tạo shell.
+Đây gọi là kĩ thuật Ret2Win
 
 ![Alt text](image/buffer-overflow7.png)
+
+Trong pwntool, ta có thể dùng lệnh exe=ELF('./bof3') để phân tích cấu trúc file ELF. Bằng cách này ta có thể dùng lệnh exe.sym['win'] để nạp địa chỉ hàm win tự động mà không cần tìm thủ công.
+
+![Alt text](image/buffer-overflow8.png)
