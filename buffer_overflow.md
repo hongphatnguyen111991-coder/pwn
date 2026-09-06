@@ -51,6 +51,11 @@ Một cách đơn giản để khắc phục điều này là ret2win vào đị
 # ROPchain (bof4)
 ![Alt text](image/buffer-overflow11.png)
 
-File bof4 lần này có bật NX, về cơ bản thì chặn việc thực thi trên địa chỉ stack. Vậy nên việc ghi đè BYTE thô để execve bin/sh là không khả thi.
-Đồng thời cũng không có hàm win chứa lệnh gọi shell nên cũng không thể dùng ret2win.
+bof4 lần này không có hàm win chứa lệnh gọi shell để dùng ret2win, cũng như không thể tạo shell từ main.
+Ta có cách khác là dùng lệnh execve qua syscall để tạo shell. Nhưng file bof4 đang bật NX, về cơ bản chặn việc thực thi tại địa chỉ stack. Thế nên khi ghi đè lệnh execve lên stack rồi gọi ret lên địa chỉ đó sẽ báo lỗi.
+Nhưng vì chương trình vẫn thực thi các lệnh trên vùng .text nên ta có thể tận dụng những câu lệnh có sẵn trong đó để gọi lệnh execve. Đây là cách kĩ thuật ROPchain.
+
+![Alt text](image/buffer-overflow12.png)
+
+
 
