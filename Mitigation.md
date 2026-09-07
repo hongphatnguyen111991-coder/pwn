@@ -3,4 +3,6 @@ Các hệ điều hành có một cơ chế bảo mật gọi là ASLR (viết t
 
 Tuy nhiên mục Code/ Data segment không được sắp địa chỉ ngẫu nhiên bới ASLR tạo ra lỗ hổng dễ bị khai thác. Và cơ chế bảo mật PIE khắc phục điều đó làm cho địa chỉ Code/ Data segment không còn cố định.
 
-Điều này khiến cho việc tìm Gadget và chứa dữ liệu trong .BSS trở nên khó khăn hơn.
+Điều này khiến cho việc sử dụng Gadget và tìm địa chỉ hàm trong chương trình trở nên khó khăn hơn.
+
+# 
