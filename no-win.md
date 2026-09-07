@@ -13,10 +13,12 @@ Bảo mật NX đang bật, không thể thực thi ở vùng nhớ stack. Phả
 
 vì `pop rdi/rsi ; pop rbp ; ret` bị dư rbp ở đằng sau, ta sẽ cần chèn thêm 8 byte rác để pop rbp không ảnh hưởng đến việc nhập dữ liệu vào các thanh ghi khác
 
-<img width="270" height="137" alt="Screenshot 2026-09-06 225924(1)" src="https://github.com/user-attachments/assets/7673492d-ceb7-4624-abce-5a449752118e" />
+# setup ghi /bin/sh vào ô nhớ tĩnh và syscall 59
+<img width="352" height="166" alt="image" src="https://github.com/user-attachments/assets/47722352-dd84-46a0-8c81-3016bd10d446" />
 
-Sẽ cần nhập vào địa chỉ ô nhớ tĩnh vào rsi để làm buf chứa "/bin/sh" phục vụ việc nhập lại vào rdi sau đó
-Vì trong cơ chế bảo mật ghi no-pie nên chúng ta có thể vào gdb lấy địa chỉ của lệnh call read chính xác
+Vì sau hàm sau hàm read là leave và ta không muốn lệnh bị chuyển hướng đến nơi khác. Nên dùng ret2win để jmp tới hàm read sẽ giúp ta chuyển hướng trực tiếp đến lệnh tiếp theo trên đỉnh stack. Cách này là khả thi vì chế độ bảo mật PIE đang tắt và địa chỉ hàm read là cố định.
 
-# FIX
+<img width="422" height="442" alt="image" src="https://github.com/user-attachments/assets/815b7388-2619-414a-854a-e3e5058a4a70" />
+
+Luồng thực thi bây giờ sẽ là 1 chuỗi các gadget liên tục thay vì bị ngắt do hàm read
 
