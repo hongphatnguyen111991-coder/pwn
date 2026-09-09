@@ -57,7 +57,7 @@ Dù vậy, chương trình vẫn thực thi các lệnh trên vùng .text nên t
 
 ![Alt text](image/buffer-overflow12.png)
 
-Một hay vài câu lệnh thao tác dữ liệu kèm theo lệnh chuyển hướng sau cùng được gọi là các Gadget. Các Gadget có thể được tìm kiếm bằng lệnh ROPgadget --binary bof4. Tùy vào mục đích sử dụng mà ta có thể tìm kiếm các gadget có đặc điểm cụ thể.
+Một hay vài câu lệnh thao tác dữ liệu kèm theo lệnh chuyển hướng sau cùng được gọi là các Gadget. Các Gadget có thể được tìm kiếm bằng lệnh `ROPgadget --binary bof4`. Tùy vào mục đích sử dụng mà ta có thể tìm kiếm các gadget có đặc điểm cụ thể.
 
 ![Alt text](image/buffer-overflow13.png)
 
