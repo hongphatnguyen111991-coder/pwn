@@ -21,7 +21,7 @@ Tương tự ở bof1, ta phải ghi đè giá trị vào các biến a b c đ�
 
 ![Alt text](image/buffer-overflow3.png)
 
-pwntool có thể giúp nhập trực tiếp BYTE thô vào chương trình để đảm bảo dữ liệu được nhập đúng định dạng và kích thước BYTE phù hợp. Giả dụ khi nhập payload += p64(0x13371337) thì dữ liệu sẽ được lưu vào ô nhớ là 0x0000000013371337. Từ đó ta có thể nhập dữ liệu đúng yêu cầu và dành quyền điều khiển shell
+pwntool có thể giúp nhập trực tiếp BYTE thô vào chương trình để đảm bảo dữ liệu được nhập đúng định dạng và kích thước BYTE phù hợp. Giả dụ khi nhập `payload += p64(0x13371337)` thì dữ liệu sẽ được lưu vào ô nhớ là 0x0000000013371337. Từ đó ta có thể nhập dữ liệu đúng yêu cầu và dành quyền điều khiển shell
 
 ![Alt text](image/buffer-overflow4.png)
 
