@@ -66,3 +66,12 @@ Ta cần ghi đè địa chỉ của các gadget vào stack để khi gặp lệ
 Luồng thực thi khi kích hoạt ROPchain sẽ như sau:
 
 ![Alt text](image/buffer-overflow14.png) 
+
+# Ret2Shellcode
+
+Shellcode là các đoạn mã máy được dùng để nạp vào vùng nhớ (thông thường là stack) thông qua buffer oveflow để chạy trực tiếp /bin/sh trên vùng nhớ đó.
+
+![Alt text](image/buffer-overflow14.png) 
+
+Ret2shellcode sẽ sử dụng 1 lệnh chuyển hướng để nhảy đến vùng nhớ chứa shellcode và thực thi. Kĩ thuật này nhanh và đơn giản hơn xây dựng ROPchain. Nhưng đồng thời cũng bị hạn chế bởi cơ chế bảo mật NX có thể chặn quyền thực thi trên stack.
+
