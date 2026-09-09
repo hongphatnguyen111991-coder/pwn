@@ -35,7 +35,7 @@ Ta có thể tận dụng lệnh read để ghi đè địa chỉ của hàm win
 
 ![Alt text](image/buffer-overflow7.png)
 
-Trong pwntool, ta có thể dùng lệnh exe=ELF('./bof3') để phân tích cấu trúc file ELF. Bằng cách này ta có thể dùng lệnh `exe.sym['win']` để nạp địa chỉ hàm win tự động mà không cần tìm thủ công.
+Trong pwntool, ta có thể dùng lệnh `exe=ELF('./bof3')` để phân tích cấu trúc file ELF. Bằng cách này ta có thể dùng lệnh `exe.sym['win']` để nạp địa chỉ hàm win tự động mà không cần tìm thủ công.
 
 ![Alt text](image/buffer-overflow8.png)
 
