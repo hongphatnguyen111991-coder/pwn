@@ -83,4 +83,12 @@ Chúng ta đã có sẵn con trỏ đến shellcode ở thanh ghi rax. Việc c�
 
 Dùng lệnh asm để chuyển từ code Assembly qua shellcode rồi ghi vào buffer. Sau đó ghi đè địa chỉ của gadget call rax vào saved RIP để chuyển hướng khi ret. Shellcode sau đó sẽ được thực thi và tạo shell
 
-#I Ret2shellcode Leak Required (bof6)
+# Ret2shellcode Leak Required (bof6)
+
+Khi ta hoàn toàn mù tịt về địa chỉ stack chứa shellcode để nhảy tới, cũng như không có sẵn con trỏ đến buffer thì cần leak một địa chỉ stack. Từ đó có thể tính toán offset hay ghi shellcode lên chính địa chỉ đó để thực thi.
+
+![Alt text](image/buffer-overflow18.png)
+
+Trong bài này ta sẽ leak một địa chỉ stack thông qua việc để cho chương trình in ra địa chỉ đó. Để làm được điều đó ta cần xem lại cơ chế hàm read, khi nhập xong sẽ không tự động thêm ngắt chuỗi. Do đó khi nhập vừa đủ kí tự để qua ô nhớ bên dưới thì địa chỉ bên dưới sẽ bị nối vào chuỗi. 
+
+![Alt text](image/buffer-overflow19.png)
