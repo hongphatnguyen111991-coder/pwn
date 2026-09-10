@@ -85,7 +85,7 @@ Dùng lệnh asm để chuyển từ code Assembly qua shellcode rồi ghi vào 
 
 # Ret2shellcode Leak Required (bof6)
 
-Khi ta hoàn toàn mù tịt về địa chỉ stack chứa shellcode để nhảy tới, cũng như không có sẵn con trỏ đến buffer thì cần leak một địa chỉ stack. Từ đó có thể tính toán offset hay ghi shellcode lên chính địa chỉ đó để thực thi.
+Khi ta hoàn toàn mù tịt về địa chỉ stack chứa shellcode để nhảy tới, cũng như không có sẵn con trỏ đến buffer thì leak một địa chỉ stack là cần thiết. Từ đó có thể tính toán offset hay ghi shellcode lên chính địa chỉ đó để thực thi.
 
 ![Alt text](image/buffer-overflow18.png)
 
