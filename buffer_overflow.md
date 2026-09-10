@@ -67,7 +67,7 @@ Luồng thực thi khi kích hoạt ROPchain sẽ như sau:
 
 ![Alt text](image/buffer-overflow14.png) 
 
-# Ret2Shellcode (bof5)
+# Ret2Shellcode No Leak (bof5)
 
 Shellcode là các đoạn mã máy được dùng để nạp vào vùng nhớ (thông thường là stack) thông qua buffer oveflow để chạy trực tiếp /bin/sh trên vùng nhớ đó.
 
@@ -80,4 +80,6 @@ Ret2shellcode sẽ sử dụng 1 lệnh chuyển hướng để nhảy đến v�
 Chúng ta đã có sẵn con trỏ đến shellcode ở thanh ghi rax. Việc còn lại chỉ cần chuyển hướng tới địa chỉ trong rax qua lệnh call hay jmp rax để thực thi shellcode.
 
 ![Alt text](image/buffer-overflow17.png)
+
+Dùng lệnh asm để chuyển từ code Assembly qua shellcode rồi ghi vào buffer. Sau đó ghi đè địa chỉ của gadget call rax vào saved RIP để chuyển hướng khi ret. Shellcode sau đó sẽ được thực thi và tạo shell
 
