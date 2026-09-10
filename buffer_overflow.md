@@ -95,7 +95,9 @@ Trong bài này ta sẽ leak một địa chỉ stack thông qua việc để ch
 ![Alt text](image/buffer-overflow20.png)
 
 Lệnh `p.recvuntil(b'A'*0x50)` để chờ đến sau đúng những kí tự đó mới nhận dữ liệu.
+
 Lệnh `stack_leak=u64(p.recv(6)+b'\x00\x00')` để chuyển từ mã máy thành dạng hex 8 BYTE (dữ liệu chỉ 6 BYTE thì chèn thêm 2 kí tự null) để tính cộng trừ offset. 
+
 Lệnh `log.info("stack leak: "+hex(stack_leak))` giúp hiển thị thông tin bên trong về stack leak trên màn hình console.
 
 ![Alt text](image/buffer-overflow21.png)
