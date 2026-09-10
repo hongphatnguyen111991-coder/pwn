@@ -83,3 +83,4 @@ Chúng ta đã có sẵn con trỏ đến shellcode ở thanh ghi rax. Việc c�
 
 Dùng lệnh asm để chuyển từ code Assembly qua shellcode rồi ghi vào buffer. Sau đó ghi đè địa chỉ của gadget call rax vào saved RIP để chuyển hướng khi ret. Shellcode sau đó sẽ được thực thi và tạo shell
 
+#I Ret2shellcode Leak Required (bof6)
