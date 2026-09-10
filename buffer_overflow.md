@@ -75,3 +75,9 @@ Shellcode là các đoạn mã máy được dùng để nạp vào vùng nhớ 
 
 Ret2shellcode sẽ sử dụng 1 lệnh chuyển hướng để nhảy đến vùng nhớ chứa shellcode và thực thi. Kĩ thuật này nhanh và đơn giản hơn xây dựng ROPchain. Nhưng đồng thời cũng bị hạn chế bởi cơ chế bảo mật NX có thể chặn quyền thực thi trên stack.
 
+![Alt text](image/buffer-overflow16.png)
+
+Chúng ta đã có sẵn con trỏ đến shellcode ở thanh ghi rax. Việc còn lại chỉ cần chuyển hướng tới địa chỉ trong rax qua lệnh call hay jmp rax để thực thi shellcode.
+
+![Alt text](image/buffer-overflow17.png)
+
