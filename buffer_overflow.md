@@ -67,7 +67,7 @@ Luồng thực thi khi kích hoạt ROPchain sẽ như sau:
 
 ![Alt text](image/buffer-overflow14.png) 
 
-# Ret2Shellcode
+# Ret2Shellcode (bof5)
 
 Shellcode là các đoạn mã máy được dùng để nạp vào vùng nhớ (thông thường là stack) thông qua buffer oveflow để chạy trực tiếp /bin/sh trên vùng nhớ đó.
 
