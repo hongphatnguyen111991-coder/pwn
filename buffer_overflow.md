@@ -92,6 +92,12 @@ Khi ta hoàn toàn mù tịt về địa chỉ stack chứa shellcode để nh�
 
 Trong bài này ta sẽ leak một địa chỉ stack thông qua việc để cho chương trình in ra địa chỉ đó. Để làm được điều đó ta cần xem lại cơ chế hàm read, khi nhập xong sẽ không tự động thêm ngắt chuỗi. Do đó khi nhập vừa đủ kí tự để qua ô nhớ bên dưới thì địa chỉ bên dưới sẽ bị nối vào chuỗi. 
 
-![Alt text](image/buffer-overflow19.png)
+![Alt text](image/buffer-overflow20.png)
 
+Lệnh `p.recvuntil(b'A'*0x50)` để chờ đến sau đúng những kí tự đó mới nhận dữ liệu.
+Lệnh `stack_leak=u64(p.recv(6)+b'\x00\x00')` để chuyển từ mã máy thành dạng hex 8 BYTE (dữ liệu chỉ 6 BYTE thì chèn thêm 2 kí tự null) để tính cộng trừ offset. 
+Lệnh `log.info("stack leak: "+hex(stack_leak))` giúp hiển thị thông tin bên trong về stack leak trên màn hình console.
 
+![Alt text](image/buffer-overflow21.png)
+
+Lệnh `python3 solve.py DEBUG` sẽ bật chế độ Terminal Debugging giúp hiển thị `IN`/`OUT`/`I/O`. Đồng thời khi gọi `p.revc()` trong pwntool thì sẽ cho thấy các BYTE nào được nhập vào, giúp điều chỉnh số byte cần nhập chính xác mà không lo bị lệch offset.
