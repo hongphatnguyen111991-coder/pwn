@@ -102,4 +102,6 @@ Lệnh `log.info("stack leak: "+hex(stack_leak))` giúp hiển thị thông tin 
 
 ![Alt text](image/buffer-overflow21.png)
 
+![Alt text](image/buffer-overflow21.png)
+
 Lệnh `python3 solve.py DEBUG` sẽ bật chế độ Terminal Debugging giúp hiển thị `IN`/`OUT`/`I/O`. Đồng thời khi gọi `p.revc()` trong pwntool thì sẽ cho thấy các BYTE nào được nhập vào, giúp điều chỉnh số byte cần nhập chính xác mà không lo bị lệch offset.
