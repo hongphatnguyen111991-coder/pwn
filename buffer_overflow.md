@@ -111,3 +111,5 @@ Lệnh `python3 solve.py DEBUG` sẽ bật chế độ Terminal Debugging giúp 
 Trước khi chạy lại tốt nhất là nên kiểm tra xem saved RIP đã bị overdrive lố chưa nếu có thì cần chỉnh lại ljust để hàm không ret về địa chỉ rác.
 
 ![Alt text](image/buffer-overflow23.png)
+
+![Alt text](image/buffer-overflow24.png)
