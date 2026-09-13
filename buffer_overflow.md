@@ -104,6 +104,10 @@ Lệnh `log.info("stack leak: "+hex(stack_leak))` giúp hiển thị thông tin 
 
 Lệnh `python3 solve.py DEBUG` sẽ bật chế độ Terminal Debugging giúp hiển thị `IN`/`OUT`/`I/O`. Đồng thời khi gọi `p.revc()` trong pwntool thì sẽ cho thấy các BYTE nào được nhập vào, giúp điều chỉnh số byte cần nhập chính xác mà không lo bị lệch offset.
 
+Để hoàn thành pwntool ta cần xác nhận shellcode đã được ghi đè vào buffer và tính offset từ địa chỉ được leak đến địa chỉ chứa shellcode.
+
 ![Alt text](image/buffer-overflow22.png)
+
+Trước khi chạy lại tốt nhất là nên kiểm tra xem saved RIP đã bị overdrive lố chưa nếu có thì cần chỉnh lại ljust để hàm không ret về địa chỉ rác.
 
 ![Alt text](image/buffer-overflow23.png)
