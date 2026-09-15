@@ -114,3 +114,9 @@ Trước khi chạy lại tốt nhất là nên kiểm tra xem saved RIP đã b�
 ![Alt text](image/buffer-overflow24.png)
 
 # Ret2Libc
+## Libc
+Libc là thư viện của C chứa các hàm cần thiết để chương trình chạy như printf, read, system,... Khi chương trình chạy, libc sẽ được nạp vào địa chỉ RAM ngẫu nhiên. Nhưng dù thế, offset giữa các hàm vẫn là cố định. Nếu có base address thì có thể tính được địa chỉ thực tế tới các hàm.
+## GOT & PLT
+GOT (Global Offset Table)  nằm ở phân vùng `.got.plt` là bảng lưu trữ địa chỉ của các hàm libc sau khi được gọi.
+PLT (Procedure Linkage Table) nằm trong phân vùng `.text` là trạm trung chuyển để lấy địa chỉ chạy hàm trong GOT. Mỗi khi code C gọi `printf()`, thực chất nó sẽ nhảy tới `printf@plt` rồi thực thi hàm mà `puts@got` trỏ tới.
+## Khai thác 
