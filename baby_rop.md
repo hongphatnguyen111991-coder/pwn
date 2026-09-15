@@ -1,13 +1,11 @@
 # Xây dựng ROPchain
 
-<img width="1766" height="742" alt="Screenshot 2026-09-15 214259" src="https://github.com/user-attachments/assets/e6c5c86e-117c-4bb0-9f60-8ad724a0bb70" />
-
-
 Để bypass PIE thì cần leak 1 dịa chỉ tại phân cùng nằm trong .text 
 
 Trong vùng buffer có thể ghi đè có 1 địa chỉ trong phân vùng CODE có thể được leak khi nối vào chuỗi khi print
 <img width="1462" height="707" alt="Screenshot 2026-09-15 213406" src="https://github.com/user-attachments/assets/b724ed4a-4d6a-48d2-91c5-257b77e91cfd" />
-
+Nhờ việc leak được 1 địa chỉ trong phân vùng CODE thì đã có 1 hướng đi rõ ràng hơn:
+<img width="1766" height="742" alt="Screenshot 2026-09-15 214259" src="https://github.com/user-attachments/assets/e6c5c86e-117c-4bb0-9f60-8ad724a0bb70" />
 Khi đã có địa chỉ leak_CODE thì có thể tính base qua công thức:
 
     leak_main= leak_CODE + offset đến main
