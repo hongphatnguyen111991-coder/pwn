@@ -1,5 +1,6 @@
 # Xây dựng ROPchain
-Cơ chế PIE đang bật nên các gadget cũng bị thay đổi địa chỉ trong RAM ngẫu nhiên mỗi lần chạy
+Cơ chế PIE đang bật nên các gadget cũng bị thay đổi địa chỉ trong RAM ngẫu nhiên mỗi lần chạy.
+
 Để bypass PIE thì cần leak 1 địa chỉ tại phân cùng nằm trong .text 
 
 Vì các phân vùng khác nhau sẽ có base address khác nhau nên cần tìm đúng phân vùng mà ta cần dùng (Ví dụ muốn tìm gadget và .BSS lưu /bin/sh thì sẽ cần leak địa chỉ trong vùng .text). Nếu leak đị chỉ stack để tính offset của địa chỉ vùng .text sẽ bị lệch offset gây sai kết quả.
