@@ -1,5 +1,7 @@
 # Xây dựng ROPchain
-![Uploading Screenshot 2026-09-15 214259.png…]()
+
+<img width="1766" height="742" alt="Screenshot 2026-09-15 214259" src="https://github.com/user-attachments/assets/e6c5c86e-117c-4bb0-9f60-8ad724a0bb70" />
+
 
 Để bypass PIE thì cần leak 1 dịa chỉ tại phân cùng nằm trong .text 
 
