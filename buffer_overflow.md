@@ -144,9 +144,15 @@ Run Docker tạo container:
 
     sudo docker run -d -p 9993:9993 --name bof7_container bof7
 
-Xóa container:
+Dừng và Xóa container:
 
     sudo docker stop bof7_container && sudo docker rm bof7_container
 
 Dùng lệnh p.remote(ip,port) để chuyển từ local thành server
 ![Alt text](image/buffer-overflow25.png)
+
+Lúc này thì tọa độ được leak ra của sẽ là của server. Sau đó truy cập web libc.rip để tìm đúng phiên bản libc vả tải về.
+![Alt text](image/buffer-overflow26.png)
+
+Dùng công cụ pwninit để liên kết (patch) file binary với libc.
+![Alt text](image/buffer-overflow26.png)
