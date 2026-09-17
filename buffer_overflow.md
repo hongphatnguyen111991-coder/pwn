@@ -154,8 +154,8 @@ Dùng lệnh p.remote(ip,port) để chuyển từ local thành server
 Lúc này thì tọa độ được leak ra của sẽ là của server.
 ![Alt text](image/buffer-overflow26.png)
 
-Truy cập web libc.rip để tìm đúng phiên bản libc vả tải về.
+Truy cập web libc.rip rồi tìm đúng phiên bản libc vả tải về.
 ![Alt text](image/buffer-overflow27.png)
 
-Dùng công cụ pwninit để liên kết (patch) file binary với libc.
+Sau đó dùng công cụ pwninit để liên kết (patch) file binary với libc.
 ![Alt text](image/buffer-overflow28.png)
