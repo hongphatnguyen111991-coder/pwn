@@ -148,4 +148,5 @@ Xóa container:
 
     sudo docker stop bof7_container && sudo docker rm bof7_container
 
-
+Dùng lệnh p.remote(ip,port) để chuyển từ local thành server
+![Alt text](image/buffer-overflow25.png)
