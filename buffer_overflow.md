@@ -151,8 +151,11 @@ Dừng và Xóa container:
 Dùng lệnh p.remote(ip,port) để chuyển từ local thành server
 ![Alt text](image/buffer-overflow25.png)
 
-Lúc này thì tọa độ được leak ra của sẽ là của server. Sau đó truy cập web libc.rip để tìm đúng phiên bản libc vả tải về.
+Lúc này thì tọa độ được leak ra của sẽ là của server.
 ![Alt text](image/buffer-overflow26.png)
 
+Truy cập web libc.rip để tìm đúng phiên bản libc vả tải về.
+![Alt text](image/buffer-overflow27.png)
+
 Dùng công cụ pwninit để liên kết (patch) file binary với libc.
-![Alt text](image/buffer-overflow26.png)
+![Alt text](image/buffer-overflow28.png)
