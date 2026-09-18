@@ -17,7 +17,7 @@ sau đó là tính địa chỉ thực của gadget pop rdi đưa  `/bin/sh` và
 Tuy nhiên khi chạy thử thì bị lỗi
 <img width="1905" height="805" alt="image" src="https://github.com/user-attachments/assets/20021471-63c0-447c-b4db-feaf5104372f" />
 
-Điều này là ta nạp vào payload 3 lần 8 byte làm cho địa chỉ stack không chia hết cho 16
+Điều này là do ta nạp vào payload 3 lần 8 byte làm cho địa chỉ stack không chia hết cho 16
 Cần phải thêm 1 lệnh nhảy ret tại chỗ để cho địa chỉ hợp lệ
 
     ret=libc.address+0x0000000000026e99
