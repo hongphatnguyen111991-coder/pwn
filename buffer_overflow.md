@@ -172,4 +172,9 @@ Nãy ta đã dùng lệnh để chạy lại hàm main bây giờ chỉ cần gh
 
 # Stack Pivot (bof8)
 Stack Pivot là kĩ thuật chuyển hướng Stack đến một vùng nhớ khác có quyền RW (.BSS, Heap) do vùng Stack hiện tại quá chật hẹp, không thuận lợi cho việc khai thác lỗ hổng. Ý tưởng cốt lõi là ghi đè địa chỉ vùng nhớ vào rbp rồi lợi dụng lệnh leave để đưa rsp đến vùng nhớ đó. Sau đó dùng lệnh ret để kích hoạt gadget hay hàm tại vùng nhớ vừa chuyển đến
+
 ![Alt text](image/buffer-overflow29.png)
+
+Như trong bài bof8 ta có sẵn hàm địa chỉ win bên trong mảng của binary, chỉ cần chuyển vùng đến vùng nhớ chứa win() để thực thi.
+
+![Alt text](image/buffer-overflow30.png)
