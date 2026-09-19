@@ -175,6 +175,6 @@ Stack Pivot là kĩ thuật chuyển hướng Stack đến một vùng nhớ kh�
 
 ![Alt text](image/buffer-overflow29.png)
 
-Như trong bài bof8 ta có sẵn hàm địa chỉ win bên trong mảng của binary, chỉ cần chuyển vùng đến vùng nhớ chứa win() để thực thi.
+Như trong bài bof8 ta có sẵn địa chỉ hàm win bên trong mảng của binary, chỉ cần chuyển vùng đến vùng nhớ chứa win() để thực thi.
 
 ![Alt text](image/buffer-overflow30.png)
