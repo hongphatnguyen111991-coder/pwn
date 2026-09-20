@@ -17,8 +17,7 @@ Chương trình sau lần nhập đầu sẽ print chuỗi vừa nhập và từ
 <img width="1330" height="241" alt="image" src="https://github.com/user-attachments/assets/40dcb820-0cd6-44d8-9d68-68159478f39b" />
 
 Vì địa chỉ trong rbp khác với địa chỉ buffer đúng 2 byte nên có thể chuyển hướng quay lại buffer. 
-Chương trình sẽ cho ta nhập lại đến khi s[0]=='q' nên lần nhập thứ 2 ta sẽ cần đưa payload chứa địa chỉ đến Win và ghi đè saved rbp địa chỉ buffer
-Sau đó dùng địa chỉ ngay sau làm nơi chứa địa chỉ Win()
+Chương trình sẽ cho ta nhập lại đến khi s[0]=='q' nên lần nhập thứ 2 ta sẽ cần đưa payload chứa địa chỉ đến Win() và ghi đè saved rbp bằng địa chỉ buffer.
 
     win_addr=leak_stack-816            #quay về ô nhớ đầu của buffer
     payload=b'q'*8                     #chứa kí tự q để thoát vòng lặp
