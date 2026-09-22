@@ -177,4 +177,13 @@ Stack Pivot là kĩ thuật chuyển hướng Stack đến một vùng nhớ kh�
 
 Như trong bài bof8 ta có sẵn địa chỉ hàm win bên trong mảng của binary, chỉ cần chuyển vùng đến vùng nhớ chứa win() để thực thi.
 
+## Lệnh leave
+
+Lệnh `leave` là một lệnh được sử dụng với mục đích dọn dẹp biến cục bộ trong stackframe của 1 hàm. `leave` khi được gọi sẽ thực thi 2 lệnh là `mov rsp,rbp` để đưa con trỏ từ đầu stack về lại địa chỉ của saved rbp và lệnh `pop rbp` để trả rbp = saved rbp cho hàm cha. 
+
 ![Alt text](image/buffer-overflow30.png)
+
+
+![Alt text](image/buffer-overflow31.png)
+
+
