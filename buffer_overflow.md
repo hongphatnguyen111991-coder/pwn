@@ -179,10 +179,18 @@ Như trong bài bof8 ta có sẵn địa chỉ hàm win bên trong mảng của 
 
 ## Lệnh leave
 
-Lệnh `leave` là một lệnh được sử dụng với mục đích dọn dẹp biến cục bộ trong stackframe của 1 hàm. `leave` khi được gọi sẽ thực thi 2 lệnh là `mov rsp,rbp` để đưa con trỏ từ đầu stack về lại địa chỉ của saved rbp và lệnh `pop rbp` để trả rbp = saved rbp cho hàm cha. 
+Lệnh `leave` là một lệnh được sử dụng với mục đích dọn dẹp biến cục bộ trong stackframe của 1 hàm. `leave` khi được gọi sẽ thực thi 2 lệnh là `mov rsp, rbp` để đưa con trỏ từ đầu stack về lại địa chỉ của saved rbp và lệnh `pop rbp` để trả rbp = saved rbp cho hàm cha. 
 
 ![Alt text](image/buffer-overflow30.png)
 
+## Khai thác
+
+Lợi dụng đặc tính của hàm leave, ta có thể ghi đè địa chỉ vùng nhớ muốn chuyển hướng vào rbp thì lệnh `mov rsp, rbp` sẽ kéo luôn con trỏ rsp đến vùng nhớ đó. Tuy nhiên lệnh `pop rbp` sẽ làm dịch rsp lùi xuống (cộng thêm 8 BYTE). Để đến vùng nhớ mới:
+
+        rsp sau leave = địa chỉ trong rbp +  8 BYTE
+
+Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích đến sẽ chính xác.
+*Lưu ý: Chỉ vùng nhớ có quyền RW mới chuyển rsp tới được.
 
 ![Alt text](image/buffer-overflow31.png)
 
