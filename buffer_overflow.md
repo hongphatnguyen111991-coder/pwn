@@ -194,4 +194,9 @@ Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích 
 
 ![Alt text](image/buffer-overflow31.png)
 
+# Stack Pivot đổi biến (bof9)
+
+![Alt text](image/buffer-overflow32.png)
+
+Bài này yêu cầu các phần tử v[0] v[1] v[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của v4. 
 
