@@ -200,3 +200,5 @@ Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích 
 
 Bài này yêu cầu các phần tử v[0] v[1] v[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của v4. 
 
+Khi Chương trình lấy mảng v4 để kiểm tra thì sẽ truy cập thông qua rbp-offset. Vậy thay vì cố thay đổi giá trị trong phần tử của mảng v4 thì một cách khác là thay đổi địa chỉ trong rbp. Bằng cách này, ta chỉ cần đưa sẵn dữ liệu trùng với yêu cầu rồi chuyển rbp tới địa chỉ vùng nhớ đó.  
+
