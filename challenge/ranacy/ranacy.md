@@ -3,7 +3,7 @@
  <img width="787" height="606" alt="image" src="https://github.com/user-attachments/assets/012c2e18-28cb-41dd-ac5c-4c0b19162389" />
 
 Lỗi buffer overflow nằm trong hàm vul().
-Và vòng for chỉ cho phép thực hiện 5 nằm động trước khi ret.
+Và vòng for chỉ cho phép thực hiện 5 hành động trước khi ret.
 
 <img width="1127" height="425" alt="image" src="https://github.com/user-attachments/assets/dcabfb1a-dcdf-4a8a-bd9c-f7d6349fa07e" />
 
