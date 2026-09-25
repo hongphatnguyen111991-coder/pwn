@@ -12,3 +12,5 @@ Khi cơ chế NX bật thì các địa chỉ thuộc vùng Stack/Heap sẽ đư
 Cơ chế bảo vệ Canary là cơ chế giúp phát hiện và ngăn chặn các cuộc tấn công bằng buffer overflow nhắm vào return address.
 
 Khi bật Canary, chương trình sẽ chèn thêm một giá trị ngẫu nhiên gọi là Canary vào trước return address. Trước khi thực hiện ret, chương trình sẽ kiểm tra xem giá trị đó có bị thay đổi hay không. Nếu có, chương trình sẽ bị ngắt để tránh việc quyền điều khiển bị chiếm.
+
+Đặc điểm của Canary: Nằm ngay trước saved rbp và BYTE cuối là NULL BYTE
