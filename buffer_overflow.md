@@ -232,5 +232,8 @@ Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp g
 
 ![Alt text](image/buffer-overflow35.png)
 
-Ở hàm main có nhập dữ liệu qua fgets(). Nhưng fgets() chỉ cho phép đọc từ đầu vào 80 BYTE bao gồm cả NULL BYTE (\0) ở cuối. Vậy nên thực tế chỉ nhập được 79 BYTE từ buffer.
+Ở hàm main có nhập dữ liệu qua fgets(). Nhưng fgets() chỉ cho phép đọc từ đầu vào 80 BYTE bao gồm cả NULL BYTE (\0) ở cuối. Vậy nên thực tế chỉ nhập được 79 BYTE vào buffer.
 
+![Alt text](image/buffer-overflow36.png)
+
+trong hàm play_game() thì có lỗi buffer overflow. Do lệnh scanf cho phép nhập đủ 512 BYTE từ bàn phím cộng thêm NULL BYTE được chèn thêm đằng sau. Điều này khiến cho dữ liệu liền sau bị ghi đè đúng 1 BYTE NULL đó.
