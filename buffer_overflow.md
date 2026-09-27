@@ -237,3 +237,12 @@ Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp g
 ![Alt text](image/buffer-overflow36.png)
 
 trong hàm play_game() thì có lỗi buffer overflow. Do lệnh scanf cho phép nhập đủ 512 BYTE từ bàn phím cộng thêm NULL BYTE được chèn thêm đằng sau. Điều này khiến cho dữ liệu liền sau bị ghi đè đúng 1 BYTE NULL đó.
+
+![Alt text](image/buffer-overflow37.png)
+
+Sau khi nhập 512 BYTE thì saved rbp đã bị ghi đè byte cuối làm cho địa chỉ bị thay đổi. Nhưng địa chỉ trong Stack luôn thay đổi ngẫu nhiên nên ta không chắc địa chỉ ghi đè sẽ trỏ vào đâu.
+
+![Alt text](image/buffer-overflow38.png)
+
+Chính vì thế ta cần brute force để hy vọng địa chỉ ghi đè sẽ trỏ vào vùng nhớ mà ta để shellcode bên trong. Để tăng cơ hội brute force thành công thì cần lấp đầy buffer bằng nghiều gadget ret. Khi đó dù dính chỉ 1 trong các gadget đó sẽ chuyển hướng đến vùng nhớ chứa shellcode.
+
