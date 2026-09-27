@@ -227,3 +227,10 @@ Bên cạnh địa chỉ v4 ta còn có một lỗi buffer overflow trong hàm g
     p.sendafter(b'Password: ',payload)
 
 Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp giả và payload chứa dữ liệu bypass điều kiện if để tạo shell.
+
+# Off by one (bof10)
+
+![Alt text](image/buffer-overflow35.png)
+
+Ở hàm main có nhập dữ liệu qua fgets(). Nhưng fgets() chỉ cho phép đọc từ đầu vào 80 BYTE bao gồm cả NULL BYTE (\0) ở cuối. Vậy nên thực tế chỉ nhập được 79 BYTE từ buffer.
+
