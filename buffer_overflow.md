@@ -5,6 +5,9 @@ Buffer Overflow là kĩ thuật làm tràn bộ nhớ bằng cách nhập số B
 ![Alt text](image/buffer-overflow.png)
 
 # Ví dụ (bof1)
+
+[Video anh Trí - Bof1 ](https://youtu.be/cIuycF_GBME?si=l97ZxKG9dQS1ZssV)
+
 ![Alt text](image/buffer-overflow0.png)
 
 Chương trình trên có thể cung cấp cho ta quyền điều khiển shell nếu các biến v5 v6 v7 khác 0. Tuy nhiên chương trình chỉ có thể nhập dữ liệu vào buffer nên ta không thể truy cập v5 v6 v7 theo cách thông thường. Nhưng chương trình này có một lỗ hổng có thể khai thác đó là buffer chỉ có thể chứa 16 BYTE. Trong khi đó lệnh read lại đọc tối đa đến 48 BYTE. Nếu nhập quá dữ liệu của buffer thì từ đó ta có thể ghi đè dữ liệu vào v5 v6 v7 bên dưới.
@@ -15,6 +18,9 @@ Sau khi nhập 40 kí tự A thì dữ liệu đã được ghi đè vào các �
 Nhờ đó ta có quyền truy cập shell.
 
 # Pwntool (bof2)
+
+[Video anh Trí - Bof2 ](https://youtu.be/91q5OdDnvlo?si=YVXKBbJhMITVDTKz)
+
 ![Alt text](image/buffer-overflow2.png)
 
 Tương tự ở bof1, ta phải ghi đè giá trị vào các biến a b c để lấy quyền điều khiển shell. Nhưng ở chương trình này giá trị phải khớp với điều kiện trong if. Tuy nhiên, trong asm dữ liệu nhập từ bàn phím sẽ bị chuyển thành mã ascii làm lưu trữ sai dữ liệu. 
@@ -26,6 +32,9 @@ pwntool có thể giúp nhập trực tiếp BYTE thô vào chương trình đ�
 ![Alt text](image/buffer-overflow4.png)
 
 # Ret2Win (bof3)
+
+[Video anh Trí - Bof3 ](https://youtu.be/5Q18iMpGGdM?si=nMaC8nIcSx54Z0J1)
+
 ![Alt text](image/buffer-overflow5.png)
 ![Alt text](image/buffer-overflow6.png)
 
@@ -49,6 +58,9 @@ Một cách đơn giản để khắc phục điều này là ret2win vào đị
 ![Alt text](image/buffer-overflow10.png)
 
 # ROPchain (bof4)
+
+[Video anh Trí - Bof4 ](https://youtu.be/3pDpTyCVNQs?si=9RsjpIsjSOOew7ty)
+
 ![Alt text](image/buffer-overflow11.png)
 
 Trong bof4 lần này không có hàm win chứa lệnh gọi shell để dùng ret2win, cũng như không thể tạo shell từ main.
@@ -69,6 +81,8 @@ Luồng thực thi khi kích hoạt ROPchain sẽ như sau:
 
 # Ret2Shellcode No Leak (bof5)
 
+[Video anh Trí - Bof5 ](https://youtu.be/6W5qKLes4f0?si=Av2gJQu6AW_VutRX)
+
 Shellcode là các đoạn mã máy được dùng để nạp vào vùng nhớ (thông thường là stack) thông qua buffer oveflow để chạy trực tiếp /bin/sh trên vùng nhớ đó.
 
 ![Alt text](image/buffer-overflow15.png) 
@@ -84,6 +98,8 @@ Chúng ta đã có sẵn con trỏ đến shellcode ở thanh ghi rax. Việc c�
 Dùng lệnh asm để chuyển từ code Assembly qua shellcode rồi ghi vào buffer. Sau đó ghi đè địa chỉ của gadget call rax vào saved RIP để chuyển hướng khi ret. Shellcode sau đó sẽ được thực thi và tạo shell
 
 # Ret2shellcode Leak Required (bof6)
+
+[Video anh Trí - Bof6 ](https://youtu.be/xzkqhLv1kCE?si=mW3WIGjAtM67my2T)
 
 Khi ta hoàn toàn mù tịt về địa chỉ stack chứa shellcode để nhảy tới, cũng như không có sẵn con trỏ đến buffer thì leak một địa chỉ stack là cần thiết. Từ đó có thể tính toán offset hay ghi shellcode lên chính địa chỉ đó để thực thi.
 
@@ -113,7 +129,10 @@ Trước khi chạy lại tốt nhất là nên kiểm tra xem saved RIP đã b�
 ![Alt text](image/buffer-overflow23.png)
 ![Alt text](image/buffer-overflow24.png)
 
-# Ret2Libc
+# Ret2Libc (bof7)
+
+[Video anh Trí - Bof7 ](https://youtu.be/XX9sA90xN64?si=uw1FNPJAriQ3CjCq)
+
 ## Libc
 Libc là thư viện của C chứa các hàm cần thiết để chương trình chạy như printf, read, system,... Khi chương trình chạy, libc sẽ được nạp vào địa chỉ RAM ngẫu nhiên. Nhưng dù thế, offset giữa các hàm vẫn là cố định. Nếu có base address thì có thể tính được địa chỉ thực tế tới các hàm.
 ## GOT & PLT
@@ -171,6 +190,9 @@ Nãy ta đã dùng lệnh để chạy lại hàm main bây giờ chỉ cần gh
     p.sendafter(b'something: \n', payload)
 
 # Stack Pivot (bof8)
+
+[Video anh Trí - Bof8 ](https://youtu.be/-dnH913iloY?si=wd6-DB9IcmgLbOGp)
+
 Stack Pivot là kĩ thuật chuyển hướng Stack đến một vùng nhớ khác có quyền RW (.BSS, Heap) do vùng Stack hiện tại quá chật hẹp, không thuận lợi cho việc khai thác lỗ hổng. Ý tưởng cốt lõi là ghi đè địa chỉ vùng nhớ vào rbp rồi lợi dụng lệnh leave để đưa rsp đến vùng nhớ đó. Sau đó dùng lệnh ret để kích hoạt gadget hay hàm tại vùng nhớ vừa chuyển đến.
 
 ![Alt text](image/buffer-overflow29.png)
@@ -195,6 +217,8 @@ Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích 
 ![Alt text](image/buffer-overflow31.png)
 
 # Stack Pivot đổi biến (bof9)
+
+[Video anh Trí - Bof9 ](https://youtu.be/ob14_PMdoLk?si=3TBKPSMqq8rbPT77)
 
 ![Alt text](image/buffer-overflow32.png)
 
@@ -229,6 +253,8 @@ Bên cạnh địa chỉ v4 ta còn có một lỗi buffer overflow trong hàm g
 Việc cuối cùng cần làm là nạp payload chứa địa chỉ saved rbp giả và payload chứa dữ liệu bypass điều kiện if để tạo shell.
 
 # Off by one (bof10)
+
+[Video anh Trí - Bof10 ](https://youtu.be/z0p8Cqw6-Jk?si=q6agPMi5o9jd5yQF)
 
 ![Alt text](image/buffer-overflow35.png)
 
