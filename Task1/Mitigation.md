@@ -16,3 +16,7 @@ Khi bật Canary, chương trình sẽ chèn thêm một giá trị ngẫu nhiê
 Đặc điểm của Canary: Nằm ngay trước saved rbp và BYTE cuối là NULL BYTE
 
 ![Alt text](image/Canary.png)
+
+Khi Canary bị ghi đè thì lúc hàm chuẩn bị return sẽ phát hiện Canary không giống với giá trị ban đầu. Do đó chương trình bị thoát ngay lập tức.
+
+![Alt text](image/Canary0.png)
