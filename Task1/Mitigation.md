@@ -14,3 +14,5 @@ Cơ chế bảo vệ Canary là cơ chế giúp phát hiện và ngăn chặn c�
 Khi bật Canary, chương trình sẽ chèn thêm một giá trị ngẫu nhiên gọi là Canary vào trước return address. Trước khi thực hiện ret, chương trình sẽ kiểm tra xem giá trị đó có bị thay đổi hay không. Nếu có, chương trình sẽ bị ngắt để tránh việc quyền điều khiển bị chiếm.
 
 Đặc điểm của Canary: Nằm ngay trước saved rbp và BYTE cuối là NULL BYTE
+
+![Alt text](image/Canary.png)
