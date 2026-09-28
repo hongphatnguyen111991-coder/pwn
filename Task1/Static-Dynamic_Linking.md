@@ -1,2 +1,2 @@
-[Alt link](https://www.baeldung.com/cs/physical-vs-virtual-memory)
+[Physical vs. Virtual Memory](https://www.baeldung.com/cs/physical-vs-virtual-memory)
 
