@@ -6,7 +6,7 @@ Buffer overflow ở hàm main có thể ghi đè tràn qua biến v5. Biến v5 
 
 <img width="795" height="602" alt="image" src="https://github.com/user-attachments/assets/cbca6ed3-9b99-48eb-ac21-3e3832818f30" />
 
-Tại đây biến v5 được dùng để lấy đường dẫn file và đọc qua hàm `open()`. Tận dụng điều này ta có thể ghi đè luôn đường dẫn file flag vào và đọc flag.
+Tại đây biến v5 được dùng để lấy đường dẫn file để mở file qua hàm `open()` và `read` vào s. Tận dụng điều này ta có thể ghi đè luôn đường dẫn file flag vào và đọc flag.
 Hàm `print` sẽ làm nốt việc in flag ra màn hình.
 
     from pwn import *
