@@ -27,3 +27,8 @@ Khác biệt với `%p` , `%x` chỉ in giá trị số đơn thuần (ví dụ 
 
     printf("So byte đã in trước %%n là: %d\n", count); 
     // Kết quả in ra: 11
+Cơ chế printf trên hệ thống 32-bit, 64-bit
+
+32-bit: In dữ liệu trên Stack
+
+64-bit: 5% đầu là 5 thanh ghi (Registers) theo thứ tự: RSI, RDX, R10, R8, R9 (do RDI chứa chính chuỗi printf). % thứ 6 là dữ liệu trên stack
