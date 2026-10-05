@@ -44,3 +44,10 @@ Leak dữ liệu trên Stack (%p): Truyền nhiều %p (hoặc dùng dạng rút
 
 Leak dữ liệu tại địa chỉ Stack (%s): Dùng %s trỏ tới vị trí chứa địa chỉ hợp lệ để đọc chuỗi ký tự tại địa chỉ mong muốn.
 
+## Ghi đè dữ liệu
+
+Dùng %n để ghi đè giá trị vào bộ nhớ: 
+
+%n đếm tổng số ký tự/byte đã in ra màn hình trước đó để ghi số đó vào địa chỉ đích.
+
+Padding bằng %c: Dùng định dạng độ rộng như %28c để ghi đè đúng số 28 vào.
