@@ -6,3 +6,5 @@ Lỗ hổng Format String xuất hiện khi hàm in ấn (như printf) nhận ch
 `%x` - In ra số nguyên 32-bit (unsigned int) dạng Hexadecimal.
 
 `%lx` - In ra số nguyên 64-bit (unsigned long) dạng Hexadecimal.
+
+Khác biệt với `%p` : `%x` chỉ in giá trị số đơn thuần (ví dụ ff), còn %p sẽ tự động đệm đủ độ dài con trỏ tùy kiến trúc (32-bit hoặc 64-bit) và thêm 0x ở đầu (ví dụ 0x000000ff).
