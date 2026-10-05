@@ -35,7 +35,7 @@ Khác biệt với `%p` , `%x` chỉ in giá trị số đơn thuần (ví dụ 
 
 ## Leak memory
 
-Leak dữ liệu trên Stack (%p): Truyền nhiều %p (hoặc dùng dạng rút gọn như %8$p) để đọc các địa chỉ/giá trị đang lưu trên Stack
+Leak dữ liệu trên Stack (%p): Truyền nhiều %p (hoặc dùng dạng rút gọn như %8$p) để đọc các địa chỉ/giá trị đang lưu trên Stack.
 
-Đọc dữ liệu tại địa chỉ Stack (%s): Truyền một địa chỉ bộ nhớ hợp lệ vào Stack, sau đó dùng %s trỏ tới vị trí đó để đọc chuỗi ký tự tại địa chỉ mong muốn
+Leak dữ liệu tại địa chỉ Stack (%s): Dùng %s trỏ tới vị trí chứa địa chỉ hợp lệ để đọc chuỗi ký tự tại địa chỉ mong muốn.
 
