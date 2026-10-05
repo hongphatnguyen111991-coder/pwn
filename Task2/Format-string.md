@@ -51,3 +51,5 @@ Dùng `%n` để ghi đè giá trị vào bộ nhớ:
 `%n` đếm tổng số ký tự/byte đã in ra màn hình trước đó để ghi số đó vào địa chỉ đích.
 
 Padding bằng `%c`: Dùng định dạng độ rộng như `%28c` để ghi đè đúng số 28 vào.
+
+Short form: `%28c%8$n` tức in ra 28 byte (%28c), sau đó lấy giá trị 28 đó ghi vào địa chỉ nằm ở vị trí thứ 8 trên Stack (%8$n)
