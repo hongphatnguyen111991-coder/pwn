@@ -86,3 +86,11 @@ Script Python:
     p.interactive()
 
 # LEAK DỮ LIỆU BẰNG %s
+
+![Alt text](image/fs4.png)
+
+Chương trình này cũng mở sẵn flag nhưng flag lần này được ghi vào vùng nhớ Heap. 
+
+![Alt text](image/fs5.png)
+
+Trong Stack chỉ có biến buf chứa địa chỉ đầu vùng nhớ chứa flag vậy nên không thể dùng %p (in ra giá trị) mà cần dùng %s (in ra giá trị nằm trong địa chỉ được trỏ tới).
