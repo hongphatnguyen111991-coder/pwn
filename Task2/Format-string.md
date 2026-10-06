@@ -55,4 +55,11 @@ Padding bằng `%c`: Dùng định dạng độ rộng như `%28c` để ghi đ�
 Short form: `%28c%8$n` tức in ra 28 byte (`%28c`), sau đó lấy giá trị 28 đó ghi vào địa chỉ nằm ở vị trí thứ 8 trên Stack (`%8$n`)
 
 # LEAK DỮ LIỆU BẰNG %p
+
 ![Alt text](image/fs0.png)
+
+File flag.txt đã mở sẵn và được lưu trên Stack. Trong chương trình cón có lỗ hổng format string, chỉ cần đưa %p vào biến format là có thể đọc dữ liệu trên Stack.
+
+![Alt text](image/fs1.png)
+
+Chuỗi flag được lưu ở Stack có thể được truy cập từ % thứ 12.
