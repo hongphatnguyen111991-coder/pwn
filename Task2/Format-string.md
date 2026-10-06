@@ -63,3 +63,6 @@ File flag.txt đã mở sẵn và được lưu trên Stack. Trong chương trì
 ![Alt text](image/fs1.png)
 
 Chuỗi flag được lưu ở Stack có thể được truy cập từ % thứ 12.
+
+![Alt text](image/fs2.png)
+![Alt text](image/fs3.png)
