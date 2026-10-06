@@ -84,3 +84,5 @@ Script Python:
         p.exit()
 
     p.interactive()
+
+# LEAK DỮ LIỆU BẰNG %s
