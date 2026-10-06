@@ -120,6 +120,7 @@ Ngoài ra có thêm 2 lỗ hổng Format string.
 ![Alt text](image/fs8.png)
 
 Nửa flag đầu có thể lấy từ Stack .Nhưng nửa sau nằm trong biến toàn cục yêu cầu cần có địa chỉ để truy cập. Trước tiên ta cần leak địa chỉ binary để tính base address.
+Lần nhập buffer thứ 1: Đọc nửa flag đầu và leak địa chỉ binary.
 
 Tính số % để đến ô chứa địa chỉ binary: `p/d (0x7ffe91c0ad18-0x7ffe91c0acc0)/8 +6` = `17`
 	
@@ -147,7 +148,7 @@ Tính địa chỉ chứa flag2:
 
 ![Alt text](image/fs11.png)
 
-Vùng buffer thứ 2 cần dùng 8 BYTE đầu để nhập format để khai thác. 8 BYTE sau để nhập địa chỉ chứa flag2 leak được để %s đọc được.
+lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để khai thác. 8 BYTE sau để nhập địa chỉ chứa flag2 leak được để %s đọc được.
 
 	payload=b'%13$sAAA'     	//Nhập %13s đọc flag2 và chèn kí tự rác cho đủ 8 BYTE
 	payload+=p64(flag2_addr)
