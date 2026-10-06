@@ -112,3 +112,5 @@ Script Python:
 # LEAK DỮ LIỆU KẾT HỢP %p VÀ %s
 
 ![Alt text](image/fs7.png)
+
+
