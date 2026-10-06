@@ -108,3 +108,7 @@ Script Python:
 	p.interactive()
 
 ![Alt text](image/fs6.png)
+
+# LEAK DỮ LIỆU KẾT HỢP %p VÀ %s
+
+![Alt text](image/fs7.png)
