@@ -156,4 +156,5 @@ lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để
 	flag+=p.recvuntil(b'}')
 	log.info('flag: '+flag.decode())
 
+
 ![Alt text](image/fs12.png)
