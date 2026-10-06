@@ -138,3 +138,11 @@ Tính offset từ địa chỉ binary leak được đến base address
 
 ![Alt text](image/fs10.png)
 	
+Tính offset từ địa chỉ base address đến flag2
+
+Tính địa chỉ chứa flag2:
+
+	exe.address=exe_leak-0x14e6
+	flag2_addr=exe.address+0x4060
+
+![Alt text](image/fs11.png)
