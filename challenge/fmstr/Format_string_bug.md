@@ -5,7 +5,7 @@
 
 <img width="1277" height="782" alt="image" src="https://github.com/user-attachments/assets/b01fb965-b0ad-4434-adfa-469db3da9d5c" />
 
-Để tạo shell thì ta cần set biến toàn cục changeme thành giá trị 1337. Trong chương trình chỉ có lỗ hổng format string. 
+Để tạo shell thì ta cần đặt biến toàn cục changeme thành giá trị 1337. Trong chương trình chỉ có lỗ hổng format string. 
 Để ghi đè giá trị 1337 lên changeme ta cần biết địa chỉ của changeme trước.
 
 Hãy kiểm tra xem ta có thể leak được gì trên Stack:
