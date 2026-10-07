@@ -5,10 +5,14 @@
 
 <img width="1277" height="782" alt="image" src="https://github.com/user-attachments/assets/b01fb965-b0ad-4434-adfa-469db3da9d5c" />
 
+.
+
 Để tạo shell thì ta cần đặt biến toàn cục changeme thành giá trị 1337. Trong chương trình chỉ có lỗ hổng format string. 
 Để ghi đè giá trị 1337 lên changeme ta cần biết địa chỉ của changeme trước.
 
 Hãy kiểm tra xem ta có thể leak được gì trên Stack:
+
+.
 
 <img width="1241" height="367" alt="Screenshot 2026-10-07 230030" src="https://github.com/user-attachments/assets/4e28e02f-5173-4d82-8a86-9b0baa8fd484" />
 
@@ -16,15 +20,27 @@ Hãy kiểm tra xem ta có thể leak được gì trên Stack:
 
 Trước mắt thì trong Stack có 1 địa chỉ binary có thể được leak qua `%s`. Nhưng khoan. Chúng ta đang xem Stack trong local, kết cấu Stack trong server có thể khác hoàn toàn. Hãy build docker để kiểm tra điều này.
 
+.
+
 <img width="1816" height="80" alt="image" src="https://github.com/user-attachments/assets/057ed894-ae22-4f66-982b-25b74820a6e1" />
+
+.
 
 Bây giờ thì sử dụng CONTAINER ID để tìm file libc.so.6
 
+.
+
 <img width="1397" height="352" alt="image" src="https://github.com/user-attachments/assets/b6709f6e-23b8-4163-8020-330965a20b13" />
+
+.
 
 sau khi đã patch xong file binary và libc.so.6 thì hãy kiểm tra lại Stack:
 
+.
+
 <img width="1272" height="442" alt="Screenshot 2026-10-08 004408" src="https://github.com/user-attachments/assets/3227faf2-aa24-41f4-87b2-7a978ee213f1" />
+
+.
 
 Ta có thể thấy trong Stack của server khác hoàn toàn của local. Vậy chúng ta sẽ leak địa chỉ binary `0x555555555293` để tính base address.
 Tính khoảng cách từ nơi chứa địa chỉ binary đến rsp cộng thêm 5 register là 15%
