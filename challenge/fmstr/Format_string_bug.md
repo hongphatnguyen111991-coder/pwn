@@ -12,6 +12,7 @@ Hãy kiểm tra xem ta có thể leak được gì trên Stack:
 
 <img width="1241" height="367" alt="Screenshot 2026-10-07 230030" src="https://github.com/user-attachments/assets/4e28e02f-5173-4d82-8a86-9b0baa8fd484" />
 
+
 Trước mắt thì trong Stack có 1 địa chỉ binary có thể được leak qua `%s`. Nhưng khoan. Chúng ta đang xem Stack trong local, kết cấu Stack trong server có thể khác hoàn toàn. Hãy build docker để kiểm tra điều này.
 
 <img width="1816" height="80" alt="image" src="https://github.com/user-attachments/assets/057ed894-ae22-4f66-982b-25b74820a6e1" />
