@@ -163,6 +163,10 @@ Run Docker tạo container:
 
     sudo docker run -d -p 9993:9993 --name bof7_container bof7
 
+Xem port và host:
+
+    docker ps
+
 Dừng và Xóa container:
 
     sudo docker stop bof7_container && sudo docker rm bof7_container
