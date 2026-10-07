@@ -42,7 +42,8 @@ sau khi đã patch xong file binary và libc.so.6 thì hãy kiểm tra lại Sta
 
 .
 
-Ta có thể thấy trong Stack của server khác hoàn toàn của local. Vậy chúng ta sẽ leak địa chỉ binary `0x555555555293` để tính base address.
+Ta có thể thấy trong Stack của server khác hoàn toàn của local và chúng ta muốn script hoạt động trên server.
+Vậy chúng ta sẽ leak địa chỉ binary `0x555555555293` để tính base address.
 Tính khoảng cách từ nơi chứa địa chỉ binary đến rsp cộng thêm 5 register là 15%
 
 Leak binary: 
