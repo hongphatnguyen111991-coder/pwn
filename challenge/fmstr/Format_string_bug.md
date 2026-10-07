@@ -12,7 +12,7 @@
 
 Hãy kiểm tra xem ta có thể leak được gì trên Stack:
 
-*
+<br><br>
 
 <img width="1241" height="367" alt="Screenshot 2026-10-07 230030" src="https://github.com/user-attachments/assets/4e28e02f-5173-4d82-8a86-9b0baa8fd484" />
 
