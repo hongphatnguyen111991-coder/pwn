@@ -282,8 +282,12 @@ Nhập payload:
 
 ![Alt text](image/fs18.png)
 
-Chương trình này cho ta tạo shell nếu biến global check thỏa giá trị `0xDEADBEEF`. Bên cạnh đó có lỗ hổng *format string*.
+Chương trình này cho ta tạo shell nếu biến check (Global) thỏa giá trị `0xDEADBEEF`. Bên cạnh đó có lỗ hổng *format string*.
 
 Kiểm tra cơ chế bảo mật:
 
 ![Alt text](image/fs19.png)
+
+PIE đang tắt tức địa chỉ các biến Global là tĩnh ta chỉ cần dùng lệnh `p&check` lấy địa chỉ check:
+
+![Alt text](image/fs20.png)
