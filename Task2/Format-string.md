@@ -230,5 +230,5 @@ Tải `one_gadget`: sudo apt update
 				  sudo apt install ruby-full
 				  sudo gem install one_gadget
 
-Sử dụng one_gadget:
-![Alt text](image/fs15.png)
+Sử dụng `one_gadget`:
+![Alt text](image/fs16.png)
