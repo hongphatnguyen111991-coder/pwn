@@ -226,9 +226,11 @@ Ghi đè tối đa chỉ đến saved rip, vậy ROPchain và shellcode(dính NX
 
 `one_gadget` là một địa chỉ khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
 
-Tải `one_gadget`: sudo apt update
-				  sudo apt install ruby-full
-				  sudo gem install one_gadget
+Tải `one_gadget` qua terminal: 
+
+	sudo apt update
+	sudo apt install ruby-full
+	sudo gem install one_gadget
 
 Sử dụng `one_gadget`:
 ![Alt text](image/fs16.png)
