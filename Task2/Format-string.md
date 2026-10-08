@@ -304,7 +304,7 @@ Nhưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xD
 
 Trong khi giới hạn in của `printf` chỉ là ~2^31 => 2GB. Chương trình sẽ Crash ngay lập tức khi ta nhập hết vào.
 
-Giải pháp là ta chỉ nhập vào 2 BYTE dữ liệu mỗi lần (một nửa dữ liệu).
+Giải pháp là ta chỉ nhập vào 2 BYTE của `0xDEADBEEF` mỗi lần. Độ lớn giảm theo cấp số mũ: `0xDEAD` theo hệ 10 chỉ là 48879.
 
 Nhập payload:
 
