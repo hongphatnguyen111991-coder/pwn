@@ -197,3 +197,4 @@ lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để
 
 # Format string & Bof 
 
+![Alt text](image/fs13.png)
