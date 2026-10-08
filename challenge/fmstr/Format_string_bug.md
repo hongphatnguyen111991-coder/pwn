@@ -18,7 +18,9 @@ Hãy kiểm tra xem ta có thể leak được gì trên Stack:
 
 <br><br>
 
-Trước mắt thì trong Stack có 1 địa chỉ binary có thể được leak qua `%s`. Nhưng khoan. Chúng ta đang xem Stack trong local, kết cấu Stack trong server có thể khác hoàn toàn. Hãy build docker để kiểm tra điều này.
+Trước mắt thì trong Stack có 1 địa chỉ binary có thể được leak qua `%s`. Nhưng khoan. Chúng ta đang xem Stack trong local, kết cấu Stack trong server có thể khác hoàn toàn. Hãy chạy chương trình trên server để kiểm tra điều này.
+
+build, run docker rồi dùng docker ps để lấy CONTAINER ID.
 
 <br><br>
 
