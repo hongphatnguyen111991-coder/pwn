@@ -296,7 +296,7 @@ PIE đang tắt tức địa chỉ các biến Global là tĩnh ta chỉ cần d
 
 Ta đã có địa chỉ check, giờ ta cần dùng `%n` để nhập số BYTE được in bằng padding `%c` vào check.
 
-hưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xDEADBEEF` (hexa) thành hệ 10 (dec) và ta sẽ thấy vấn đề.
+Nhưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xDEADBEEF` (hexa) thành hệ 10 (dec) và ta sẽ thấy vấn đề.
 
 Để đưa được `0xDEADBEEF` vào vùng nhớ thì ta sẽ cần padding tương đương 3GB, một con số khổng lồ:
 
