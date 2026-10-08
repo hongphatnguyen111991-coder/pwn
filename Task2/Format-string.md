@@ -298,4 +298,4 @@ Ta đã có địa chỉ check nhưng có 1 lưu ý nhỏ trước khi nhập pa
 
 Để đưa được `0xDEADBEEF` vào vùng nhớ thì ta sẽ cần padding tương đương 3GB, một con số khổng lồ:
 
-![Alt text](image/fs20.png)
+![Alt text](image/fs21.png)
