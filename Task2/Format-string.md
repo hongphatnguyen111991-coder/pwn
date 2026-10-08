@@ -199,7 +199,7 @@ lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để
 
 ![Alt text](image/fs13.png)
 
-Chương trình này có lỗ hổng format string và buffer overflow. Hãy xem thêm trong Stack có gì để ta khai thác.
+Chương trình này có lỗ hổng *format string* và *buffer overflow*. Hãy xem thêm trong Stack có gì để ta khai thác.
 
 ![Alt text](image/fs14.png)
 
@@ -216,5 +216,7 @@ Bên cạnh đó trong Stack có thể leak luôn địa chỉ libc. Ta có th�
 	libc_leak=int(data[2],16)							//phần tử 2 chứa libc
 	libc.address=libc_leak-0x24083
 
-Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại Stack lần nữa để xem chúng ta có thể ghi đè đến đâu qua bof.
+Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại Stack lần nữa để xem chúng ta có thể ghi đè đến đâu qua *bof* để khai thác.
+
+
 
