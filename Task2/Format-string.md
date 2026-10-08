@@ -237,3 +237,6 @@ Sử dụng `one_gadget`:
 ![Alt text](image/fs16.png)
 
 Mỗi `one_gadget` sẽ có các điều kiện để tạo shell. Ví dụ: `one_gadget` đầu cần thanh ghi r15 và r12 chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
+Giờ ta cần tìm xem ta thỏa được điều kiện nào bằng cách check cas thanh ghi tại lệnh return.
+
+![Alt text](image/fs17.png)
