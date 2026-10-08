@@ -218,5 +218,5 @@ Bên cạnh đó trong Stack có thể leak luôn địa chỉ libc. Ta có th�
 
 Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại Stack lần nữa để xem chúng ta có thể ghi đè đến đâu qua *bof* để khai thác.
 
-
+![Alt text](image/fs15.png)
 
