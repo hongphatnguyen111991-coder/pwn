@@ -222,7 +222,7 @@ Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại St
 
 Ghi đè tối đa chỉ đến saved rip, vậy ROPchain và shellcode(dính NX) có thể khó thực hiện. 
 
-Đến đây, ta sẽ cần 1 công cụ mới: one_gadget
+Đến đây, ta sẽ cần 1 công cụ mới: *one_gadget*
 
 one_gadget là một địa chỉ khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
 
