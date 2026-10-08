@@ -29,7 +29,6 @@ build, run docker rồi dùng docker ps để lấy CONTAINER ID.
 <br><br>
 
 Bây giờ thì sử dụng CONTAINER ID để tìm file libc.so.6
-
 <br><br>
 
 <img width="1397" height="352" alt="image" src="https://github.com/user-attachments/assets/b6709f6e-23b8-4163-8020-330965a20b13" />
