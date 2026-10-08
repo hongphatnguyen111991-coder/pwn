@@ -288,6 +288,8 @@ Kiểm tra cơ chế bảo mật:
 
 ![Alt text](image/fs19.png)
 
+<br><br>
 PIE đang tắt tức địa chỉ các biến Global là tĩnh ta chỉ cần dùng lệnh `p&check` lấy địa chỉ check:
+<br><br>
 
 ![Alt text](image/fs20.png)
