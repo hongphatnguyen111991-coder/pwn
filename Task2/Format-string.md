@@ -278,3 +278,12 @@ Nhập payload:
 	
 	p.interactive()
 
+# Ghi đè dữ liệu bằng %n
+
+![Alt text](image/fs18.png)
+
+Chương trình này cho ta tạo shell nếu biến global check thỏa giá trị `0xDEADBEEF`. Bên cạnh đó có lỗ hổng *format string*.
+
+Kiểm tra cơ chế bảo mật:
+
+![Alt text](image/fs19.png)
