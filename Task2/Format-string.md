@@ -242,7 +242,7 @@ Giờ ta cần tìm xem ta thỏa được điều kiện nào bằng cách chec
 
 ![Alt text](image/fs17.png)
 
-Chỉ có thanh ghi `r15` và `r12` là cặp thanh ghi cùng thỏa điều kiện của *one_gadget*. Vậy ta sẽ dùng địa chỉ `0xe3b01`.
+Chỉ có thanh ghi `rdx` và `r15` là cặp thanh ghi cùng thỏa điều kiện của *one_gadget*. Vậy ta sẽ dùng địa chỉ `0xe3b01`.
 
 Nhập payload:
 
