@@ -198,3 +198,8 @@ lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để
 # Format string & Bof 
 
 ![Alt text](image/fs13.png)
+
+Chương trình này có lỗ hổng format string và buffer overflow. Hãy xem thêm trong Stack có gì để ta khai thác.
+
+![Alt text](image/fs14.png)
+
