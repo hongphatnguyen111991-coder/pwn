@@ -203,7 +203,7 @@ Chương trình này có lỗ hổng *format string* và *buffer overflow*. Hãy
 
 ![Alt text](image/fs14.png)
 
-Chương trình có cơ chế bảo mật Canary nên đầu tiên để thuận lợi cho việc khai thác bof thì cần leak canary trước.
+Chương trình có cơ chế bảo vệ Canary nên đầu tiên để thuận lợi cho việc khai thác bof thì cần leak canary trước.
 Bên cạnh đó trong Stack có thể leak luôn địa chỉ libc. Ta có thể sẽ cần dùng đến nó.
 
 	ID=b'01234456789'
@@ -220,3 +220,15 @@ Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại St
 
 ![Alt text](image/fs15.png)
 
+Ghi đè tối đa chỉ đến saved rip, vậy ROPchain và shellcode(dính NX) có thể khó thực hiện. 
+
+Đến đây, ta sẽ cần 1 công cụ mới: `one_gadget`
+
+`one_gadget` là một địa chỉ khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
+
+Tải `one_gadget`: sudo apt update
+				  sudo apt install ruby-full
+				  sudo gem install one_gadget
+
+Sử dụng one_gadget:
+![Alt text](image/fs15.png)
