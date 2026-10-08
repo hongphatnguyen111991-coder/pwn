@@ -293,3 +293,9 @@ PIE đang tắt tức địa chỉ các biến Global là tĩnh ta chỉ cần d
 <br><br>
 
 ![Alt text](image/fs20.png)
+
+Ta đã có địa chỉ check nhưng có 1 lưu ý nhỏ trước khi nhập payload. Hãy thử chuyển `0xDEADBEEF` (hexa) thành hệ 10 (dec) và ta sẽ thấy vấn đề.
+
+Để đưa được `0xDEADBEEF` vào vùng nhớ thì ta sẽ cần padding tương đương 3GB, một con số khổng lồ:
+
+![Alt text](image/fs20.png)
