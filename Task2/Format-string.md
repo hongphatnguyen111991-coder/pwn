@@ -345,3 +345,10 @@ Chỉ cần chỉnh lại phần padding sau trừ đi padding trước là `0x1
 	
 	p.interactive()
 
+# Tấn công GOT
+
+![Alt text](image/fs24.png)
+
+Trong chương trình có lỗ hổng *format string*. Hàm while trong mảng lặp vô tận không thể thoát ra. Vậy ở đây chúng ta cần tạo shell ngay trong vòng lặp.
+
+![Alt text](image/fs25.png)
