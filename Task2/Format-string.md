@@ -350,5 +350,12 @@ Chỉ cần chỉnh lại phần padding sau trừ đi padding trước là `0x1
 ![Alt text](image/fs24.png)
 
 Trong chương trình có lỗ hổng *format string*. Hàm while trong mảng lặp vô tận không thể thoát ra. Vậy ở đây chúng ta cần tạo shell ngay trong vòng lặp.
+Mà trong vòng lặp thì có `fgets` với `printf` thì làm sao để tạo shell?
+
+Đến đây ta đến với cách tấn công mới: *Tấn công GOT*
+
+Trước tiên hãy xem bảng GOT có gì:
 
 ![Alt text](image/fs25.png)
+
+
