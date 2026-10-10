@@ -381,3 +381,5 @@ Sau khi có libc và binary base address thì có thể ghi đè lên GOT. Hàm 
 
 ![Alt text](image/fs27.png)
 
+Địa chỉ `printf` và `system` có sự khác nhau trong 3 BYTE cuối. Ta thay thế 3 BYTE cuối đó của `system` lên `printf` bằng `%n`.
+
