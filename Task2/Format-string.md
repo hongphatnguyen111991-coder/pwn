@@ -379,3 +379,5 @@ Trong Stack có sẵn địa chỉ libc và binary có thể leak thông qua *fo
 
 Sau khi có libc và binary base address thì có thể ghi đè lên GOT. Hàm `printf` là đối tượng hợp lý nhất để ghi đè lên. Vì Hàm `fgets` ta còn dùng để đưa payload lên và khai thác. 
 
+![Alt text](image/fs27.png)
+
