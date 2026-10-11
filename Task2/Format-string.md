@@ -522,6 +522,8 @@ Format `%15$hn` sẽ lấy số kí tự được in tức độ rộng padding 
 
 ### Brute force
 
+1 cách làm khác là brute force.
+
 Các địa chỉ câu lệnh dù sẽ bị thay đổi khi bật cơ chế bảo vệ PIE nhưng 3 kí tự cuối luôn cố định.
 
 VD:
