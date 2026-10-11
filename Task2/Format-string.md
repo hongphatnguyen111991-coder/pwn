@@ -383,3 +383,15 @@ Sau khi có libc và binary base address thì có thể ghi đè lên GOT. Hàm 
 
 Địa chỉ `printf` và `system` có sự khác nhau trong 3 BYTE cuối. Ta thay thế 3 BYTE cuối đó của `system` lên `printf` bằng `%n`.
 
+Vì padding để đưa vào 3 BYTE liền là quá lớn nên hãy chia thành 2 đợt.
+
+Để tách địa chỉ ra ta cần dùng toán tử `&` (AND). 
+
+Ví dụ:
+
+	Địa chỉ (nhị phân):  0101 1011 1110 1111 0111 1111
+	0xff (nhị phân):     0000 0000 0000 0000 1111 1111
+	Kết quả phép &:      0000 0000 0000 0000 0111 1111   
+	=> Chỉ BYTE cuối là được giữ lại
+
+
