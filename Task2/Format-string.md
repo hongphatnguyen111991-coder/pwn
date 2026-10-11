@@ -383,7 +383,7 @@ Sau khi có libc và binary base address thì có thể ghi đè lên GOT. Hàm 
 
 Địa chỉ `printf` và `system` có sự khác nhau trong 3 BYTE cuối. Ta thay thế 3 BYTE cuối đó của `system` lên `printf` bằng `%n`.
 
-Nhưng padding để đưa vào 3 BYTE liền là quá lớn nên hãy tách dữ liệu ra đưa vào 2 lần.
+Nhưng padding để đưa vào 3 BYTE liền là quá lớn nên hãy tách dữ liệu đưa vào 2 lần.
 
 Để tách địa chỉ ra ta cần dùng toán tử `&` (AND) kết hợp dịch bit phải `>>`. 
 
