@@ -475,3 +475,8 @@ Tìm kiếm thêm thì ta thấy trong chương trình có hàm `get_shell`. Ta 
 
 Cơ chế bảo vệ RELRO đang ở trạng thái No RELRO tức ta có thể ghi đè lên GOT. Xem lại ida của chương trình để thấy sau lần in duy nhất có *format string* thì chỉ còn lệnh `exit` sau cùng thôi. Hướng đi ở đây là thay thế địa chỉ `exit` bằng `get_shell`.
 
+![Alt text](image/fs33.png)
+
+Khác biệt giữa hàm `exit` và `get_shell` là 2 BYTE cuối. Chỉ cần tìm địa chỉ `get_shell` qua binary base rồi ghi đè 2 BYTE lên địa chỉ `exit`.
+
+Nhưng ở đây 
