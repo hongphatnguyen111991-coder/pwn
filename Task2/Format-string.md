@@ -396,7 +396,7 @@ Ví dụ:
 Giả sử ta muốn lấy bit trước bit cuối?
 
 	Địa chỉ (nhị phân):  0101 1011 1110 1111 0111 1111
-	Dịch bit phải >> 8:    0000 0000 0101 1011 1110 1111  (đẩy thêm bit 0 vào, byte cuối biến mất)
+	Dịch bit phải >> 8:  0000 0000 0101 1011 1110 1111  (đẩy thêm bit 0 vào trái, byte cuối phải biến mất)
 	0xff (nhị phân):     0000 0000 0000 0000 1111 1111
 	Kết quả phép &:      0000 0000 0000 0000 1110 1111   
 
