@@ -467,6 +467,11 @@ Kiểm tra các biến trong Stack thì biến buf[32] có thể leak được 1
 
 Đầu tiên hãy leak địa chỉ này rồi tìm binary base.
 
-
-
+![Alt text](image/fs31.png)
 	
+Tìm kiếm thêm thì ta thấy trong chương trình có hàm `get_shell`. Ta cần gọi hàm này bằng cách nào đó để tạo shell.
+
+![Alt text](image/fs32.png)
+
+Cơ chế bảo vệ RELRO đang ở trạng thái No RELRO tức ta có thể ghi đè lên GOT. Xem lại ida của chương trình để thấy sau lần in duy nhất có *format string* thì chỉ còn lệnh `exit` sau cùng thôi. Hướng đi ở đây là thay thế địa chỉ `exit` bằng `get_shell`.
+
