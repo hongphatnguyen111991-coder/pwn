@@ -479,4 +479,17 @@ Cơ chế bảo vệ RELRO đang ở trạng thái No RELRO tức ta có thể g
 
 Khác biệt giữa hàm `exit` và `get_shell` là 2 BYTE cuối. Chỉ cần tìm địa chỉ `get_shell` qua binary base rồi ghi đè 2 BYTE lên địa chỉ `exit`.
 
-Nhưng ở đây 
+Nhưng ở đây biến in *format string* được nhập ngay đầu chương trình trước khi leak được binary. Vậy ta cần biến khác để chứa dữ liệu payload địa chỉ `get_shell`.
+Ta sẽ dùng v5 để chứa payload này. Nhưng làm sao để đưa dữ liệu đó vào format?
+
+Toán tử `*`: Lấy độ rộng padding từ tham số được truyền vào rồi đưa vào format.
+
+![Alt text](image/fs34.png)
+
+Format `%*14$c` sẽ in ra padding có độ rộng được lấy từ % thứ 14
+
+Format `%15$hn` sẽ lấy số kí tự được in tức độ rộng padding ghi đè lên địa chỉ nằm ở % thứ 15
+
+![Alt text](image/fs35.png)
+
+`exit` lúc này đã được ghi đè bằng địa chỉ `get_shell`. Từ đó tạo shell khi chương trình gọi `exit`.
