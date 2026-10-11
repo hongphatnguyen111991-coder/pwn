@@ -416,6 +416,8 @@ Xử lí dữ liệu rồi đưa vào payload:
 
 ![Alt text](image/fs28.png)
 
+Ta đã thành công ghi đè địa chỉ `system` vào `printf`. Sau đó chỉ cần đưa thêm chuỗi /bin/sh vào buffer mà `printf` dùng làm tham số là `system` sẽ tạo shell.
+
 ## Script Python:
 
 	#!/usr/bin/env python3
@@ -456,3 +458,15 @@ Xử lí dữ liệu rồi đưa vào payload:
 # Định dạng con "*"
 
 ![Alt text](image/fs29.png)
+
+Trong chương trình này có 1 lỗ hổng *format string* và vài lần nhập/xuất dữ liệu. Hãy vào GDB xem khai thác được gì.
+
+![Alt text](image/fs30.png)
+
+Kiểm tra các biến trong Stack thì biến buf[32] có thể leak được 1 địa chỉ binary bằng cách nối chuỗi.
+
+Đầu tiên hãy leak địa chỉ này rồi tìm binary base.
+
+
+
+	
