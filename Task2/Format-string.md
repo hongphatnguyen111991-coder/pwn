@@ -224,7 +224,7 @@ Ghi đè tối đa chỉ đến saved rip, vậy *ROPchain* và *shellcode*(dín
 
 Đến đây, ta sẽ cần phương pháp khác: dùng `Oneshot gadget`
 
-*Oneshot gadget* là một đoạn mã máy trong libc khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
+`Oneshot gadget` là một đoạn mã máy trong libc khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
 
 Tải công cụ one_gadget (để tìm các Oneshot gadget) qua terminal: 
 
@@ -236,13 +236,13 @@ Sử dụng *one_gadget*:
 
 ![Alt text](image/fs16.png)
 
-Mỗi *Oneshot gadget* sẽ có các điều kiện để tạo shell. Ví dụ: *Oneshot gadget* đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
+Mỗi `Oneshot gadget` sẽ có các điều kiện để tạo shell. Ví dụ: `Oneshot gadget` đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
 
 Giờ ta cần tìm xem ta thỏa được điều kiện nào bằng cách check các thanh ghi tại lệnh return:
 
 ![Alt text](image/fs17.png)
 
-Chỉ có thanh ghi `rdx` và `r15` là cặp thanh ghi cùng thỏa điều kiện của *one_gadget*. Vậy ta sẽ dùng địa chỉ `0xe3b01`.
+Chỉ có thanh ghi `rdx` và `r15` là cặp thanh ghi cùng thỏa điều kiện của `Oneshot gadget`. Vậy ta sẽ dùng địa chỉ `0xe3b01`.
 
 Nhập payload:
 
