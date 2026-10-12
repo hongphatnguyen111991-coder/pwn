@@ -530,3 +530,13 @@ VD:
 Trong địa chỉ `0x5555555552b7 <get_shell>` thì  `2b7` luôn không đổi.
 
 Vậy trong 2 BYTE `52b7` mà `get_shell` khác với `exit` thì chỉ có kí tự đầu là ngẫu nhiên. Nếu brute force thì không tốn quá nhiều lần lặp để dính kí tự 5.
+
+# Khai thác .fini_array
+
+![Alt text](image/fs36.png)
+
+Chương trình này cho chúng ta 3 lần *format string*. Bên cạnh đó chương trình cũng có hàm `get_shell` sẽ tạo shell nếu được gọi.
+
+![Alt text](image/fs37.png)
+
+Cơ chế bảo mật RELRO ở trạng thái Full RELRO tức GOT chỉ có quyền `r--` nên không thể ghi đè `get_shell` vào GOT như challenge trước.
