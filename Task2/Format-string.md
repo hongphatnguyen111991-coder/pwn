@@ -539,4 +539,12 @@ Chương trình này cho chúng ta 3 lần *format string*. Bên cạnh đó ch�
 
 ![Alt text](image/fs37.png)
 
-Cơ chế bảo mật RELRO ở trạng thái Full RELRO tức GOT chỉ có quyền `r--` nên không thể ghi đè `get_shell` vào GOT như challenge trước.
+Cơ chế bảo mật RELRO ở trạng thái Full RELRO: tức GOT chỉ có quyền `r--` nên không thể ghi đè `get_shell` vào GOT như challenge trước.
+
+Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
+
+`.fini_array` là một phân vùng chứa một mảng các con trỏ hàm để dọn dẹp trước khi kết thúc chương trình. Quá trình gọi cụ thể sẽ lấy binary base từ một phân vùng `rw- section` cộng offset để có địa chỉ phân vùng `.fini_array` rồi bắt đầu nhảy vào gọi hàm.
+
+![Alt text](image/fs37.png)
+
+Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. Đặc điểm của địa chỉ này là giống địa chỉ libc nhưng không nằm trong phân vùng libc và nó chứa địa chỉ binary base.
