@@ -547,4 +547,10 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
 ![Alt text](image/fs38.png)
 
-Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. Đặc điểm của địa chỉ này là giống địa chỉ libc nhưng KHÔNG nằm trong phân vùng libc và nó chứa địa chỉ binary base.
+Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. Đặc điểm của địa chỉ này là:
+
+*Giống địa chỉ libc nhưng KHÔNG nằm trong phân vùng libc.
+
+*Nằm gần các biến môi trường.
+
+*Chứa địa chỉ binary base.
