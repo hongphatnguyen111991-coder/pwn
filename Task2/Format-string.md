@@ -545,6 +545,6 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
 `.fini_array` là một phân vùng chứa một mảng các con trỏ hàm để dọn dẹp trước khi kết thúc chương trình. Quá trình gọi cụ thể sẽ lấy binary base từ một phân vùng `rw- section` cộng offset để có địa chỉ phân vùng `.fini_array` rồi bắt đầu nhảy vào gọi hàm.
 
-![Alt text](image/fs37.png)
+![Alt text](image/fs38.png)
 
 Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. Đặc điểm của địa chỉ này là giống địa chỉ libc nhưng không nằm trong phân vùng libc và nó chứa địa chỉ binary base.
