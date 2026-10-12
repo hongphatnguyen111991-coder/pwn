@@ -222,11 +222,11 @@ Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại St
 
 Ghi đè tối đa chỉ đến saved rip, vậy *ROPchain* và *shellcode*(dính NX) có thể khó thực hiện. 
 
-Đến đây, ta sẽ cần 1 công cụ mới: *one_gadget*
+Đến đây, ta sẽ cần phương pháp khác: dùng `Oneshot gadget`
 
-*one_gadget* là một địa chỉ khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
+*Oneshot gadget* là một đoạn mã máy trong libc khi thực thi sẽ cho chúng ta shell với vài điều kiện nhất định
 
-Tải *one_gadget* qua terminal: 
+Tải công cụ one_gadget (để tìm các Oneshot gadget) qua terminal: 
 
 	sudo apt update
 	sudo apt install ruby-full
@@ -236,7 +236,7 @@ Sử dụng *one_gadget*:
 
 ![Alt text](image/fs16.png)
 
-Mỗi *one_gadget* sẽ có các điều kiện để tạo shell. Ví dụ: *one_gadget* đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
+Mỗi *Oneshot gadget* sẽ có các điều kiện để tạo shell. Ví dụ: *Oneshot gadget* đầu cần thanh ghi `r15` và `r12` chứa NULL hoặc địa chỉ bên trong của chúng chứa NULL.
 
 Giờ ta cần tìm xem ta thỏa được điều kiện nào bằng cách check các thanh ghi tại lệnh return:
 
