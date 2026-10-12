@@ -549,8 +549,8 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
 Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. Đặc điểm của địa chỉ này là:
 
-*Giống địa chỉ libc nhưng KHÔNG nằm trong phân vùng libc.
+- Giống địa chỉ libc nhưng KHÔNG nằm trong phân vùng libc.
 
-*Nằm gần các biến môi trường.
+- Nằm gần các biến môi trường.
 
-*Chứa địa chỉ binary base.
+- Chứa địa chỉ binary base.
