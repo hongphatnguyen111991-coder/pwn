@@ -543,7 +543,7 @@ Cơ chế bảo mật RELRO ở trạng thái Full RELRO: tức GOT chỉ có qu
 
 Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
-`.fini_array` là một phân vùng chứa một mảng các con trỏ hàm để dọn dẹp trước khi kết thúc chương trình. Quá trình gọi cụ thể sẽ lấy binary base từ một phân vùng `rw- section` cộng offset để có địa chỉ phân vùng `.fini_array` rồi bắt đầu nhảy vào gọi hàm.
+`.fini_array` là một phân vùng chứa một mảng các con trỏ hàm để dọn dẹp trước khi kết thúc chương trình. Quá trình gọi cụ thể sẽ lấy binary base cộng offset để có địa chỉ phân vùng `.fini_array` rồi bắt đầu nhảy vào gọi hàm.
 
 ![Alt text](image/fs39.png)
 
