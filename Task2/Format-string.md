@@ -559,7 +559,7 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
 Trước tiên hãy xem ta có thể khai thác được gì trong Stack.
 
-![Alt text](image/fs39.png)
+![Alt text](image/fs40.png)
 
 Trong Stack hiện tại leak được 1 địa chỉ binary.
 
