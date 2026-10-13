@@ -721,6 +721,9 @@ Vậy ta cần đưa địa chỉ saved rip vào một con trỏ để ghi đè.
 
 ![Alt text](image/fs48.png)
 
-Ta đã biết rằng saved rbp sau trỏ đến địa chỉ Stack chứa saved rbp trước. Tức nếu ta thay đổi saved rbp sau bằng địa chỉ Stack 
+Ta đã biết rằng saved rbp sau trỏ đến địa chỉ Stack chứa saved rbp trước. Tức nếu ta thay đổi saved rbp sau bằng địa chỉ Stack của saved rip thì saved rbp trước sẽ trở thành con trỏ saved rip
 
+![Alt text](image/fs49.png)
+
+Nhưng chúng ta không thể leak được địa chỉ Stack ra do chỉ có 1 lần *format string*. Vì Stack luôn động do cơ chế ALSR vậy nên lựa chọn duy nhất là brute force.
 
