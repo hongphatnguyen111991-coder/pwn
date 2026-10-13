@@ -713,17 +713,17 @@ Chương trình có 1 lỗ hổng *format string*. Mục tiêu khai thác lần 
 
 Nhưng có 1 lưu ý đặc biệt là buffer nằm trên phân vùng Heap. Điều đó có nghĩa rằng khả năng khai thác trên Stack sẽ trở nên hạn chế. 
 
-![Alt text](image/fs47.png)
+![Alt text](image/fs48.png)
 
 Cơ hội để chuyển hướng `get_shell` bây giờ phụ thuộc vào việc ghi đè lên saved rip trong chương trình. Nhưng format `%n` chỉ ghi đè được lên nội dung của con trỏ.
 
 Vậy ta cần đưa địa chỉ saved rip vào một con trỏ để ghi đè. 
 
-![Alt text](image/fs48.png)
+![Alt text](image/fs49.png)
 
 Ta đã biết rằng saved rbp sau trỏ đến địa chỉ Stack chứa saved rbp trước. Tức nếu ta thay đổi saved rbp sau bằng địa chỉ Stack của saved rip thì saved rbp trước sẽ trở thành con trỏ saved rip
 
-![Alt text](image/fs49.png)
+![Alt text](image/fs50.png)
 
 Nhưng chúng ta không thể leak được địa chỉ Stack ra do chỉ có 1 lần *format string*. Vì Stack luôn động do cơ chế ALSR vậy nên lựa chọn duy nhất là brute force.
 
