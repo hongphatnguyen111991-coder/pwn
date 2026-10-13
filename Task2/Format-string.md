@@ -545,7 +545,7 @@ Nhưng ta vẫn còn cách khác để gọi `get_shell` là qua `.fini_array`.
 
 `.fini_array` là một phân vùng chứa một mảng các con trỏ hàm để dọn dẹp trước khi kết thúc chương trình. Quá trình gọi cụ thể sẽ lấy binary base từ một phân vùng `rw- section` cộng offset để có địa chỉ phân vùng `.fini_array` rồi bắt đầu nhảy vào gọi hàm.
 
-![Alt text](image/fs38.png)
+![Alt text](image/fs39.png)
 
 Địa chỉ chứa binary base mà chương trình sẽ sử dụng để tính toán offset đến `.fini_array` lại đang nằm trong Stack. 
 
@@ -563,7 +563,7 @@ Trước tiên hãy xem ta có thể khai thác được gì trong Stack.
 
 Trong Stack hiện tại leak được 1 địa chỉ binary.
 
-![Alt text](image/fs40.png)
+![Alt text](image/fs41.png)
 
 Leak luôn địa chỉ `rw-` chứa binary base để tí nữa ghi đè lên.
 
@@ -605,14 +605,14 @@ Vì `.fini_array` này là 1 mảng chứa tập hợp các con trỏ hàm nên 
 
 Giờ quay lại xem offset từ base address đến `.fini_array`.
 
-![Alt text](image/fs41.png)
 ![Alt text](image/fs42.png)
+![Alt text](image/fs43.png)
 
 Khi kết thúc chương trình thì base address sẽ cộng thêm cho `0x3d90` để đến mảng chứa con trỏ hàm dọn dẹp.
 
 Vậy ta có thể suy luận:
 
-![Alt text](image/fs43.png)
+![Alt text](image/fs44.png)
 
 Bây giờ thì nhập địa chỉ cuối cùng tính từ công thức trên ghi đè vào địa hỉ chứa base address kia.
 
@@ -636,7 +636,7 @@ Bây giờ thì nhập địa chỉ cuối cùng tính từ công thức trên g
 	p.sendlineafter(b'something: ',payload)
 	p.sendlineafter(b'>',b'y')
 
-![Alt text](image/fs44.png)
+![Alt text](image/fs45.png)
 
 Một khi chương trình cộng thêm `0x3d90` để đến `.fini_array`, luồng thực thi sẽ lập tức chuyển đến `get_shell`.
 
