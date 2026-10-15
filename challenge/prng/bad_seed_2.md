@@ -52,7 +52,7 @@ Sau khi đã tìm thấy seed thì đưa vào sinh số `rand()` và áp công t
     ID=libc.rand() % 10000 + 20240000
     print(ID)
 
-Ở đây tôi dùng `p.sendlineafter(b'ID: ',p32(ID))` không được nên `print` ra rồi nhập tay vô chương trình luôn :vv
+Ở đây tôi dùng `p.sendlineafter(b'ID: ',p32(ID))` không được nên `print(ID)` ra rồi nhập tay vô chương trình luôn :vv
 
 <img width="907" height="632" alt="image" src="https://github.com/user-attachments/assets/6d75c8c6-8a1f-4f68-9dcb-eccf4274331d" />
 
