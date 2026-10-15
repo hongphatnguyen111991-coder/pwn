@@ -44,7 +44,7 @@ Chương trình này sẽ cho ta shell nếu ta đoán trúng kết quả của 
 
     p.interactive()
 
-Nhưng ở đây có điều cần lưu ý: time(0) của server có thể lệch vài giây so với time(0) của script.
+Nhưng ở đây có điều cần lưu ý: time(0) của server có thể lệch vài giây do có độ trễ.
 
 Vì thế ta sẽ cần duyệt độ trễ trong 1 khoảng thời gian để bao quát hết sai số này.
 
