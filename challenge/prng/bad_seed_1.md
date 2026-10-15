@@ -25,7 +25,7 @@ Chương trình này sẽ cho ta shell nếu ta đoán trúng kết quả của 
 
   `srand(v3)` là lấy giá trị biến v3 làm seed để sinh số ngẫu nhiên.
 
-  `v6 = rand() % 10000 + 20230000` sẽ lấy giá trị được sinh ra qua công thức rồi tính toán gán vào v6.
+  `v6 = rand() % 10000 + 20230000` sẽ lấy số ngẫu nhiên từ `rand()` rồi tính toán gán vào v6.
 
   Như đã nói trước đó, ta có thể tái tạo số y chang nếu sinh số với cùng seed.
 
