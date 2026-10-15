@@ -73,3 +73,5 @@ Vì thế ta sẽ cần duyệt độ trễ trong 1 khoảng thời gian để b
     			pass
     
     p.interactive()
+
+<img width="1167" height="557" alt="Screenshot 2026-10-15 111624" src="https://github.com/user-attachments/assets/8a677566-9877-4932-bd5a-7b2993293801" />
