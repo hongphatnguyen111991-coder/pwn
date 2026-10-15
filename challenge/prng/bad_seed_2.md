@@ -10,3 +10,5 @@ Chương trình tạo shell nếu v6 == v8. Với v6 nhập từ user và v8 đ�
 Vậy chúng ta phải tìm cách khác để tìm seed.
 
 <img width="1202" height="150" alt="Screenshot 2026-10-15 162930" src="https://github.com/user-attachments/assets/2f4e4ca3-fe8d-4dd0-abfc-b55e8a51f350" />
+
+Nhìn vào GDB có thể thấy Seed được lưu trữ vào
