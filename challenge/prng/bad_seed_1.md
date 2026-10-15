@@ -15,7 +15,7 @@ Vậy nếu một chương trìng sử dụng `rand()` để tạo số ngẫu n
 
 <img width="827" height="527" alt="Screenshot 2026-10-15 111914" src="https://github.com/user-attachments/assets/91f9a85b-77e6-46e5-b7ab-fcf23bfd0930" />
 
-Chương trình này sẽ cho ta shell nếu ta đoán trúng kết quả của v6.
+Chương trình này sẽ cho ta shell nếu ta đoán trúng kết quả của v6. Quan sát cách v6 được tạo ra.
 
     v3 = time(0);
     srand(v3);
