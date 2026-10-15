@@ -23,7 +23,7 @@ Chương trình này sẽ cho ta shell nếu ta nhập v5 trùng với v6. Hãy 
 
   `v6 = rand() % 10000 + 20230000` sẽ lấy số ngẫu nhiên giả tạo từ `rand()` rồi tính toán gán vào v6.
 
-  Như đã nói trước đó, ta có thể tái tạo số y chang nếu sinh số với cùng seed.
+  Như đã nói trước đó, ta có thể tái tạo số y chang nếu sinh số với cùng seed. Tức là nếu ta dùng `time(0)` cùng thời điểm chương trình chạy thì sẽ tạo ra seed tương tự. Sau đó chỉ cần sinh số qua `rand()` và tính toán như chương trình.
 
 ## Script Python LOCAL
   
