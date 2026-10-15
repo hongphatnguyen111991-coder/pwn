@@ -2,7 +2,7 @@
 [Writeup tham khảo](https://pwnn.me/blog/randvuln/)
 
 Bản chất của máy tính chỉ có thể tính toán chứ không thể làm việc như đoán số. Vì thế có những thuật toán để tạo các số ngẫu nhiên giả qua công thức.
-Ví dụ như hàm `rand()` để tạo số ngẫu nhiên giả bằng cách nạp seed vào tính toán.
+Trong C seed được nạp vào `srand()` và sinh số qua `rand()`
 
 <img width="522" height="217" alt="Screenshot 2026-10-15 114051" src="https://github.com/user-attachments/assets/c3442b70-efdb-4e5e-8270-4db47773f71d" />
 <img width="375" height="95" alt="Screenshot 2026-10-15 114116" src="https://github.com/user-attachments/assets/389fc089-ac42-4abc-82ee-da5c2b61a11a" />
