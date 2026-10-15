@@ -40,7 +40,7 @@ Chương trình này sẽ cho ta shell nếu ta nhập v5 trùng với v6. Hãy 
 
     p.interactive()
 
-Nhưng ở đây có điều cần lưu ý: time(0) của server có thể lệch vài giây do có độ trễ.
+Nhưng ở đây có điều cần lưu ý: time(0) nếu đưa lên server có thể lệch vài giây do có độ trễ.
 
 Vì thế ta sẽ cần duyệt độ trễ trong 1 khoảng thời gian để bao quát hết sai số này.
 
