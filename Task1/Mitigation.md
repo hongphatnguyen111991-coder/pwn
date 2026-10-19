@@ -30,4 +30,4 @@ Phần `.got.plt` (chứa địa chỉ các hàm liên kết động) vẫn dùn
 ## Full RELRO
 Tắt hoàn toàn Lazy Binding: Ngay khi chương trình vừa khởi chạy, Dynamic Linker (ld.so) sẽ lập tức phân giải địa chỉ cho toàn bộ các hàm thư viện và điền sẵn vào bảng GOT.
 
-Sau khi điền xong, Linker gọi hàm hệ thống `mprotect()` để đổi quyền hạn của toàn bộ vùng nhớ GOT từ Read-Write `rw-` thành Read-Only `r--`.
+Sau khi điền xong, Linker gọi hàm hệ thống `mprotect()` để đổi quyền hạn của toàn bộ vùng nhớ GOT từ `rw-` thành `r--`.
