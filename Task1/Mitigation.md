@@ -31,3 +31,13 @@ Phần `.got.plt` (chứa địa chỉ các hàm liên kết động) vẫn dùn
 Tắt hoàn toàn Lazy Binding: Ngay khi chương trình vừa khởi chạy, Dynamic Linker (ld.so) sẽ lập tức phân giải địa chỉ cho toàn bộ các hàm thư viện và điền sẵn vào bảng GOT.
 
 Sau khi điền xong, Linker gọi hàm hệ thống `mprotect()` để đổi quyền hạn của toàn bộ vùng nhớ GOT từ `rw-` thành `r--`.
+
+# Stripped
+`Stripped` không phải cơ chế bảo mật nhưng là 1 tùy chọn của người viết chương trình.
+
+Khi lập trình viên viết code và biên dịch, trình biên dịch (compiler) thường nhúng thêm một bảng ký tự (symbol table) và thông tin debug vào bên trong file thực thi. Bảng này chứa tên gốc của các hàm (như main, printf, vulnerable_function), tên biến và số dòng code để phục vụ cho việc sửa lỗi (debugging).
+
+Khi một file bị `stripped` (bằng cách dùng lệnh strip trên Linux hoặc cờ biên dịch tương ứng), toàn bộ tên hàm, tên biến và thông tin debug đó sẽ bị xóa sạch khỏi file thực thi. Kết quả là các phần mềm DEBUG sẽ không tìm thấy như main hay các hàm khác.
+
+Vậy để khắc phục thì ta cần vào IDA -> tìm đúng hàm cần DEBUG -> nhấn vào và ấn phím G -> copy địa chỉ để đặt break, tính toán offset,...
+
