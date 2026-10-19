@@ -22,12 +22,12 @@ Khi Canary bị ghi đè thì lúc hàm chuẩn bị return sẽ phát hiện Ca
 ![Alt text](image/Canary0.png)
 
 # RELRO 
-## Partial RELRO
+### Partial RELRO
 Reorder (sắp xếp lại) các phần bộ nhớ để bảng `GOT`, `.dynamic`, `.fini_array`, `.init_array` nằm trước các biến toàn cục (vùng .data / .bss). Điều này giúp ngăn ngừa việc tràn bộ đệm từ vùng dữ liệu thường ghi đè vào GOT.
 
 Phần `.got.plt` (chứa địa chỉ các hàm liên kết động) vẫn dùng Lazy Binding và có quyền Read-Write `rw-`.
 
-## Full RELRO
+### Full RELRO
 Tắt hoàn toàn Lazy Binding: Ngay khi chương trình vừa khởi chạy, Dynamic Linker (ld.so) sẽ lập tức phân giải địa chỉ cho toàn bộ các hàm thư viện và điền sẵn vào bảng GOT.
 
 Sau khi điền xong, Linker gọi hàm hệ thống `mprotect()` để đổi quyền hạn của toàn bộ vùng nhớ GOT từ `rw-` thành `r--`.
