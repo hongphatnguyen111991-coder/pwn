@@ -1,4 +1,4 @@
-## Biểu diễn số nguyên không dấu và có dấu
+# Biểu diễn số nguyên không dấu và có dấu
 
 <img width="900" height="550" alt="image" src="https://github.com/user-attachments/assets/c46c6400-98a6-431f-a384-e4c85a3bdd83" />
 
@@ -20,7 +20,7 @@ hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo 
 
 - Đánh đổi với khả năng lưu trữ số âm thì giá trị lưu trữ tối đa của số dương chỉ bằng nửa của số nguyên không dấu.
 
-## Integer Overflow
+# Integer Overflow
 
 Integer Overflow xảy ra khi chương trình cho phép nhập giá trị tối đa của số nguyên không dấu vào số nguyên có dấu.
 Do sự vượt quá khả năng lưu trữ của kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
