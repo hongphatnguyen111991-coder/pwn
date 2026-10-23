@@ -4,6 +4,7 @@
 
 
 <br>
+<br>
 
 Số nguyên không dấu sử dụng toàn bộ BITS để biểu thị giá trị nguyên dương vậy nên khả năng lưu trữ số lớn gấp 2 lần số nguyên có dấu.
 
