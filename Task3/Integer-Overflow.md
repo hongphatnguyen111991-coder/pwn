@@ -27,4 +27,5 @@ Do sự vượt quá khả năng lưu trữ của kiểu dữ liệu khiến cho
 
 ### Ví dụ:
 
-<img width="1760" height="856" alt="image" src="https://github.com/user-attachments/assets/dcf527a8-c35b-4b6e-a54c-603fc6ed8a69" />
+<img width="1716" height="767" alt="image" src="https://github.com/user-attachments/assets/749e0349-a086-4da7-9927-2b2bb9f1175b" />
+
