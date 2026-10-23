@@ -1,6 +1,6 @@
 ## Biểu diễn số nguyên không dấu và có dấu
 
-<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/c46c6400-98a6-431f-a384-e4c85a3bdd83" />
+<img width="900" height="550" alt="image" src="https://github.com/user-attachments/assets/c46c6400-98a6-431f-a384-e4c85a3bdd83" />
 
 
 <br>
