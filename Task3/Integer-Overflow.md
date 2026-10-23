@@ -18,7 +18,7 @@
 - Phương pháp bù 2 của số nguyên có dấu sẽ coi giá trị BIT đầu là số âm và các BIT còn lại là dương. Vì giá trị tạo thành của BIT trước luôn lớn
 hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo thành sẽ luôn là số âm.
 
-Đánh đổi với khả năng lưu trữ số âm thì giá trị lưu trữ tối đa của số dương chỉ bằng nửa của số nguyên không dấu.
+- Đánh đổi với khả năng lưu trữ số âm thì giá trị lưu trữ tối đa của số dương chỉ bằng nửa của số nguyên không dấu.
 
 ## Integer Overflow
 
