@@ -23,7 +23,7 @@ hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo 
 ## Integer Overflow
 
 Integer Overflow xảy ra khi chương trình cho phép nhập giá trị tối đa của số nguyên không dấu vào số nguyên có dấu.
-Hiện tượng này do sự vượt quá khả năng lưu trữ của các kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
+Do sự vượt quá khả năng lưu trữ của các kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
 
 ### Ví dụ:
 
