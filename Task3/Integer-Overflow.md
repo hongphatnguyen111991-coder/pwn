@@ -2,7 +2,9 @@
 
 <img width="1031" height="692" alt="image" src="https://github.com/user-attachments/assets/c46c6400-98a6-431f-a384-e4c85a3bdd83" />
 
+<br>
 Số nguyên không dấu sử dụng toàn bộ BITS để biểu thị giá trị nguyên dương vậy nên khả năng lưu trữ số lớn gấp 2 lần số nguyên có dấu.
+<br>
 
 <img width="1061" height="666" alt="image" src="https://github.com/user-attachments/assets/504e6575-0f93-40b3-9399-7136c18f6b2e" />
 
