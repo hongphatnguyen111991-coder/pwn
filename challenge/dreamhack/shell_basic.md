@@ -9,7 +9,7 @@ Tiếp theo là trong hàm main có khởi tạo 1 vùng nhớ có quyền `rwx`
 có hàm trỏ ngay đến vùng nhớ đó để thực thi.
 
 Vì chương trình cho phép ta ghi vào vùng nhớ trên nên chỉ cần đưa shellcode vào để thực thi. Nhưng ta sẽ không gọi hàm tạo shell 
-do `banned_execve` mà mở flag qua `open`, `read` và  `write`.
+(do `banned_execve`) mà mở flag qua `open`, `read` và  `write`.
 
 <img width="717" height="407" alt="image" src="https://github.com/user-attachments/assets/51049d35-b0d1-4fae-8d33-ebc78f9e34d4" />
 
