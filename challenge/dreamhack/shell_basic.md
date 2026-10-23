@@ -13,7 +13,7 @@ Vì chương trình cho phép ta ghi vào vùng nhớ trên nên chỉ cần đ�
 
 <img width="717" height="407" alt="image" src="https://github.com/user-attachments/assets/51049d35-b0d1-4fae-8d33-ebc78f9e34d4" />
 
-Challenge có cho sẵn đường dẫn file flag chỉ cần đưa lên làm tahm số của `open` để mở. 
+Challange có cho sẵn đường dẫn file flag chỉ cần đưa lên làm tham số của `open` để mở. 
 
 <img width="861" height="352" alt="image" src="https://github.com/user-attachments/assets/70a5fc17-14fa-4364-a4c4-e942b908e013" />
 
