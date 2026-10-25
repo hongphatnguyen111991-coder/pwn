@@ -1,3 +1,6 @@
+# Link Challenge Dreamhack
+[xrop](https://dreamhack.io/wargame/challenges/1749)
+
 # Phân tích code
 
 <img width="712" height="450" alt="Screenshot 2026-10-25 164548" src="https://github.com/user-attachments/assets/f3383ac6-f5ab-4d96-a899-5e820fa85b5e" />
