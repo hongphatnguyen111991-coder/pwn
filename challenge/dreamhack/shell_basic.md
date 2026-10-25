@@ -1,3 +1,5 @@
+# Link Challenge Dreamhack
+[shell_basic](https://dreamhack.io/wargame/challenges/410)
 # Phân tích code
 
 <img width="1322" height="621" alt="image" src="https://github.com/user-attachments/assets/87207a1b-abc5-4b8a-a401-e10338e778ee" />
