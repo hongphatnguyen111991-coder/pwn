@@ -20,8 +20,9 @@ hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo 
 
 - Đánh đổi với khả năng lưu trữ số âm thì giá trị lưu trữ tối đa của số nguyên có dấu chỉ bằng nửa của số nguyên không dấu.
 
-# Integer Overflow
-[*Video anh Trí*](https://youtu.be/cIuycF_GBME?si=T6F3cU4QL2TdS3K4)
+# Integer Overflow - Tràn số nguyên có dấu
+
+[*Video anh Trí*](https://youtu.be/1jLxbOtVzdU?si=xsj-gMZaigbTM4Kg)
 
 Integer Overflow xảy ra khi chương trình cho phép nhập giá trị tối đa vượt quá khả năng lưu trữ của kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
 
@@ -29,3 +30,4 @@ Integer Overflow xảy ra khi chương trình cho phép nhập giá trị tối 
 
 <img width="1716" height="767" alt="image" src="https://github.com/user-attachments/assets/749e0349-a086-4da7-9927-2b2bb9f1175b" />
 
+# Integer Overflow - Lỗi ép kiểu
