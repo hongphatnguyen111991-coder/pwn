@@ -226,7 +226,7 @@ Nên nạp địa chỉ `rbp = địa chỉ muốn đến - 8 BYTE` thì đích 
 
 ![Alt text](image/buffer-overflow32.png)
 
-Bài này yêu cầu các phần tử v4[0] v4[1] v4[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của mảng v4. Thay vào đó ta sẽ tận dụng địa chỉ v4 mà chương trình cho sẵn.
+Bài này yêu cầu các phần tử v4[0] v4[1] v4[2] bằng các giá trị cố định trong chương trình. Nhưng ta không có khả năng để thay đổi hay ghi đè giá trị mới lên các phần tử của mảng v4. Thay vào đó ta sẽ tận dụng địa chỉ v4 mà chương trình cho sẵn để tính toán offset về buffer.
 
 ![Alt text](image/buffer-overflow33.png)
 
