@@ -21,7 +21,7 @@ hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo 
 - Đánh đổi với khả năng lưu trữ số âm thì giá trị lưu trữ tối đa của số dương chỉ bằng nửa của số nguyên không dấu.
 
 # Integer Overflow
-[Video anh Trí](https://youtu.be/cIuycF_GBME?si=T6F3cU4QL2TdS3K4)
+[*Video anh Trí*](https://youtu.be/cIuycF_GBME?si=T6F3cU4QL2TdS3K4)
 
 Integer Overflow xảy ra khi chương trình cho phép nhập giá trị tối đa vượt quá khả năng lưu trữ của kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
 
