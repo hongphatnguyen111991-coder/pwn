@@ -35,4 +35,5 @@ Tràn số nguyên có dấu xảy ra khi chương trình cho phép nhập giá 
 <img width="1320" height="707" alt="image" src="https://github.com/user-attachments/assets/c9f0cd87-dd82-45ee-b82a-b2bfc57869ed" />
 
 <br>
+
 Lỗi ép kiểu xảy ra khi chương trình ép giá trị lớn bằng kiểu dữ liệu không có sức chứa tương xứng làm cho dữ liệu sai lệch so với giá trị ban đầu.
