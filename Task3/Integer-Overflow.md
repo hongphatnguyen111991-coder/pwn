@@ -42,3 +42,8 @@ Ví dụ:
 <img width="557" height="286" alt="Screenshot 2026-10-27 114845" src="https://github.com/user-attachments/assets/23d2299b-30c5-4a00-b96d-0ee3f7fa935e" />
 <img width="542" height="292" alt="Screenshot 2026-10-27 114908" src="https://github.com/user-attachments/assets/3334d087-1b3f-4b6b-8397-f27ea3acb297" />
 
+Tận dụng lỗi ép kiểu ta có thể thay đổi giá trị hiện tại bằng giá trị bé hơn bằng cách cộng tràn số BYTES có thể lưu trữ.
+
+<img width="488" height="212" alt="image" src="https://github.com/user-attachments/assets/998e7f66-df2a-4f24-86c3-98ae5e37ad77" />
+
+
