@@ -25,6 +25,7 @@ Khi DEBUG thì chạy đến hàm system bị ngắt luồng thực thi. Vì khi
 Tiến trình con này sau khi in ra màn hình `'system@plt'` thì kết thúc.
 
 Để quay lại tiến trình cha thì dùng lệnh `attach pid` của tiến trình Inferior 1:
+
 <br>
 
 <img width="902" height="195" alt="image" src="https://github.com/user-attachments/assets/f0d2e151-455b-4c6b-8acc-f2e1c26bea10" />
