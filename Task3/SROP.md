@@ -11,5 +11,5 @@ Chương trình có lỗi *buffer overflow* cho phép nhập 1208 (0x500) BYTES.
 
 *No Canary* cho phép ghi đè dữ liệu tự do trong Stack không bị kiểm duyệt
 
-*No PIE* làm cho địa chỉ binary tĩnh
+*No PIE* tức địa chỉ binary tĩnh
 
