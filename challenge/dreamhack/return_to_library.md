@@ -15,7 +15,7 @@ Mitigation:
 Đồng thời *PIE* cũng tắt nên không cần leak 
 binary address. Tuy nhiên vẫn có *Canary* nên cần leak *Canary* trước.
 
-# *Lưu ý*
+# *Lưu ý khi DEBUG*
 
 <img width="1401" height="965" alt="Screenshot 2026-10-28 181947" src="https://github.com/user-attachments/assets/a7ca135e-e134-4108-980c-6173834b1a5c" />
 
