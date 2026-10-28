@@ -13,3 +13,14 @@ Chương trình có lỗi *buffer overflow* cho phép nhập 1208 (0x500) BYTES.
 
 *No PIE* tức địa chỉ binary tĩnh
 
+### Gadget
+
+<img width="814" height="118" alt="image" src="https://github.com/user-attachments/assets/35a80b37-1b76-4b98-806d-46d85b0b82fc" />
+
+Trong các gadget chỉ có `pop rax` và `syscall` chứ không có các gadget điều khiển thanh ghi chứa tham số (rdi,rsi,rdx...).
+
+Để gọi được `execve` với tham số là `/bin/sh` thì cần cách khác để điều khiển các thanh ghi.
+
+<img width="1016" height="202" alt="image" src="https://github.com/user-attachments/assets/65f08509-fea5-42bc-959b-804a150edd7e" />
+
+`rt_sigreturn` là lệnh syscall sẽ lấy dữ liệu trên Stack để ghi đè vào các thanh ghi. 
