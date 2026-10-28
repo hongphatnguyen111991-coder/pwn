@@ -276,6 +276,8 @@ Sau khi nhập 512 BYTE thì saved rbp đã bị ghi đè byte cuối làm cho �
 
 Chính vì thế ta cần brute force để hy vọng địa chỉ ghi đè sẽ trỏ vào vùng nhớ mà ta để shellcode bên trong. Để tăng cơ hội brute force thành công thì cần lấp đầy buffer bằng nghiều gadget ret. Khi đó dù dính chỉ 1 trong các gadget đó sẽ chuyển hướng đến vùng nhớ chứa shellcode.
 
+![Alt text](image/buffer-overflow39.png)
+
 Sau cùng dùng stack leak tính offset đến nơi chứa shellcode rồi nhập vào sau gadget ret cuối. 
 
 Code:
