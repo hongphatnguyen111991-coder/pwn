@@ -1,3 +1,6 @@
+# Video anh Trí
+[SROP](https://youtu.be/2PxQaj0-a2M)
+
 # Phân tích challenge
 
 <img width="554" height="148" alt="image" src="https://github.com/user-attachments/assets/5db8648f-23f0-4de1-91fc-a40447e99759" />
