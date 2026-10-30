@@ -723,7 +723,7 @@ Vậy ta cần đưa địa chỉ saved rip vào một con trỏ để ghi đè.
 
 Ta đã biết rằng saved rbp sau trỏ đến địa chỉ Stack chứa saved rbp trước. Tức nếu ta thay đổi saved rbp sau bằng địa chỉ Stack của saved rip thì saved rbp trước sẽ trở thành con trỏ saved rip
 
-Nhưng chúng ta không thể leak được địa chỉ Stack ra do chỉ có 1 lần *format string*. Vì Stack luôn động do cơ chế ALSR vậy nên lựa chọn duy nhất là brute force.
+Nhưng chúng ta không thể leak được địa chỉ Stack. Vì Stack luôn động do cơ chế ALSR vậy nên lựa chọn duy nhất là brute force.
 Vì chỉ có BYTE đầu tiên là thay đổi nên tỉ lệ trúng là 1/256. Đây vẫn là một tỉ lệ cao để máy tính đoán trúng trong thời gian ngắn.
 
 payload:
