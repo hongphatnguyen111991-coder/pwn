@@ -46,6 +46,7 @@ Khi nhập giá trị long int (64-BITS) cho int (32-BITS) thì thực tế ch�
 
 <br>
 Ví dụ:
+<br>
 
 <img width="557" height="286" alt="Screenshot 2026-10-27 114845" src="https://github.com/user-attachments/assets/23d2299b-30c5-4a00-b96d-0ee3f7fa935e" />
 <img width="542" height="292" alt="Screenshot 2026-10-27 114908" src="https://github.com/user-attachments/assets/3334d087-1b3f-4b6b-8397-f27ea3acb297" />
