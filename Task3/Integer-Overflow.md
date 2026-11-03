@@ -54,7 +54,7 @@ Ví dụ:
 <br><br>
 Trong ví dụ trên thì biến a trong hàm main lưu giá trị unsigned long long (64-BITS) trong khi hàm `display()` chỉ nhận giá trị unsigned int (32-BITS). Vây nên khi in ra màn hình thì dữ liệu khác nhau hoàn toàn.
 
-<br><br>
+<br>
 Tận dụng lỗi ép kiểu ta có thể thay đổi giá trị hiện tại bằng giá trị bé hơn bằng cách cộng tràn số BYTES có thể lưu trữ.
 <br><br>
 
