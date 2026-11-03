@@ -52,6 +52,9 @@ Ví dụ:
 <img width="542" height="292" alt="Screenshot 2026-10-27 114908" src="https://github.com/user-attachments/assets/3334d087-1b3f-4b6b-8397-f27ea3acb297" />
 
 <br><br>
+Trong ví dụ trên thì biến a trong hàm main lưu giá trị long int (64-BITS) trong khi hàm `display()` chỉ nhận giá trị int (32-BITS). Vây nên khi in ra màn hình thì dữ liệu khác nhau hoàn toàn.
+
+<br><br>
 Tận dụng lỗi ép kiểu ta có thể thay đổi giá trị hiện tại bằng giá trị bé hơn bằng cách cộng tràn số BYTES có thể lưu trữ.
 <br><br>
 
