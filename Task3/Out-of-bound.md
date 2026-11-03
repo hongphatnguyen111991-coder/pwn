@@ -7,7 +7,7 @@ Mảng là dải dữ liệu liên tiếp có thể truy cập từng phần t�
 nếu arr ( arr[0] ) có địa chỉ là `0xffffffffab00` thì:
 
     arr[1] = 0xffffffffab00 + 1 * 8 = 0xffffffffab08
-    arr[2] = 0xffffffffab00 + 2 * 8 = 0xffffffffab08
+    arr[2] = 0xffffffffab00 + 2 * 8 = 0xffffffffab10
     ...
 
 
