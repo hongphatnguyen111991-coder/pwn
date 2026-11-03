@@ -41,6 +41,7 @@ Lỗi ép kiểu xảy ra khi chương trình ép giá trị rất lớn bằng 
 
 <img width="1320" height="707" alt="image" src="https://github.com/user-attachments/assets/c9f0cd87-dd82-45ee-b82a-b2bfc57869ed" />
 
+<br><br>
 Khi nhập giá trị long int (64-BITS) cho int (32-BITS) thì thực tế chỉ các BYTES bên phải (phía Most Significant Byte) được lưu. Còn lại các BYTES nằm ngoài phạm vi lưu trữ của int sẽ không được truyền vào biến.  
 
 Ví dụ:
