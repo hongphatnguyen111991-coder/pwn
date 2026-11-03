@@ -17,4 +17,4 @@ nếu arr ( arr[0] ) có địa chỉ là `0xffffffffab00` thì:
 
 Lỗ hổng *Out of bound* phát sinh khi index được nhập vượt ngoài phạm vi của mảng. Chẳng hạn như chương trình cho phép nhập index lớn hơn kích thước thật của mảng hay index là số nguyên có dấu (có thể âm).
 
-Nhiệm vụ của máy tính chỉ là tính toán địa chỉ và truy cập dữ liệu trong địa chỉ đó. Vậy nên việc truy cập các dữ liệu bên ngoài mảng thông qua index là khả thi.
+Nhiệm vụ của máy tính chỉ là tính toán địa chỉ qua index và truy cập dữ liệu trong địa chỉ đó. Vậy nên người khai thác lỗ hổng hoàn toàn có thể nhập index ngoài phạm vi mảng để truy cập các dữ liệu quan trọng.
