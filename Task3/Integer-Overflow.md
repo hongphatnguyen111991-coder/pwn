@@ -22,7 +22,7 @@ hơn tổng giá trị các BIT sau nên nếu BIT đầu bật thì số tạo 
 
 # Integer Overflow - Tràn số nguyên có dấu
 
-[*Video anh Trí*](https://youtu.be/1jLxbOtVzdU?si=xsj-gMZaigbTM4Kg)
+[*Video anh Trí: Tràn số nguyên có dấu*](https://youtu.be/1jLxbOtVzdU?si=xsj-gMZaigbTM4Kg)
 
 Tràn số nguyên có dấu xảy ra khi chương trình cho phép nhập giá trị tối đa vượt quá khả năng lưu trữ của kiểu dữ liệu khiến cho BITS dấu bị thay đổi.
 
@@ -31,6 +31,8 @@ Tràn số nguyên có dấu xảy ra khi chương trình cho phép nhập giá 
 <img width="1716" height="767" alt="image" src="https://github.com/user-attachments/assets/749e0349-a086-4da7-9927-2b2bb9f1175b" />
 
 # Integer Overflow - Lỗi ép kiểu
+
+[*Video anh Trí: Lỗi ép kiểu*](https://youtu.be/NWxiqvcht8s)
 
 <img width="1320" height="707" alt="image" src="https://github.com/user-attachments/assets/c9f0cd87-dd82-45ee-b82a-b2bfc57869ed" />
 
