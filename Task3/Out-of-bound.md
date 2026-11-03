@@ -4,7 +4,7 @@
 
 Mảng là dải dữ liệu liên tiếp có thể truy cập từng phần tử thông qua index. Index dùng để chương trình tính toán offset từ đầu mảng đến 1 phần tử được chỉ định.
 
-nếu arr hay arr[0] có địa chỉ là `0xffffffffab00` thì:
+nếu arr (arr[0]) có địa chỉ là `0xffffffffab00` thì:
 
     arr[1] = 0xffffffffab00 + 1 * 8 = 0xffffffffab08
     arr[1] = 0xffffffffab00 + 2 * 8 = 0xffffffffab08
