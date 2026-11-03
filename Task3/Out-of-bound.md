@@ -20,6 +20,6 @@ nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` thì:
 
 <img width="1050" height="546" alt="image" src="https://github.com/user-attachments/assets/16905c1d-4aa6-4aaf-a278-3e0772c3f2a8" />
 
-# Video anh Trí
+# Challenge
 
-[*Out of Bounds*](https://youtu.be/ogTRLJ3kiIk)
+[*Video anh trí: Out of Bounds*](https://youtu.be/ogTRLJ3kiIk)
