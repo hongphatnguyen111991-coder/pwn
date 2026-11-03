@@ -22,4 +22,4 @@ nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` thì:
 
 # Video anh Trí
 
-[Out of Bounds](https://youtu.be/ogTRLJ3kiIk)
+[*Out of Bounds*](https://youtu.be/ogTRLJ3kiIk)
