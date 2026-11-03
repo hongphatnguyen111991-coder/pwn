@@ -30,6 +30,8 @@ Tràn số nguyên có dấu xảy ra khi chương trình cho phép nhập giá 
 
 <img width="1716" height="767" alt="image" src="https://github.com/user-attachments/assets/749e0349-a086-4da7-9927-2b2bb9f1175b" />
 
+Vấn đề tràn số nguyên có dấu căn bản do sự khác biệt khi biểu thị số trong máy tính. Trong hệ 8 BIT, BIT đầu tiên bật nếu theo số nguyên không dấu là 2 mũ 8 tức 128. Nhưng biểu thị số nguyên có dấu thì BIT đầu là âm tương đương -128. 
+
 # Integer Overflow - Lỗi ép kiểu
 
 [*Video anh Trí: Lỗi ép kiểu*](https://youtu.be/NWxiqvcht8s)
