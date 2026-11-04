@@ -17,5 +17,4 @@ Hàm `puts` sẽ làm nốt việc in flag ra màn hình.
     
     p.interactive()
 
-<img width="1452" height="350" alt="image" src="https://github.com/user-attachments/assets/08dd7e0e-41ba-4a27-b61a-60620f0db3c9" />
 
