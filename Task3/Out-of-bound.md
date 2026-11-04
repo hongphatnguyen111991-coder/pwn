@@ -37,7 +37,7 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 <img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
 
 `acc` và `qword_3608` cùng nằm trong `.BSS` và cách nhau 8 BYTES. Đây là 1 mảng với các phần tử là struct gồm name và amounts:
-<br>
+<br><br>
 
 <img width="1090" height="756" alt="image" src="https://github.com/user-attachments/assets/29960c81-d568-4de6-ae16-95d7fa68ebb1" />
 
