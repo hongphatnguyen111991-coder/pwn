@@ -33,17 +33,19 @@ Chương trình này cho phép nhập Index là số nguyên có dấu. Và bên
 
 <br><br>
 Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập phần tử lúc thì `acc`, lúc thì `qword_3608`. Hãy xem cấu trúc mảng này trên bộ nhớ thế nào.
-
+<br>
 
 <img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
 
 <br><br>
 `acc` và `qword_3608` cùng nằm trong `.BSS` và cách nhau 8 BYTES. Đây là 1 mảng với các phần tử là struct gồm name và amounts:
+<br>
 
 <img width="1090" height="756" alt="image" src="https://github.com/user-attachments/assets/29960c81-d568-4de6-ae16-95d7fa68ebb1" />
 
 <br><br>
 Để dễ dàng đọc IDA thì hãy tạo 1 struct và gán cho mảng `acc`.
+<br>
 
 <img width="796" height="630" alt="image" src="https://github.com/user-attachments/assets/6b5b1bb1-e197-4ddf-b3f5-52b13187919e" />
 <img width="930" height="782" alt="image" src="https://github.com/user-attachments/assets/9143195d-a966-44c0-86bb-4c7220b588c8" />
