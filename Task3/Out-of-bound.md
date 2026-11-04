@@ -46,6 +46,8 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 
 <img width="796" height="630" alt="image" src="https://github.com/user-attachments/assets/6b5b1bb1-e197-4ddf-b3f5-52b13187919e" />
 <img width="930" height="782" alt="image" src="https://github.com/user-attachments/assets/9143195d-a966-44c0-86bb-4c7220b588c8" />
+<img width="860" height="569" alt="Screenshot 2026-11-04 172227" src="https://github.com/user-attachments/assets/a15c5470-c485-4c27-a8f0-9ffee0718edd" />
+<img width="552" height="342" alt="Screenshot 2026-11-04 172518" src="https://github.com/user-attachments/assets/97bb28ea-d041-4485-92b5-41144c461ae5" />
 
 
 
