@@ -27,12 +27,12 @@ nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` và mỗi ph�
 <img width="782" height="582" alt="image" src="https://github.com/user-attachments/assets/0373cd69-dd09-45f7-ad9c-059007bbceaa" />
 
 Chương trình này cho phép nhập Index là số nguyên có dấu. Và bên dưới cũng chỉ có giới hạn `v4` bé hơn 10. Ở đây có lỗ hổng `Out of Bounds` cho phép ta truy cập phần tử vượt phạm vi mảng với Index âm.
-<br>
+<br><br>
 
 <img width="868" height="580" alt="image" src="https://github.com/user-attachments/assets/0cb9d3d7-f080-48d7-a770-f61f570b6710" />
 
 Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập phần tử lúc thì `acc`, lúc thì `qword_3608`. Hãy xem cấu trúc mảng này trên bộ nhớ thế nào.
-<br>
+<br><br>
 
 <img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
 
@@ -42,7 +42,7 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 <img width="1090" height="756" alt="image" src="https://github.com/user-attachments/assets/29960c81-d568-4de6-ae16-95d7fa68ebb1" />
 
 Để dễ dàng đọc IDA thì hãy tạo 1 struct và gán cho mảng `acc`.
-<br>
+<br><br>
 
 <img width="796" height="630" alt="image" src="https://github.com/user-attachments/assets/6b5b1bb1-e197-4ddf-b3f5-52b13187919e" />
 <img width="930" height="782" alt="image" src="https://github.com/user-attachments/assets/9143195d-a966-44c0-86bb-4c7220b588c8" />
