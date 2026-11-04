@@ -34,3 +34,14 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 
 <img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
 
+`acc` và `qword_3608` cùng nằm trong `.BSS` và cách nhau 8 BYTES. Đây là 1 mảng với các phần tử là struct gồm name và amounts:
+
+<img width="1090" height="756" alt="image" src="https://github.com/user-attachments/assets/29960c81-d568-4de6-ae16-95d7fa68ebb1" />
+
+Để dễ dàng đọc IDA thì hãy tạo 1 struct và gán cho mảng `acc`.
+
+<img width="796" height="630" alt="image" src="https://github.com/user-attachments/assets/6b5b1bb1-e197-4ddf-b3f5-52b13187919e" />
+<img width="930" height="782" alt="image" src="https://github.com/user-attachments/assets/9143195d-a966-44c0-86bb-4c7220b588c8" />
+
+
+
