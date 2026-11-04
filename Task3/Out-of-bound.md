@@ -5,7 +5,7 @@
 <br><br>
 - Mảng là dải dữ liệu liên tiếp có thể truy cập từng phần tử thông qua index. Index là giá trị được dùng để chương trình tính toán offset rồi cộng vào địa chỉ gốc để đến được 1 phần tử được chỉ định.
 
-nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` thì:
+nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` và mỗi phần tử có kích thước 8 BYTES thì:
 
     arr[0] = 0xffffffffab00 + 0 * 8 = 0xffffffffab00
     arr[1] = 0xffffffffab00 + 1 * 8 = 0xffffffffab08
