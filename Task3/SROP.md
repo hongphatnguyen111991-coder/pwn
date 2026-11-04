@@ -1,5 +1,5 @@
-# Video anh Trí
-[SROP](https://youtu.be/2PxQaj0-a2M)
+# SROP
+[*Video anh Trí: SROP*](https://youtu.be/2PxQaj0-a2M)
 
 # Phân tích challenge
 
