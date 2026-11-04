@@ -34,6 +34,7 @@ Chương trình này cho phép nhập Index là số nguyên có dấu. Và bên
 <br><br>
 Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập phần tử lúc thì `acc`, lúc thì `qword_3608`. Hãy xem cấu trúc mảng này trên bộ nhớ thế nào.
 
+
 <img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
 
 <br><br>
