@@ -23,3 +23,14 @@ nếu mảng arr có địa chỉ ban đầu là `0xffffffffab00` và mỗi ph�
 # Challenge
 
 [*Video anh trí: Out of Bounds*](https://youtu.be/ogTRLJ3kiIk)
+
+<img width="782" height="582" alt="image" src="https://github.com/user-attachments/assets/0373cd69-dd09-45f7-ad9c-059007bbceaa" />
+
+Chương trình này cho phép nhập Index là số nguyên có dấu. Và bên dưới cũng chỉ có giới hạn `v4` bé hơn 10. Ở đây là lỗi `Out of Bounds` cho phép ta truy cập phần tử vượt phạm vi mảng với Index âm.
+
+<img width="868" height="580" alt="image" src="https://github.com/user-attachments/assets/0cb9d3d7-f080-48d7-a770-f61f570b6710" />
+
+Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập phần tử qua Index khá khó hiểu. Hãy xem địa chỉ xem mảng trên nằm ở đâu.
+
+<img width="697" height="298" alt="image" src="https://github.com/user-attachments/assets/fd0ca8ca-7b8b-4ad0-82df-ef6b0d11cc57" />
+
