@@ -89,8 +89,15 @@ Lúc này nếu chuyển luồng thực thi đến lệnh in thì sẽ leak đư
 
 <img width="982" height="518" alt="image" src="https://github.com/user-attachments/assets/f72c4e13-6b08-491d-a098-7c0c1cd94727" />
 
-Nhìn xa hơn về trước mảng acc thì còn lưu cả các hàm thư viện. Điều này là do cơ chế bảo mật RELRO đang ở trạng thái NO RELRO. Do đó bảng GOT không bị di dời và ở sát
-ngay trên 
+Nhìn xa hơn về trước mảng acc thì còn lưu cả các hàm thư viện. Điều này là do cơ chế bảo mật RELRO đang ở trạng thái NO RELRO. Do đó bảng GOT nằm hoàn toàn trong
+vùng có quyền `rw-`. 
+
+Vậy chỉ cần ghi đè địa chỉ trong bảng GOT thành `get_shell` để chuyển hướng tạo shell. Ở đây thì ta thường sẽ chọn hàm `exit` vì hàm này sẽ chỉ được gọi cuối chương trình, khi ta đã hoàn thành việc khai thác.
+
+<img width="982" height="518" alt="Screenshot 2026-11-04 180755" src="https://github.com/user-attachments/assets/65f278c7-4bdf-41e6-baf7-f8177ca33778" />
+
+
+
 
 
 
