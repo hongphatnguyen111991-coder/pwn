@@ -50,5 +50,18 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 <img width="860" height="569" alt="Screenshot 2026-11-04 172227" src="https://github.com/user-attachments/assets/a15c5470-c485-4c27-a8f0-9ffee0718edd" />
 <img width="552" height="342" alt="Screenshot 2026-11-04 172518" src="https://github.com/user-attachments/assets/97bb28ea-d041-4485-92b5-41144c461ae5" />
 
+Tại đây thì nhấn nút `Y` để tạo biến name và amounts tại 2 địa chỉ trên.
+
+<img width="1000" height="601" alt="image" src="https://github.com/user-attachments/assets/b4d799aa-66b3-4e50-9505-d25c49e94e53" />
+
+Lúc này thì click vào địa chỉ từng biến và ấn `D` đến khi 2 biến trở thành kích thước 8 BYTES.
+
+<img width="714" height="408" alt="image" src="https://github.com/user-attachments/assets/f3e8c046-7c04-4c0a-a223-6fef7e33986c" />
+
+
+
+
+
+-
 
 
