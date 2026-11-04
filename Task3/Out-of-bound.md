@@ -41,6 +41,7 @@ Nhìn vào chương trình thì ta thấy có nhiều câu lệnh truy cập ph�
 
 <img width="1090" height="756" alt="image" src="https://github.com/user-attachments/assets/29960c81-d568-4de6-ae16-95d7fa68ebb1" />
 
+<br><br>
 Để dễ dàng đọc IDA thì hãy tạo 1 struct và gán cho mảng `acc`.
 <br><br>
 
