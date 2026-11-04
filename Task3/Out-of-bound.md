@@ -58,10 +58,11 @@ Lúc này thì click vào địa chỉ từng biến và ấn `D` đến khi 2 b
 
 <img width="714" height="408" alt="image" src="https://github.com/user-attachments/assets/f3e8c046-7c04-4c0a-a223-6fef7e33986c" />
 
+Rồi quay lại mục code C để đổi kiểu dữ liệu mảng acc thành struct Accounts vừa tạo.
+
+<img width="870" height="562" alt="image" src="https://github.com/user-attachments/assets/e2083d97-3e0b-416c-b7c7-8ce0df80a805" />
 
 
 
-
--
 
 
