@@ -29,6 +29,10 @@ Bây giờ thì sử dụng CONTAINER ID để tìm file libc.so.6
 <img width="1397" height="352" alt="image" src="https://github.com/user-attachments/assets/b6709f6e-23b8-4163-8020-330965a20b13" />
 
 <br><br>
+Ngoài cách trên thì cũng có thể dùng lệnh:
+
+    /lib64/ld-linux-x86-64.so.2 --list ./file
+
 sau khi đã patch xong file binary và libc.so.6 thì hãy kiểm tra lại Stack:
 <br><br>
 
