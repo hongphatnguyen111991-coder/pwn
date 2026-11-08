@@ -1,4 +1,5 @@
-<img width="862" height="282" alt="image" src="https://github.com/user-attachments/assets/c5b5131c-1941-4348-9343-ef2c5b158328" /># Lớp bảo vệ Seccomp
+<img width="862" height="282" alt="image" src="https://github.com/user-attachments/assets/c5b5131c-1941-4348-9343-ef2c5b158328" />
+# Lớp bảo vệ Seccomp
 [*Video anh Trí - Lớp bảo vệ Seccomp*](https://www.youtube.com/watch?v=nrKNHrEouUU&list=PLEvZsp0uc3SFuVi6TtcahxqsEbV29lXAM&index=26)
 
 
