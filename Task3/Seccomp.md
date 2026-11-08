@@ -35,6 +35,7 @@ Kiểm tra seccomp để xem các hàm nào bị chặn thực thi:
 <img width="684" height="280" alt="image" src="https://github.com/user-attachments/assets/f7daf4ca-5c4f-4351-b7e9-ea0b34f4216b" />
 
 Vì trong Whitelist không có `execve` lẫn `open` nên chưa thể khai thác qua shellcode.
+<br>
 
 <img width="634" height="521" alt="image" src="https://github.com/user-attachments/assets/96f31c75-531f-41c8-8bd9-7908d55af4d3" />
 
