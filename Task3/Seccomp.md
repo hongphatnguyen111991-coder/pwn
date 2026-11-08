@@ -23,8 +23,8 @@ Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện t
 # Challenge Dreamhack
 [*seccomp*](https://dreamhack.io/wargame/challenges/59)
 
-## Phân tích code 
-
+# Phân tích code 
+## Lỗ hổng đầu tiên:
 <img width="953" height="674" alt="image" src="https://github.com/user-attachments/assets/27930695-2db2-4900-84d1-4e081122f57e" />
 
 Trong hàm main tạo sẵn vùng `rwx` để nhập shellcode và chạy thông qua các tùy chọn. Tuy nhiên trong đoạn code này có thêm hàm `syscall_filter` để lọc syscall. 
@@ -37,7 +37,7 @@ Kiểm tra seccomp để xem các hàm nào bị chặn thực thi:
 Vì trong Whitelist không có `execve` lẫn `open` nên chưa thể khai thác qua shellcode.
 <br><br>
 
-## Lỗ hổng khai thác:
+## Lỗ hổng tiếp theo:
 
 <img width="634" height="521" alt="image" src="https://github.com/user-attachments/assets/96f31c75-531f-41c8-8bd9-7908d55af4d3" />
 
