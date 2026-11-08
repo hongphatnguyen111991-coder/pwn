@@ -37,7 +37,7 @@ Kiểm tra seccomp để xem các hàm nào bị chặn thực thi:
 Vì trong Whitelist không có `execve` lẫn `open` nên chưa thể khai thác qua shellcode.
 <br><br>
 
-Lỗ hổng khai thác:
+## Lỗ hổng khai thác:
 
 <img width="634" height="521" alt="image" src="https://github.com/user-attachments/assets/96f31c75-531f-41c8-8bd9-7908d55af4d3" />
 
