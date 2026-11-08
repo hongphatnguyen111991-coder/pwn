@@ -46,7 +46,21 @@ Trong hàm main còn có 1 tùy chọn cho phép nhập địa chỉ và ghi đ�
 ## Mitigation
 <img width="384" height="174" alt="image" src="https://github.com/user-attachments/assets/ffaab6f6-987a-4ef8-9b59-72c45b36ce53" />
 
-PIE tắt cho phép 
+PIE tắt cho phép khai thác các địa chỉ tĩnh.
+
+## Vô hiệu hóa seccomp
+<img width="826" height="596" alt="image" src="https://github.com/user-attachments/assets/5e080b0d-db18-41b6-992a-cd3ac6a55520" />
+
+Người dùng thông thường có thể lợi dụng *seccomp* để leo quyền lên root bằng cách chặn các syscall quan trọng của hệ thống. Vậy nên hệ điều hành Linux đã chặn dùng *seccomp* với những chương trình có thể leo quyền.
+
+Chỉ khi đã chạy lệnh `prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)` (tắt khả năng leo quyền của chương trình) thì *seccomp* mới được phép chạy.
+
+=> Ý tưởng ở đây là vô hiệu hóa hàm `prctl` bằng cách ghi đè
+
+
+
+
+
 
 
 
