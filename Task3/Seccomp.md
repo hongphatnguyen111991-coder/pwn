@@ -12,6 +12,14 @@ Khi kiểm tra *seccomp* thì sử dụng lệnh:
 
 Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện thị như trên (White-list). Tất cả các lệnh gọi syscall khác sẽ mặc định bị chặn thực thi.
 
+Để bypass *seccomp* thì có thể:
+
+- Sử dụng các hàm chưa bị chặn để khai thác.
+
+- Vô hiệu hóa *seccomp*
+
+- Chuyển hướng, khai thác trước khi chương trình chạy *seccomp*
+
 # Challenge Dreamhack
 [*seccomp*](https://dreamhack.io/wargame/challenges/59)
 
