@@ -1,0 +1,1 @@
+# Lớp bảo vệ Seccomp
