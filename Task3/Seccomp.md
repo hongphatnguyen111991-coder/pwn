@@ -16,12 +16,17 @@ Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện t
 
 - Sử dụng các hàm chưa bị chặn để khai thác.
 
-- Vô hiệu hóa *seccomp*
+- Vô hiệu hóa, chuyển hướng chương trình để tránh *seccomp*
 
-- Chuyển hướng, khai thác trước khi chương trình chạy *seccomp*
+- Khai thác trước khi chương trình chạy *seccomp*
 
 # Challenge Dreamhack
 [*seccomp*](https://dreamhack.io/wargame/challenges/59)
+
+## Phân tích code 
+
+<img width="953" height="674" alt="image" src="https://github.com/user-attachments/assets/27930695-2db2-4900-84d1-4e081122f57e" />
+
 
 
 
