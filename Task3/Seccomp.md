@@ -45,7 +45,7 @@ Trong hàm main còn có 1 tùy chọn cho phép nhập địa chỉ và ghi đ�
 ## Mitigation
 <img width="384" height="174" alt="image" src="https://github.com/user-attachments/assets/ffaab6f6-987a-4ef8-9b59-72c45b36ce53" />
 
-PIE tắt cho phép khai thác các địa chỉ tĩnh.
+PIE tắt cho phép khai thác trực tiếp các địa chỉ binary tĩnh.
 
 ## Vô hiệu hóa seccomp
 <img width="826" height="596" alt="image" src="https://github.com/user-attachments/assets/5e080b0d-db18-41b6-992a-cd3ac6a55520" />
