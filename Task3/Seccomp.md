@@ -9,7 +9,7 @@ Khi kiểm tra *seccomp* thì sử dụng lệnh:
 
 <img width="684" height="284" alt="Screenshot 2026-11-08 141410" src="https://github.com/user-attachments/assets/332cbcd8-3fdf-4bfd-986c-7187e1a5c059" />
 
-Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện thị như trên (White-list). Tất cả các lệnh gọi syscall khác sẽ mặc định bị chặn thực thi.
+Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện thị như trên (Whitelist). Tất cả các lệnh gọi syscall khác sẽ mặc định bị chặn thực thi.
 
 Để bypass *seccomp* thì có thể:
 
