@@ -43,9 +43,10 @@ Vì trong Whitelist không có `execve` lẫn `open` nên chưa thể khai thác
 
 Trong hàm main còn có 1 tùy chọn cho phép nhập địa chỉ và ghi đè giá trị trong địa chỉ đó. Điều này cho phép chúng ta ghi đè lên bất kì địa chỉ nào có quyền `write` trong chương trình.
 
+## Mitigation
 <img width="384" height="174" alt="image" src="https://github.com/user-attachments/assets/ffaab6f6-987a-4ef8-9b59-72c45b36ce53" />
 
-
+PIE tắt cho phép 
 
 
 
