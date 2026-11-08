@@ -29,7 +29,9 @@ Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện t
 
 Trong hàm main tạo sẵn vùng `rwx` để nhập shellcode và chạy thông qua các tùy chọn.
 
-Tuy nhiên trong đoạn code này có thêm hàm `syscall_filter` để lọc syscall. Hãy kiểm tra seccomp để xem các hàm nào bị chặn thực thi.
+Tuy nhiên trong đoạn code này có thêm hàm `syscall_filter` để lọc syscall. 
+
+Kiểm tra seccomp để xem các hàm nào bị chặn thực thi:
 
 <img width="684" height="280" alt="image" src="https://github.com/user-attachments/assets/f7daf4ca-5c4f-4351-b7e9-ea0b34f4216b" />
 
