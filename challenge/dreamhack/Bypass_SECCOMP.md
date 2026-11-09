@@ -10,4 +10,6 @@ Chương trình cho phép nhập shellcode vào vùng nhớ có quyền `rwx` v�
 Kiểm tra *seccomp*:
 <img width="766" height="329" alt="image" src="https://github.com/user-attachments/assets/d90f4284-e061-4e06-8d86-74647d92b125" />
 
-Ở đây các hàm
+Ở đây các hàm được liệt kê trên sẽ bị cấm. Còn lại các hàm khác vẫn được sử dụng. Vì tất cả biến thể của `execve` đều bị chặn nên không thể tạo shell. Hàm `open` và `write` cũng bị chặn. Tuy nhiên vẫn còn các hàm và biến thể khác để mở file và in file nên vẫn có thể đọc flag.
+
+
