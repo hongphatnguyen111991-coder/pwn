@@ -13,11 +13,9 @@ Kiểm tra *seccomp*:
 
 Ở đây các hàm được liệt kê trên sẽ bị cấm. Còn lại các hàm khác vẫn được sử dụng. 
 - Tất cả biến thể của `execve` đều bị chặn nên không thể tạo shell.
-- Hàm `open` và `write` cũng bị chặn. Tuy nhiên vẫn còn các hàm và biến thể khác để mở file và in file nên vẫn có thể đọc flag.
+- Hàm `open` và `write` cũng bị chặn. Tuy nhiên vẫn còn các hàm và biến thể khác để mở file và in dữ liệu ra màn hình nên vẫn có thể đọc flag.
 
 # Khai thác
 <img width="1010" height="217" alt="image" src="https://github.com/user-attachments/assets/68abf30b-fd16-4970-82bc-720edf48c45d" />
 
-Đầu tiên về vấn đề mở file thì `open` có một biến thể khác là `openat`.
-
-Khác biệt lớn nhất của `openat` là
+Đầu tiên về vấn đề mở file thì `open` có một biến thể khác là `openat`. Khác biệt lớn nhát 
