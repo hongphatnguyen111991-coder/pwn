@@ -8,7 +8,7 @@
 ## Các lỗ hổng có thể khai thác
 
 - Buffer overflow
-- Nhập địa chỉ và gán giá trị vào địa chỉ đó
+- Ghi đè giá trị vào bất kì địa chỉ hợp lệ nào
 - free bất kì địa chỉ nào nhập vào
 
 ## Mitigation
