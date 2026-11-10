@@ -26,8 +26,17 @@ Sau đó cần lưu ý lệnh `*(long *)*ptr = *(ptr+1)`. Về bản chất thì
 Tức ta có thể lợi dùng câu lệnh này để ghi đè lên bất kì địa chỉ nào hợp lệ có trong chương trình.
 
 ## Lỗi double free
-Tiếp theo thì ở dưới có 2 lệnh free vào cùng vùng nhớ ptr. Vậy nên dù cuối chương trình có gọi `system('/bin/sh\0')` thì ta cũng không có cách nào truy cập được.
+Tiếp theo thì ở dưới có 2 lệnh free vào cùng vùng nhớ ptr gây ra lỗi double free và crash. Vậy nên dù cuối chương trình có gọi `system('/bin/sh\0')` thì ta cũng không có cách nào truy cập được.
 
-## Khai thác
+# Khai thác
+
+Ý tưởng khai thác ở đây là ghi đè vào `__free_hook` địa chỉ lệnh `system('/bin/sh')` để tạo shell ngay khi gọi free().
+
+<img width="662" height="182" alt="image" src="https://github.com/user-attachments/assets/3ec2bef9-8d55-4c24-9f8c-b9206f24f13d" />
+<img width="1077" height="207" alt="image" src="https://github.com/user-attachments/assets/95101396-eaeb-46c1-ae25-43a872ce923f" />
+
+Chương trình cho ta sẵn địa chỉ libc. Từ đó tính được libc base và địa chỉ `__free_hook`.
+
+Sau
 
 
