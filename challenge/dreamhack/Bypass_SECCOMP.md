@@ -18,4 +18,18 @@ Kiểm tra *seccomp*:
 # Khai thác
 <img width="1010" height="217" alt="image" src="https://github.com/user-attachments/assets/68abf30b-fd16-4970-82bc-720edf48c45d" />
 
-Đầu tiên về vấn đề mở file thì `open` có một biến thể khác là `openat`. Khác biệt lớn nhất 
+Đầu tiên về vấn đề mở file thì `open` có một biến thể khác là `openat`. Khác biệt lớn nhất là khi tìm đường dẫn đến file. `open` sẽ luôn lấy thư mục hiện tại làm điểm bắt đầu (đường dẫn tương đối), còn `openat` có thể lấy từ gốc `/` (đường dẫn tuyệt đối). 
+
+Vì mục tiêu của chúng ta chỉ là flag nằm trong thư mục hiện tại nên cần setup `openat` nhận đường dẫn tương đối qua tham số `AT_FDCWD`.
+
+Shellcode mở file:
+
+    mov rax, 113668128124718 // */flag\00*
+    push rax
+    mov rax, 257             //syscall openat
+    mov rdi, -100            //AT_FDCWD
+    mov rsi, rsp
+    xor rdx, rdx
+    xor r10, r10
+    syscall
+
