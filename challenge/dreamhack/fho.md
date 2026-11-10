@@ -63,7 +63,7 @@ Gọi system:
     
     p.interactive()
 
-## Cách 2 (gọi one_gadget)
+## Cách bổ sung (gọi one_gadget)
 
 <img width="866" height="392" alt="Screenshot 2026-11-10 172645" src="https://github.com/user-attachments/assets/0f7ea894-df05-4e6d-bf0a-903d21d3ddbe" />
 <img width="750" height="238" alt="image" src="https://github.com/user-attachments/assets/b6377153-1608-4a74-bcd9-c9a1c906103f" />
