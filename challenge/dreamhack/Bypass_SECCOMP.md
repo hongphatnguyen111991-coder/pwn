@@ -41,6 +41,8 @@ File đã dược mở bây giờ cần in ra màn hình. Nhưng vì thiếu `wr
 <br><br>
 Hàm `sendfile`: Sao chép dữ liệu giữa 2 file descriptor (fd).
 
+Có thể dùng `sendfile` để chuyển thẳng dữ liệu từ fd file flag qua stdout (in ra màn hình).
+
 Shellcode in dữ liệu:
 
     mov rsi, rax        //fd in
