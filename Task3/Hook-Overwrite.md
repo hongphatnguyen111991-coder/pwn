@@ -32,6 +32,10 @@ Tiếp theo thì ở dưới có 2 lệnh free vào cùng vùng nhớ ptr gây r
 
 Ý tưởng khai thác ở đây là ghi đè vào `__free_hook` địa chỉ lệnh `system('/bin/sh')` để tạo shell ngay khi gọi free().
 
+## Mitigation
+<img width="567" height="232" alt="image" src="https://github.com/user-attachments/assets/9df2e0f0-28d5-471b-93eb-679c3ac04e81" />
+
+## Leak libc
 <img width="662" height="182" alt="image" src="https://github.com/user-attachments/assets/3ec2bef9-8d55-4c24-9f8c-b9206f24f13d" />
 <img width="1077" height="207" alt="image" src="https://github.com/user-attachments/assets/95101396-eaeb-46c1-ae25-43a872ce923f" />
 
