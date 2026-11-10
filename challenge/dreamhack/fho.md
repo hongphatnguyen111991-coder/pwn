@@ -15,6 +15,7 @@
 
 <img width="725" height="233" alt="image" src="https://github.com/user-attachments/assets/ef350b98-277b-4265-a5ce-776bc0fa9e48" />
 
+# Khai thác
 Vì chương trình có Canary nên với 1 lần nhập vào Stack là không đủ để ghi đè return address.
 <br><br>
 
