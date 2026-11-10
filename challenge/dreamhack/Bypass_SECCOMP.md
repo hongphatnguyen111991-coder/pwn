@@ -21,7 +21,7 @@ Kiểm tra *seccomp*:
 <br><br>
 Đầu tiên về vấn đề mở file thì `open` có một biến thể khác là `openat`. Khác biệt lớn nhất là khi tìm đường dẫn đến file. `open` sẽ luôn lấy thư mục hiện tại làm điểm bắt đầu (đường dẫn tương đối), còn `openat` có thể lấy từ gốc `/` (đường dẫn tuyệt đối). 
 
-Vì mục tiêu của chúng ta chỉ flag nằm trong thư mục hiện tại nên cần setup `openat` nhận đường dẫn tương đối qua tham số `AT_FDCWD`.
+Vì mục tiêu của chúng ta là flag nằm trong thư mục hiện tại nên cần setup `openat` giả lập hành vi của `open` qua tham số `AT_FDCWD`.
 
 Shellcode mở file:
 
