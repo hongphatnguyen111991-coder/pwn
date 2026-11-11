@@ -9,4 +9,6 @@
 
 Chương trình cho phép nhập shellcode và thực thi. 
 
+Đồng thời cũng có *seccomp* chặn một số hàm quan trọng:
+
 <img width="845" height="425" alt="image" src="https://github.com/user-attachments/assets/3a44f0a5-c519-4d32-9369-6e10e3237cdf" />
