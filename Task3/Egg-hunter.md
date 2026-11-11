@@ -52,7 +52,7 @@ Bây giờ tạo 1 vòng lặp đi từ địa chỉ 0x60000000 về sau để t
     	init:
     		mov edi,0x60000000  
 
- //kiểm tra địa chỉ hợp lệ bằng write:
+ Kiểm tra địa chỉ hợp lệ bằng write:
  
     	run:                   
     		mov eax, 4
