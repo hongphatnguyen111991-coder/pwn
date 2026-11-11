@@ -14,7 +14,7 @@ Chương trình cho phép nhập shellcode và thực thi.
 <img width="845" height="425" alt="image" src="https://github.com/user-attachments/assets/3a44f0a5-c519-4d32-9369-6e10e3237cdf" />
 
 - Không thể gọi tạo shell do các hàm tạo tiến trình đều bị chặn.
-- Không thể đọc flag vì các hàm mwor file cũng bị chặn.
+- Không thể đọc flag vì các hàm mở file cũng bị chặn.
 
 Tuy nhiên trong chương trình chứa sẵn flag. 
 
