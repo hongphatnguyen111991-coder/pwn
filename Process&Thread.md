@@ -1,6 +1,6 @@
 # PROCESS
 ## Tiến trình là gì?
-Để hiểu tiến trình thì trước tiên ta cần biết về chương trình. Chương trình là khối mã máy và dữ liệu được lưu trữ sẵn trong bộ nhớ máy tính. Khái niệm này cũng thường được dùng để mô tả file thực thi. Một chương trình thì ở trạng thái tĩnh tức không có sự vận động nếu ta không bật nó lên.
+Để hiểu tiến trình thì trước tiên ta cần biết về chương trình. Chương trình là khối mã máy và dữ liệu được lưu trữ sẵn trong bộ nhớ máy tính. Khái niệm này cũng thường được dùng để mô tả file thực thi. Một chương trình thì ở trạng thái tĩnh tức chỉ nằm yên trong bộ nhớ máy tính
 
 <img width="1390" height="430" alt="image" src="https://github.com/user-attachments/assets/2aafd6c3-1081-43e2-bedc-08075e5b9020" />
 
