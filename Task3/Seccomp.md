@@ -116,7 +116,7 @@ Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh'
 
 # Dreamhack - open,read,write
 [*shell_basic*](https://dreamhack.io/wargame/challenges/410)
-# Phân tích code
+## Phân tích code
 
 <img width="1322" height="621" alt="image" src="https://github.com/user-attachments/assets/87207a1b-abc5-4b8a-a401-e10338e778ee" />
 
@@ -141,7 +141,7 @@ Vì tên file quá dài nên chia ra thành từng phần 8 BYTE đưa vào Stac
 
 Đẩy vào đầu thì sẽ nằm cuối nên ta push từ BYTE cuối trước. BYTE NULL là cần thiết để cho biết kết thúc đường dẫn.
 
-### Script python
+## Script python
 
     #!/usr/bin/env python3
     from pwn import *
