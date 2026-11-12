@@ -21,7 +21,7 @@ Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện t
 
 <br><br>
 
-# Dreamhack - Vô hiệu hóa prctl
+# 1. Dreamhack - Vô hiệu hóa prctl
 [*seccomp*](https://dreamhack.io/wargame/challenges/59)
 
 ## Phân tích code 
@@ -114,7 +114,7 @@ Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh'
 
 <br><br>
 
-# Dreamhack - open,read,write
+# 2. Dreamhack - open,read,write
 [*shell_basic*](https://dreamhack.io/wargame/challenges/410)
 ## Phân tích code
 
@@ -192,7 +192,7 @@ Vì tên file quá dài nên chia ra thành từng phần 8 BYTE đưa vào Stac
 
 <br><br>
 
-# Dreamhack - openat và sendfile
+# 3. Dreamhack - openat và sendfile
 [*Bypass SECCOMP-1*](https://dreamhack.io/wargame/challenges/361)
 
 ## Phân tích code
