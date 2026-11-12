@@ -19,7 +19,7 @@ Tại đây ta thấy các hàm trong syscall được phép gọi sẽ hiện t
 
 - Khai thác trước khi chương trình chạy *seccomp*
 
-# Challenge Dreamhack
+# Vô hiệu hóa prctl
 [*seccomp*](https://dreamhack.io/wargame/challenges/59)
 
 # Phân tích code 
