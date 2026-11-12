@@ -22,7 +22,7 @@ Chương trình có lỗi *buffer overflow* cho phép nhập 1208 (0x500) BYTES.
 <img width="869" height="78" alt="image" src="https://github.com/user-attachments/assets/e2a189f8-0698-4987-ad07-f82369c3a809" />
 
 Trong các gadget chỉ có `pop rax` và `syscall` chứ không có các gadget điều khiển thanh ghi chứa tham số (rdi,rsi,rdx...).
-
+<br>
 
 Để gọi được `execve` với tham số là `/bin/sh` thì cần cách khác để điều khiển các thanh ghi.
 
