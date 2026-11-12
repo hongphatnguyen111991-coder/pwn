@@ -31,7 +31,8 @@ Trong các gadget chỉ có `pop rax` và `syscall` chứ không có các gadget
 `rt_sigreturn` là lệnh syscall sẽ lấy dữ liệu trên Stack để ghi đè vào các thanh ghi. 
 <br><br>
 
-Cần 1 nơi để chứa `/bin/sh` nên cần gọi read trước rồi thiết lập execve. Điều khiển cấu trúc thanh ghi để gọi lệnh read:
+Ta sẽ dùng `rt_sigreturn` để ghi đề dữ liệu cần cho syscall vào các thanh ghi.
+Đầu tiên cần 1 nơi để chứa `/bin/sh` nên cần gọi read trước rồi thiết lập execve. Điều khiển cấu trúc thanh ghi để gọi lệnh read:
 
     rw_section=0x404320 
     pop_rax_syscall=0x0000000000401156
