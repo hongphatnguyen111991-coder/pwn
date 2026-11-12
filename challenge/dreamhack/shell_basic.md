@@ -4,7 +4,7 @@
 
 <img width="1322" height="621" alt="image" src="https://github.com/user-attachments/assets/87207a1b-abc5-4b8a-a401-e10338e778ee" />
 
-Điểm đầu tiên chú ý đến trong chương trình là hàm `banned_execve` sẽ cấm các hàm tạo shell như `system("/bin/sh")` có nghĩa bài này
+Điểm đầu tiên chú ý đến trong chương trình là hàm `banned_execve` sẽ cấm các hàm tạo shell có nghĩa bài này
 ta phải lấy được flag qua các cách khác. 
 
 Tiếp theo là trong hàm main có khởi tạo 1 vùng nhớ có quyền `rwx` cho phép toàn quyền đọc, ghi, thực thi câu lệnh. Ngay bên dưới
