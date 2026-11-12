@@ -112,6 +112,8 @@ Khi đã vô hiệu hóa *seccomp* thì nhập shellcode gọi `execve('/bin/sh'
     
     p.interactive()
 
+<br><br>
+
 # Dreamhack - openat và sendfile
 [*Bypass SECCOMP-1*](https://dreamhack.io/wargame/challenges/361)
 
