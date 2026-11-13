@@ -27,3 +27,5 @@ VD: gọi open qua syscall đặt trong địa chỉ ở r10
   	xor rsi, rsi
   	xor rdx, rdx
   	call r10                            //gọi syscall
+
+Tuy nhiên code này chỉ hoạt động
