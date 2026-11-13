@@ -26,5 +26,4 @@ VD: gọi open qua syscall đặt trong địa chỉ ở r10
   	mov rdi, rsp
   	xor rsi, rsi
   	xor rdx, rdx
-    mov WORD PTR [r10+2], 0xd5ff
-  	call r10                            //gọi syscall qua call
+  	call r10                            //gọi syscall
