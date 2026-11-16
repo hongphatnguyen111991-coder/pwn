@@ -4,9 +4,9 @@
 
 Chương trình cho 3 lựa chọn để tiếp tục là `input_player()` `view()` và `make_noise()`.
 
-<img width="562" height="170" alt="image" src="https://github.com/user-attachments/assets/95f989dc-5400-4a9b-bf53-220e6344a7dd" />
+<img width="642" height="257" alt="image" src="https://github.com/user-attachments/assets/f616c7ae-7209-41f5-95af-0d688860b83d" />
 
-Đầu tiên là hàm `input_player()` cho phép nhập index để gọi read vào mảng users. Có lỗ hổng *Out of bounds* do không có bước kiểm tra index nhập vào. Bên cạnh đó thì `scanf` trong đây cũng có lỗi *buffer overflow* cho phép ghi đè đến khi gặp `\n`.
+Đầu tiên là hàm `input_player()` cho phép nhập index để gọi read vào mảng users. Có lỗ hổng *Out of bounds* do không có bước kiểm tra index nhập vào.
 
 <img width="741" height="287" alt="image" src="https://github.com/user-attachments/assets/cb381a8c-9e49-4e5d-945c-db2801b2ad63" />
 
