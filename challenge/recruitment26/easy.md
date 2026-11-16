@@ -41,8 +41,8 @@ Hiện tại đã có libc.address rồi thì có thể ghi đè system vào 1 h
 
 Hướng khai thác còn lại là dùng one_gadget để tạo shell. Cần tìm 1 hàm mà tại đó các điều kiện trên được thỏa và ghi đè one_gadget vào hàm đó trong bảng GOT. 
 
-<img width="958" height="700" alt="image" src="https://github.com/user-attachments/assets/e5146ecd-a01b-4b52-a840-77cb84bda44d" />
-<img width="945" height="261" alt="image" src="https://github.com/user-attachments/assets/46ffb26f-1ce2-467a-869f-10c3ee35a473" />
+<img width="762" height="348" alt="image" src="https://github.com/user-attachments/assets/c05eabd3-0306-4a5d-bd14-b3b4575e3e82" />
+<img width="768" height="222" alt="image" src="https://github.com/user-attachments/assets/f466bea7-9a16-46ee-844c-eaff9b02ebb1" />
 
 Chỉ có duy nhất tại hàm `perror` trong `make_noise` là có điều kiện thỏa one_gadget đầu tiên. 
 
