@@ -22,7 +22,7 @@ Vì RELRO không ở trạng thái FULL RELRO nên ta vẫn có thể ghi đè v
 
 <img width="890" height="334" alt="image" src="https://github.com/user-attachments/assets/fcf6b3e0-16dc-489a-a41b-1f1fde1fe37d" />
 
-Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vùng với các bảng GOT của chương trình. Đầu tiên có thể leak libc để có được các hàm libc.
+Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vùng với bảng GOT của chương trình. Đầu tiên có thể leak libc để có được các hàm libc.
 Sử dụng hàm `view()` trong chương trình để in ra màn hình dữ liệu nằm trên mảng users. Vì mảng users có kích thước mỗi phần tử là 80 nên leak `__libc_start_main` 
 là khả thi nhất vì từ user đến đó cách 240 BYTES về trước tương ứng với -3*80.
 
