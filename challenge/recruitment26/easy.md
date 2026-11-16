@@ -37,9 +37,11 @@ Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vù
 
 Hiện tại đã có libc.address rồi thì có thể ghi đè system vào 1 hàm bất kì bảng GOT. Tuy nhiên, không có hàm nào trong chương trình được sử dụng có sẵn tham số đầu là /bin/sh và cũng không có khả năng ghi đè lên các tham số đó. 
 
+Hướng khai thác còn lại là dùng one_gadget để tạo shell. Cần tìm 1 hàm mà tại đó các điều kiện trên được thỏa và ghi đè one_gadget vào hàm đó trong bảng GOT. 
+
 <img width="1401" height="965" alt="image" src="https://github.com/user-attachments/assets/1f884f5d-4cf5-4b9f-98d6-d1c499a21f43" />
 
-Hướng khai thác còn lại là dùng one_gadget để tạo shell. Cần tìm 1 hàm mà tại đó các điều kiện trên được thỏa và ghi đè one_gadget vào hàm đó trong bảng GOT. 
+Kiểm tra điều kiện:
 
 <img width="762" height="348" alt="image" src="https://github.com/user-attachments/assets/c05eabd3-0306-4a5d-bd14-b3b4575e3e82" />
 <img width="768" height="222" alt="image" src="https://github.com/user-attachments/assets/f466bea7-9a16-46ee-844c-eaff9b02ebb1" />
