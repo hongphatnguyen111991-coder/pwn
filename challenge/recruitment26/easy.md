@@ -22,9 +22,9 @@ Vì RELRO không ở trạng thái FULL RELRO nên ta vẫn có thể ghi đè v
 
 <img width="890" height="334" alt="image" src="https://github.com/user-attachments/assets/fcf6b3e0-16dc-489a-a41b-1f1fde1fe37d" />
 
-Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vùng với bảng GOT của chương trình. Đầu tiên có thể leak libc để có được các hàm libc.
-Sử dụng hàm `view()` trong chương trình để in ra màn hình dữ liệu nằm trên mảng users. Vì mảng users có kích thước mỗi phần tử là 80 nên leak `__libc_start_main` 
-là khả thi nhất vì từ user đến đó cách 240 BYTES về trước tương ứng với -3*80.
+Mảng users nằm ở phân vùng .BSS có quyền `rw-`, nằm chung phân vùng với bảng GOT của chương trình. Có thể ghi đè lên bảng GOT qua hàm `input_player()` khi nhập index âm.
+
+Đầu tiên leak libc để có được libc.address tính địa chỉ các hàm libc và gadget. Sử dụng hàm `view()` trong chương trình để in ra màn hình dữ liệu nằm trên mảng users. Vì mảng users có kích thước mỗi phần tử là 80 nên leak `__libc_start_main` là khả thi nhất vì từ users đến đó cách 240 BYTES về trước tương ứng với -3*80.
 
     p.sendafter(b'First, create a user.',b'zyan')
     p.sendlineafter(b'Input your choice:',b'2')
@@ -33,4 +33,16 @@ là khả thi nhất vì từ user đến đó cách 240 BYTES về trước tư
     libc_leak=u64(p.recv(6)+b'\x00\x00')
     libc.address=libc_leak-0x29dc0
     print(hex(libc_leak))
+
+Hiện tại đã có libc.address rồi thì có thể ghi đè system vào 1 hàm bất kì bảng GOT. Tuy nhiên, không có hàm nào trong chương trình được sử dụng có sẵn tham số đầu là /bin/sh và cũng không có khả năng ghi đè lên các tham số đó. 
+
+<img width="1401" height="965" alt="image" src="https://github.com/user-attachments/assets/1f884f5d-4cf5-4b9f-98d6-d1c499a21f43" />
+
+Hướng khai thác còn lại là dùng one_gadget để tạo shell. Cần tìm 1 hàm mà tại đó các điều kiện trên được thỏa và ghi đè one_gadget vào hàm đó trong bảng GOT. 
+
+<img width="958" height="700" alt="image" src="https://github.com/user-attachments/assets/e5146ecd-a01b-4b52-a840-77cb84bda44d" />
+<img width="945" height="261" alt="image" src="https://github.com/user-attachments/assets/46ffb26f-1ce2-467a-869f-10c3ee35a473" />
+
+Chỉ có duy nhất tại hàm perror trong `make_noise` là có 
+
 
