@@ -49,7 +49,7 @@ Tuy nhiên nếu phân tích kĩ code thì ta sẽ thấy có 1 hàm gián tiế
 <img width="567" height="187" alt="image" src="https://github.com/user-attachments/assets/3cfb85ad-bc22-42ec-b35d-53ac2a2706cc" />
 <img width="790" height="210" alt="image" src="https://github.com/user-attachments/assets/04b90a50-6c50-4ae2-b42e-27b63c81d70f" />
 
-Ở dưới Description còn có 1 ô nhớ 8 BYTES. Đây chính là `state.balance`. Mỗi khi ta đưa feed back lên thì chương trình sẽ cộng thêm 1 vào `state.balence`. Và nếu như ta cộng đủ nhiều thì ô nhớ đó sẽ không còn NULL BYTE nào làm cho việc nỗi chuỗi là khả thi.
+Ở dưới Description còn có 1 ô nhớ 8 BYTES. Đây chính là `state.balance`. Mỗi khi ta đưa feed back lên thì chương trình sẽ cộng thêm 1 vào `state.balence`. Và nếu như ta cộng đến khi đạt giá trị không có NULL BYTE thì sẽ nối chuỗi thành công
 
 chuỗi không có `NULL BYTE` nhỏ nhất là `0x0101010101010101` nếu ta đưa từng `feedback` lên để đạt giá trị đó thì sẽ cần đến 72.340.172.838.076.673 lần gọi hàm để đạt giá trị như mong muốn.
 
