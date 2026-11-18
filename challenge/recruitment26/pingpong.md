@@ -20,6 +20,12 @@ Tuy nhiên, nếu chỉ đưa `/bin/sh` vào thì echo chỉ in ra nội dung y 
 
 Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo shell với kích thước dưới 7 BYTES. Nhưng với điều kiện là trong `envp` của chuỗi có đường dẫn `/bin` hay `/usr/bin`.
 
+## Mitigation
+
+<img width="672" height="282" alt="image" src="https://github.com/user-attachments/assets/218aef47-148f-4e99-8057-d126507d76c7" />
+
+PIE bật tức các địa chỉ binary là ngẫu nhiên.
+
 ## Bypass rand()
 Đầu tiên để tái tạo lại kết quả của `rand()` thì cần tạo biết seed ban đầu là gì. Chương trình dùng `time(0)` tức lấy thời gian hiện tại làm seed. Nếu như script dùng `time(0)` cùng lúc với chương trình thì sẽ tái tạo được seed. 
 
@@ -36,4 +42,16 @@ Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo s
     			    p.sendlineafter(b'right',b'l')
     		    else:
     			    p.sendlineafter(b'right',b'r')
+
+## Bypass PIE
+
+<img width="752" height="402" alt="image" src="https://github.com/user-attachments/assets/edff26b7-f8b6-49ec-8f91-07691712895d" />
+
+Ta có thể ghi đè đến saved rip. Tuy nhiên vì PIE nên không thể ghi đè `printff` vào trực tiếp. Tức hiện tại ta sẽ phải brute force 2 BYTES cuối để có khả năng chạy được đến `printff`.
+
+Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuối cố định là `a9`
+
+<img width="570" height="22" alt="image" src="https://github.com/user-attachments/assets/9b333506-a6ce-409b-b78c-424d69843182" />
+<img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/f0683a4d-e99a-479e-b9c0-433c373016c4" />
+
 
