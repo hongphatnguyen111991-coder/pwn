@@ -22,8 +22,8 @@ Tạo script login sẵn:
     p.sendlineafter(b'Username:',b'zyan')
     p.sendlineafter(b'Password:',b'1')
 ## Lỗ hổng và mục tiêu khai thác
-<img width="970" height="660" alt="image" src="https://github.com/user-attachments/assets/e03f83c1-65f7-4ca5-94e3-7afa6bd32db7" />
 <img width="482" height="272" alt="image" src="https://github.com/user-attachments/assets/cd0e6839-444e-455b-9831-7e87fc7e749c" />
+<img width="970" height="660" alt="image" src="https://github.com/user-attachments/assets/e03f83c1-65f7-4ca5-94e3-7afa6bd32db7" />
 
 Tại hàm `changeDescription` có 1 lỗ hổng *buffer overflow*. Do Description vốn chỉ có kích thước 0x10 BYTES, mà chương trình lại cho phép nhập tới 0x20 BYTES.
 Bên cạnh đó, ta còn thấy chương trình mở sẵn flag ở hàm `win`. 
