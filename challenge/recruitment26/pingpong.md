@@ -51,7 +51,7 @@ Ta có thể ghi đè đến saved rip. Tuy nhiên vì PIE nên không thể ghi
 
 Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuối cố định là `a9`
 
-<img width="570" height="22" alt="image" src="https://github.com/user-attachments/assets/9b333506-a6ce-409b-b78c-424d69843182" />
+<img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/9b333506-a6ce-409b-b78c-424d69843182" />
 <img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/f0683a4d-e99a-479e-b9c0-433c373016c4" />
 
 
