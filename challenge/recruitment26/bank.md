@@ -42,7 +42,7 @@ Vì PIE bật nên muốn ghi đè hàm `win` lên `viewBalance` thì đầu ti�
 <img width="610" height="134" alt="image" src="https://github.com/user-attachments/assets/def2f8c6-0b9b-4866-84eb-83c89f4327a0" />
 <img width="446" height="95" alt="image" src="https://github.com/user-attachments/assets/2bd9d312-1f07-4d1b-a19b-d762c21e5441" />
 
-Ý tưởng ban đầu là tận dụng luôn `changeDescription` để nối chuỗi leak hàm `viewBalance`. Tuy nhiên ở hàm `changeDescription` có một lệnh ghi đè NULL BYTE vào cuối chuỗi khiên cho việc leak theo cách này bất khả thi.
+Ý tưởng ban đầu là tận dụng luôn `changeDescription` để nối chuỗi đến `viewBalance`, sau đó gọi `viewDesciption` để in địa chỉ binary ra. Tuy nhiên ở hàm `changeDescription` có một lệnh ghi đè NULL BYTE vào cuối chuỗi khiên cho việc leak theo cách này bất khả thi.
 
 Tuy nhiên nếu phân tích kĩ code thì ta sẽ thấy có 1 hàm gián tiếp giúp ta nối chuỗi thành công.
 
