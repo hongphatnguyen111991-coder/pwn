@@ -51,7 +51,7 @@ Tuy nhiên nếu phân tích kĩ code thì ta sẽ thấy có 1 hàm gián tiế
 
 Ở dưới Description còn có 1 ô nhớ 8 BYTES. Đây chính là `state.balance`. Mỗi khi ta đưa feed back lên thì chương trình sẽ cộng thêm 1 vào `state.balence`. Và nếu như ta cộng đến khi đạt giá trị không có NULL BYTE thì sẽ nối chuỗi thành công
 
-chuỗi không có `NULL BYTE` nhỏ nhất là `0x0101010101010101` nếu ta đưa từng `feedback` lên để đạt giá trị đó thì sẽ cần đến 72.340.172.838.076.673 lần gọi hàm để đạt giá trị như mong muốn.
+chuỗi không có `NULL BYTE` nhỏ nhất là `0x0101010101010101` nếu ta đưa từng `feedback` lên để đạt giá trị đó thì sẽ cần đến 72.340.172.838.076.673 lần gọi `feedback` để đạt giá trị như mong muốn.
 
 Thay vào đó có thể ghi đè sẵn `0xffffffffffffff` bằng `changeDescription` (chứa BYTE cuối lại vì ta không muốn NULL BYTE đè lên hàm `viewBalance`). Sau đó dùng `feedback` để cộng thêm giá trị 1 vào. Từ đó, giá trị được nâng lên `0x0100000000000000`. Lặp lại việc ghi đè đến khi đạt đủ `0x0101010101010101`.
 
