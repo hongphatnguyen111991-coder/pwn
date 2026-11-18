@@ -42,7 +42,7 @@ Vì PIE bật nên muốn ghi đè hàm `win` lên `viewBalance` thì đầu ti�
 <img width="610" height="134" alt="image" src="https://github.com/user-attachments/assets/def2f8c6-0b9b-4866-84eb-83c89f4327a0" />
 <img width="446" height="95" alt="image" src="https://github.com/user-attachments/assets/2bd9d312-1f07-4d1b-a19b-d762c21e5441" />
 
-Ý tưởng ban đầu là tận dụng luôn `changeDescription` để nối chuỗi đến `viewBalance`, sau đó gọi `viewDesciption` để in địa chỉ binary ra. Tuy nhiên ở hàm `changeDescription` có một lệnh ghi đè NULL BYTE vào cuối chuỗi khiên cho việc leak theo cách này bất khả thi.
+Ý tưởng ban đầu là tận dụng luôn `changeDescription` để nối chuỗi đến `viewBalance`, sau đó gọi `viewDesciption` để in địa chỉ binary ra. Tuy nhiên ở hàm `changeDescription` có một lệnh ghi đè NULL BYTE vào cuối chuỗi khiến cho việc leak theo cách này bất khả thi.
 
 Tuy nhiên nếu phân tích kĩ code thì ta sẽ thấy có 1 hàm gián tiếp giúp ta nối chuỗi thành công.
 
@@ -51,7 +51,7 @@ Tuy nhiên nếu phân tích kĩ code thì ta sẽ thấy có 1 hàm gián tiế
 
 Ở dưới Description còn có 1 ô nhớ 8 BYTES. Đây chính là `state.balance`. Mỗi khi ta đưa feed back lên thì chương trình sẽ cộng thêm 1 vào `state.balence`. Và nếu như ta cộng đủ nhiều thì ô nhớ đó sẽ không còn NULL BYTE nào làm cho việc nỗi chuỗi là khả thi.
 
-chuỗi không có `NULL BYTE` nhỏ nhất là `0x0101010101010101` nếu là ta đưa từng `feedback` lên để đạt giá trị đó thì sẽ cần đến 72.340.172.838.076.673 lần gọi hàm để đạt giá trị như mong muốn.
+chuỗi không có `NULL BYTE` nhỏ nhất là `0x0101010101010101` nếu ta đưa từng `feedback` lên để đạt giá trị đó thì sẽ cần đến 72.340.172.838.076.673 lần gọi hàm để đạt giá trị như mong muốn.
 
 Thay vào đó có thể ghi đè sẵn `0xffffffffffffff` vào sẵn (chứa BYTE cuối lại vì ta không muốn NULL BYTE đè lên hàm `viewBalance`). Sau đó dùng `feedback` để cộng thêm giá trị 1 vào. Từ đó, giá trị được nâng lên `0x0100000000000000`. Lặp lại việc ghi đè đến khi đạt đủ `0x0101010101010101`.
 
