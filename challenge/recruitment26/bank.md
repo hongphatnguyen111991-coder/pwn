@@ -4,14 +4,6 @@
 Sau khi đã đăng kí tài khoản thì chương trình cho 4 lựa chọn để tiếp tục. 
 
 Tạo script login sẵn:
-
-    #!/usr/bin/env python3
-    from pwn import *
-    exe = ELF("./bank_patched")
-    libc = ELF("./libc.so.6")
-    ld = ELF("./ld-2.35.so")
-    context.binary = exe
-    p=process('./bank_patched')
     
     p.sendlineafter(b'Choice:',b'1')      //tạo tài khoản
     p.sendlineafter(b'Username:',b'zyan')
@@ -21,6 +13,7 @@ Tạo script login sẵn:
     p.sendlineafter(b'Choice:',b'2')      //login
     p.sendlineafter(b'Username:',b'zyan')
     p.sendlineafter(b'Password:',b'1')
+    
 ## Lỗ hổng và mục tiêu khai thác
 <img width="482" height="272" alt="image" src="https://github.com/user-attachments/assets/cd0e6839-444e-455b-9831-7e87fc7e749c" />
 <img width="970" height="660" alt="image" src="https://github.com/user-attachments/assets/e03f83c1-65f7-4ca5-94e3-7afa6bd32db7" />
