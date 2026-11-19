@@ -73,7 +73,7 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 	        	except:
 		           try:
 				   p.close()
-			except:
+				except:
 					  pass
 
 # Script python
