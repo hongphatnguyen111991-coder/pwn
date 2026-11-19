@@ -29,7 +29,7 @@ PIE bật tức các địa chỉ binary là ngẫu nhiên.
 ## Bypass rand()
 Đầu tiên để tái tạo lại kết quả của `rand()` thì cần tạo biết seed ban đầu là gì. Chương trình dùng `time(0)` tức lấy thời gian hiện tại làm seed. Nếu như script dùng `time(0)` cùng lúc với chương trình thì sẽ tái tạo được seed. 
 
-        for i in range (-5,5):           //brute force thì có thể lệch thời gian với server
+        for i in range (-5,5):           //brute force vì có thể lệch thời gian với server
     	    p=process(exe.path)
     
     	    p.recvuntil('my game?')
