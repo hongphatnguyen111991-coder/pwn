@@ -18,7 +18,7 @@ Lỗ hổng *buffer overflow* cho phép ghi đè 64 BYTES vào buffer 32 BYTES. 
 Chương trình sẽ đưa chuỗi `echo \"%s\" > /tmp/pingpong_scoreboard` vào biến cmd. Và trong chương trình cũng có hàm `printff` để gọi system thực thi chuỗi trong cmd.
 Tuy nhiên, nếu chỉ đưa `/bin/sh` vào thì echo chỉ in ra nội dung y chang. 
 
-Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo shell với kích thước dưới 7 BYTES. Nhưng với điều kiện là trong `envp` của chuỗi có đường dẫn `/bin` hay `/usr/bin`.
+Thay vào đó dùng chuỗi `";sh;"`. Chuỗi này sẽ ngắt echo và tạo shell với kích thước dưới 7 BYTES. Nhưng với điều kiện là trong `envp` của chương trình có đường dẫn `/bin` hay `/usr/bin`.
 
 ## Mitigation
 
