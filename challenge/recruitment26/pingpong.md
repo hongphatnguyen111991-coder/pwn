@@ -53,7 +53,7 @@ Ta có thể ghi đè đến saved rip. Tuy nhiên vì PIE nên không thể ghi
 <img width="726" height="27" alt="image" src="https://github.com/user-attachments/assets/f0683a4d-e99a-479e-b9c0-433c373016c4" />
 
 Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuối cố định là `a9`. Có nghĩa chỉ cần chạy brute force đúng 1 BYTE rất nhanh. Bên cạnh đó, vì BYTE 
-`a9` là cố định nên các địa chỉ sau cũng tương tự có BYTE cuối cố định. Lấy địa chỉ sau đó 5 BYTES để tránh stack không chia hết cho 16.
+`a9` là cố định nên các địa chỉ sau cũng tương tự có BYTE cuối cố định. Lấy địa chỉ sau đó 5 BYTES để tránh `push rbp`, căn địa chỉ Stack chia hết cho 16
 
 
         while(1):
