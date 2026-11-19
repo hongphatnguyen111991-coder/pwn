@@ -72,9 +72,9 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 					break
 	        	except:
 		        	try:
-						p.close()
+					  p.close()
 					except:
-						pass
+					  pass
 
 # Script python
 
