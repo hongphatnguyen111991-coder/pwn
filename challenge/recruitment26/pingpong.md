@@ -71,7 +71,7 @@ Nhưng sau 1 lúc chạy thì thấy địa chỉ `printff` luôn có BYTE cuố
 		        	p.recvuntil(b'ABCD')
 					break
 	        	except:
-		           try:
+		        try:
 				   p.close()
 				except:
 					  pass
