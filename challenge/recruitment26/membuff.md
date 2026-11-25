@@ -99,7 +99,7 @@ Sau đó đưa format vào rồi gọi `printf` để ghi đè `system`. Đồng
     p.sendlineafter(b'>',b'3')
     p.sendlineafter(b'>',b'3')    //format string
     
-    p.sendline(b'2')              //strcpy
+    p.sendline(b'2')              //gọi strcpy
     
 # Script python
 
