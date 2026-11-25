@@ -78,6 +78,8 @@ Chuẩn bị dữ liệu nhập vào:
     order=sorted(data)
     //sắp xếp kích thước bé đến lớn
 
+<br>
+
 Sau đó đưa format vào rồi gọi `printf` để ghi đè `system`. Đồng thời để chuỗi `/bin/sh` ở đầu buffer làm tham số thứ nhất cho `system`.
 
     payload=b'/bin/sh;'
