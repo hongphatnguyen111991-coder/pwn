@@ -61,7 +61,7 @@ Nhập vào buffer vừa đúng 50 BYTES rồi đưa thêm format `%45$p` để 
 ## GOT Overwrite
 <img width="1111" height="280" alt="Screenshot 2026-11-25 160647" src="https://github.com/user-attachments/assets/d8eb108a-df55-49cb-afe6-295b2f78dfdf" />
 
-Hàm `strcpy` và `system` chỉ cách biệt nhau 3 BYTES. Chỉ cần ghi đè từng BYTE vào qua `%hhn`.
+Hàm `strcpy` và `system` chỉ khác nhau 3 BYTES. Chỉ cần ghi đè từng BYTE vào qua `%hhn`.
 
 Chuẩn bị dữ liệu nhập vào:
 
