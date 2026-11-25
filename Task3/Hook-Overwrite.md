@@ -6,7 +6,7 @@ Khi sử dụng Heap thì ta có các hàm `malloch`, `free`, `realloc`. Tương
 <img width="1118" height="718" alt="image" src="https://github.com/user-attachments/assets/24cbfc61-0881-47e1-a55d-23d6623aea09" />
 
 <br><br>
-Hook là các biến được lưu trữ trong phân vùng Libc. Mỗi khi có các hàm tương tác Heap được gọi thì chương trình sẽ kiểm tra xem biến Hook của hàm đó có phải NULL không. Nếu có thì chương trình sẽ call luôn địa chỉ nằm trong biến hook đó.
+Hook là các biến được lưu trữ trong phân vùng Libc. Mỗi khi có các hàm tương tác Heap được gọi thì chương trình sẽ kiểm tra xem biến Hook của hàm đó có phải NULL không. Nếu không thì chương trình sẽ call luôn địa chỉ nằm trong biến hook đó.
 
 # Challenge Dreamhack
 [*hook*](https://dreamhack.io/wargame/challenges/52/)
