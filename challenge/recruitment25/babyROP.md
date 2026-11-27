@@ -46,20 +46,14 @@ Payload:
     p.recvuntil(b'Thank for playing :)\n')
     libc_leak=u64(p.recvline()[:-1]+b'\x00\x00')
     libc.address=libc_leak-0x80e10
-    
 
-## Stack pivot
-<img width="634" height="533" alt="image" src="https://github.com/user-attachments/assets/4ac084e2-0697-4d54-913a-7628d0d398db" />
-
-Lúc này rbp đã đang ở vùng nhớ `rw-`. Dùng `fgets` ghi đè payload vào sao cho khi *Stack pivot* thì rsp nhảy đến ngay lệnh khai thác.
-
-Vì đã có libc base, chỉ cần tìm hàm tạo shell.
+Hiện tại đã có libc base, chỉ cần tìm hàm tạo shell.
 
 ## One_gadget
 <img width="420" height="484" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
 <img width="475" height="514" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
 
-Có gadget thỏa các điều kiện để tạo shell.
+Có gadget thỏa các điều kiện để tạo shell. Chỉ cần nhập payload khai thác vào lần nhập 2 để *Stack pivot* nhảy đến địa chỉ *One gadget*.
 
 
 Payload:
