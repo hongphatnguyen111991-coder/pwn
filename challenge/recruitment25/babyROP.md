@@ -19,6 +19,8 @@ Các gadget trên không đủ để ta xây dựng ROPchain syscall execve. Ch�
 Quay lại mã được dịch ngược ở dạng Assembly thì thấy `mov rdi, rax`. Và dùng `puts` in dữ liệu trong rdi ra màn hình.
 Mà nhờ có gadget kiểm soát rax và No PIE mà ta có thể in địa chỉ libc trong binary.
 
+Payload:
+
 <img width="1595" height="916" alt="image" src="https://github.com/user-attachments/assets/09c98122-d2a8-4ea8-8238-ddc6e8bd1d19" />
 
 - NULL BYTES : bypass kiểm duyệt độ dài chuỗi
