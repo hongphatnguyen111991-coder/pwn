@@ -17,7 +17,7 @@ Các gadget trên không đủ để ta xây dựng ROPchain syscall execve. Ch�
 <img width="656" height="422" alt="image" src="https://github.com/user-attachments/assets/07861a98-2bde-4c5d-86aa-2b2c2d5bbd32" />
 
 Quay lại mã được dịch ngược ở dạng Assembly thì thấy `mov rdi, rax` đưa dữ liệu rax vào rdi . Lệnh `puts` in dữ liệu trong rdi ra màn hình.
-Mà nhờ có gadget `pop rax` và No PIE mà ta có thể in địa chỉ libc trong binary.
+Mà nhờ có gadget `pop rax` và No PIE mà ta có thể in địa chỉ libc bất kì trong binary.
 
 Nhập vào Stack:
 
