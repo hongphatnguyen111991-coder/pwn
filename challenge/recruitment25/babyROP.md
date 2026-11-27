@@ -21,7 +21,7 @@ Mà nhờ có gadget `pop rax` và No PIE mà ta có thể in địa chỉ libc 
 
 Nhập vào Stack:
 
-<img width="1595" height="916" alt="image" src="https://github.com/user-attachments/assets/09c98122-d2a8-4ea8-8238-ddc6e8bd1d19" />
+<img width="1063" height="610" alt="image" src="https://github.com/user-attachments/assets/09c98122-d2a8-4ea8-8238-ddc6e8bd1d19" />
 
 - NULL BYTES : bypass kiểm duyệt độ dài chuỗi
 - saved rbp -> rw_section : Vì tí nữa sẽ dính *Stack pivot* nên cần đưa vào địa chỉ hợp lệ.
