@@ -54,8 +54,8 @@ Payload:
 Lúc này rbp đã đang ở vùng nhớ `rw-`. Dùng `fgets` ghi đè payload vào sao cho khi *Stack pivot* thì rsp nhảy đến ngay lệnh khai thác.
 
 ## One_gadget
-<img width="840" height="967" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
-<img width="950" height="1027" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
+<img width="420" height="484" alt="image" src="https://github.com/user-attachments/assets/bee500bf-8e2a-4f11-9bc1-b3f28a35cfe6" />
+<img width="475" height="514" alt="image" src="https://github.com/user-attachments/assets/888049cc-7afb-45e1-806f-0a3bf7675828" />
 
 Payload:
 
