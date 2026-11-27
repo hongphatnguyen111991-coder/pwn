@@ -56,7 +56,7 @@ Hiện tại đã có libc, chỉ cần tìm hàm tạo shell.
 Có gadget thỏa các điều kiện để tạo shell.
 
 ## Stack pivot
-<img width="951" height="800" alt="image" src="https://github.com/user-attachments/assets/4ac084e2-0697-4d54-913a-7628d0d398db" />
+<img width="634" height="533" alt="image" src="https://github.com/user-attachments/assets/4ac084e2-0697-4d54-913a-7628d0d398db" />
 
 Lúc này rbp đã đang ở vùng nhớ `rw-`. Dùng `fgets` ghi đè payload vào sao cho khi *Stack pivot* thì rsp nhảy đến ngay lệnh khai thác.
 
