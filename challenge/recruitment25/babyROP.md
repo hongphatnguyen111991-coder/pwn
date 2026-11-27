@@ -24,7 +24,8 @@ Payload:
 <img width="1595" height="916" alt="image" src="https://github.com/user-attachments/assets/09c98122-d2a8-4ea8-8238-ddc6e8bd1d19" />
 
 - NULL BYTES : bypass kiểm duyệt độ dài chuỗi
-- saved rbp -> rw_section : Khi quay lại main lần 2 thì tí nữa sẽ dính *Stack pivot* nên cần đưa vào địa chỉ hợp lệ.
+- saved rbp -> rw_section : Vì tí nữa sẽ dính *Stack pivot* nên cần đưa vào địa chỉ hợp lệ.
 - saved rip -> pop_rax : Lấy địa chỉ GOT chứa hàm libc đẩy vào rax
 - exe.got['puts']
 - exe.sym['main']+29 : Quay về main để gọi `puts` leak libc
+
