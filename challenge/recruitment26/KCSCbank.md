@@ -19,12 +19,12 @@ Tạo script login sẵn:
 <img width="970" height="660" alt="image" src="https://github.com/user-attachments/assets/e03f83c1-65f7-4ca5-94e3-7afa6bd32db7" />
 
 Tại hàm `changeDescription` có 1 lỗ hổng *buffer overflow*. Do Description vốn chỉ có kích thước 0x10 BYTES, mà chương trình lại cho phép nhập tới 0x20 BYTES.
-Bên cạnh đó, ta còn thấy chương trình mở sẵn flag ở hàm `win`. 
 
 <img width="797" height="173" alt="image" src="https://github.com/user-attachments/assets/187a5558-d307-44ea-bf44-14a93f84a569" />
 
 Vùng nhớ được khoanh vùng là 0x10 BYTES của Description. VÌ có thể ghi đè đến 0x20 BYTES nên có thể ghi đè lên hàm `viewBalance`.
 
+Bên cạnh đó, ta còn thấy chương trình mở sẵn flag ở hàm `win`. 
 ## Mitigation
 <img width="800" height="282" alt="image" src="https://github.com/user-attachments/assets/8eec8a5e-0281-40f3-a5b5-b70b2d7e7c66" />
 
