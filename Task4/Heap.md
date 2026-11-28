@@ -22,7 +22,7 @@ Khi một chunk được khởi tạo thì phải dành thêm 0x10 BYTES cho `me
 
 <br>
 
-VÍ DỤ: Khi chương trình gọi malloch
+### VÍ DỤ: Khi chương trình gọi malloch
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -35,7 +35,7 @@ VÍ DỤ: Khi chương trình gọi malloch
       strcpy(ptr, "panda");
     }
 
-Allocated chunk:
+### Allocated chunk:
 
     0x555555559250:    0x0    0x21
     0x555555559260:    0x61646e6170    0x0
