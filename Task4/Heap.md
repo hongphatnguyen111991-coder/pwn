@@ -40,7 +40,7 @@ Mỗi chunk có 1 vùng gọi là `metadata` nằm trước `user data` 0x10 BTY
     0x555555559250:    0x0    0x21
     0x555555559260:    0x61646e6170    0x0
 
-Kích thước chunk trước bằng 0x0 do chunk trước đã được `free`.  Kích thước chunk hiện tại là 0x21, khác với câu lệnh yêu cầu (0x10).
+Kích thước chunk trước bằng 0x0 cho thấy chunk trước đã được `free`.  Kích thước chunk hiện tại là 0x21, khác với câu lệnh yêu cầu (0x10).
 
 0x10 BYTES đầu của `metadata`, 0x10 BYTES sau là của `user data`. Vậy 0x01 kia đến từ đâu?
 
