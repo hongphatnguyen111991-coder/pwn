@@ -17,9 +17,7 @@ Mỗi khi gọi `malloch` thì lệnh sẽ trả về địa chỉ tại vùng n
 
 Mỗi chunk có 1 vùng gọi là heap header
 
-- Previous Chunk Size: kích thước của chunk trước đó.
-
-Vùng Previous Chunk Size vốn được khởi tạo nằm ở cuối chunk trước đó 
+- Previous Chunk Size: kích thước của chunk trước đó. (Vùng Previous Chunk Size vốn được khởi tạo nằm ở cuối chunk trước đó) 
   
 - Chunk Size: kích thước của chunk hiện tại
 
