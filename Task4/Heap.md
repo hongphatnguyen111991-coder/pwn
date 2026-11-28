@@ -40,5 +40,14 @@ Mỗi chunk có 1 vùng gọi là `metadata` nằm trước `user data` 0x10 BTY
     0x555555559250:    0x0    0x21
     0x555555559260:    0x61646e6170    0x0
 
-Kích thước chunk trước bằng 0x0.  Kích thước chunk hiện tại là 0x21, khác với câu lệnh yêu cầu (0x10). Điều này là do kích thước ta yêu cầu chỉ là
-dung lượng ta cần. 0x10 BYTE được tạo thêm cần cho `metadata`. Bên cạnh giá trị 0x1 nằm trong 0x21 cho biết liệu khối liền trước đó có đang được sử dụng hay đã được giải phóng.
+Kích thước chunk trước bằng 0x0.  Kích thước chunk hiện tại là 0x21, khác với câu lệnh yêu cầu (0x10).
+
+Điều này là do cách tính size cảu chunk dựa vào tổng của:
+
+- 0x10 BYTES cho `metadata`
+- Kích thước được yêu cầu
+- bit cờ đánh dấu xem chunk liền trước đó có đang được sử dụng hay đã được giải phóng.
+
+        0x1:     Previous in Use     - Specifies that the chunk before it in memory is in use
+        0x2:    Is MMAPPED               - Specifies that the chunk was obtained with mmap()
+        0x4:     Non Main Arena         - Specifies that the chunk was obtained from outside of the main arena
