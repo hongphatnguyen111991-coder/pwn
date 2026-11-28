@@ -32,3 +32,8 @@ VÍ DỤ: Khi chương trình gọi malloch
       ptr = malloc(0x10);
       strcpy(ptr, "panda");
     }
+
+Allocated chunk:
+
+    0x555555559250:    0x0    0x21
+    0x555555559260:    0x61646e6170    0x0
