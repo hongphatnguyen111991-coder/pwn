@@ -29,14 +29,6 @@ VÍ DỤ: Khi chương trình gọi malloch
     void main(void)
     {
       char *ptr;
-  
       ptr = malloc(0x10);
-  
       strcpy(ptr, "panda");
     }
-
-
-
-
-    strcpy(ptr, "panda");
-}
