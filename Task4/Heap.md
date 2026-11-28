@@ -44,4 +44,4 @@ Kích thước chunk trước bằng 0x0 do chunk trước đã được `free`.
 
 0x10 BYTES đầu của `metadata`, 0x10 BYTES sau là của `user data`. Vậy 0x01 kia đến từ đâu?
 
-Thực chất thì cac
+Thực chất thì cacs
