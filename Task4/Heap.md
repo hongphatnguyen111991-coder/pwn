@@ -49,5 +49,7 @@ Kích thước chunk trước bằng 0x0.  Kích thước chunk hiện tại là
 - bit cờ đánh dấu xem chunk liền trước đó có đang được sử dụng hay đã được giải phóng.
 
   0x1:     Previous in Use     - Specifies that the chunk before it in memory is in use
+  
   0x2:    Is MMAPPED               - Specifies that the chunk was obtained with mmap()
+  
   0x4:     Non Main Arena         - Specifies that the chunk was obtained from outside of the main arena
