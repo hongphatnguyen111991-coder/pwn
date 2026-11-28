@@ -20,6 +20,8 @@ Mỗi `metadata` gồm 2 phần:
 - Previous Chunk Size: kích thước của chunk trước đó.
 - Chunk Size: kích thước của chunk hiện tại
 
+<br>
+
 VÍ DỤ: Khi chương trình gọi malloch
 
     #include <stdio.h>
